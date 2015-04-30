@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--警告不允许修改结构-->
+<!--Veris UPC 前台页面需要被捕捉的控件ID映射-->
+
+<modules>
+    <module name="login">
+        <field id="username">STAFF_ID</field>
+        <field id="password">PASSWORD</field>
+        <field id="verifycode">VERIFY_CODE</field>
+        <field id="rememberusername">LOGIN_FLAG</field>
+        <field id="login">login_btn</field>
+    </module>
+    <module name="logout">
+        <field id="exit">btn_exit</field>
+    </module>
+</modules>
+
