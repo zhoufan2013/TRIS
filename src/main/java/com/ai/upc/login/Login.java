@@ -35,7 +35,7 @@ public class Login extends BasePage {
     }
 
     protected FluentWebElement login() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "login")));
+        return button(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "login")));
     }
 
 }

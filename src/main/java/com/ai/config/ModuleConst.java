@@ -7,6 +7,8 @@ package com.ai.config;
  */
 public final class ModuleConst {
 
+    public static String MODULE_FILED_PATH = "/module-field.xml";
+
     public static String LOGIN = "login";
 
     public static String LOGOUT = "logout";

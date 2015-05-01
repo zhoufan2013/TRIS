@@ -22,8 +22,6 @@ public final class ModuleField {
 
     private static transient Log _log = LogFactory.getLog(ModuleField.class);
 
-    private static final String MODULE_FILED_PATH = "/module-field.xml";
-
     public static HashMap<String, Module> _cached = new HashMap<String, Module>();
 
     private ModuleField(){}
@@ -47,11 +45,11 @@ public final class ModuleField {
         synchronized (_cached) {
 
             try {
-                String moduleFileds = ResourceUtil.readCfgFile(MODULE_FILED_PATH, CharEncoding.UTF_8);
+                String moduleFileds = ResourceUtil.readCfgFile(ModuleConst.MODULE_FILED_PATH, CharEncoding.UTF_8);
                 Document doc = DocumentHelper.parseText(moduleFileds);
 
                 if (null == doc) {
-                    _log.error(LogConst.ERROR_PARSE_FILE + MODULE_FILED_PATH);
+                    _log.error(LogConst.ERROR_PARSE_FILE + ModuleConst.MODULE_FILED_PATH);
                 }
 
                 //load entity info
