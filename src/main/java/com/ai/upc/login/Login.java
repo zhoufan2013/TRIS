@@ -3,7 +3,7 @@ package com.ai.upc.login;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.core.BasePage;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import static org.openqa.selenium.By.id;
 
@@ -14,7 +14,7 @@ import static org.openqa.selenium.By.id;
  */
 public class Login extends BasePage {
 
-    public Login(FirefoxDriver delegate) {
+    public Login(ChromeDriver delegate) {
         super(delegate);
     }
 

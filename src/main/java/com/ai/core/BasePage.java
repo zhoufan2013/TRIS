@@ -1,7 +1,7 @@
 package com.ai.core;
 
 import com.ai.config.LogConst;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.seleniumhq.selenium.fluent.FluentWebDriver;
 import org.seleniumhq.selenium.fluent.monitors.CompositeMonitor;
 import org.seleniumhq.selenium.fluent.monitors.HighlightOnError;
@@ -15,7 +15,7 @@ import org.seleniumhq.selenium.fluent.monitors.ScreenShotOnError;
  */
 public class BasePage extends FluentWebDriver{
 
-    public BasePage(FirefoxDriver delegate) {
+    public BasePage(ChromeDriver delegate) {
         super(delegate,
                 new CompositeMonitor(WholeSuiteListener.codahaleMetricsMonitor,
                         new HighlightOnError(delegate),

@@ -14,5 +14,22 @@
     <module name="logout">
         <field id="exit">btn_exit</field>
     </module>
+    <module name="OfferManm">
+        <field id="offerId">offerId</field>
+        <field id="createNewOfferButton">addBtn</field>
+
+    </module>
+    <module name="TemplateChooseFrame">
+        <field id="queryTemplateButton">queryButton</field>
+        <field id="templateId">tempId</field>
+        <field id="templateName">tempName</field>
+        <field id="confirmChooseTemplate">nextID</field>
+        <field id="cancelChooseTemplate">btcancel</field>
+    </module>
+    <module name="ServiceManm">
+        <field id="serviceIdorName">servSpecId</field>
+        <field id="serviceType">servSpecId</field>
+        <field id="createNewServiceButton">addBtn</field>
+    </module>
 </modules>
 

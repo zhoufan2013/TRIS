@@ -5,4 +5,7 @@
 
 <system>
     <language>EN_US</language>
+    <browser>chrome</browser>
+    <!--<browser>ie</browser>-->
+    <!--<browser>firefox</browser>-->
 </system>

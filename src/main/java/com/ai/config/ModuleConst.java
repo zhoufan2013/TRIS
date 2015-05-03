@@ -13,6 +13,11 @@ public final class ModuleConst {
 
     public static String LOGOUT = "logout";
 
+    public static String TEMPLATE_CHOOSE_FRAME = "TemplateChooseFrame";
+
+    public static String OFFERMANM = "OfferManm";
+
+    public static String SERVICEMANM = "ServiceManm";
 
 
 }
