@@ -19,5 +19,6 @@ public final class ModuleConst {
 
     public static String SERVICEMANM = "ServiceManm";
 
+    public static String SERVICE_EDIT_UI = "ServiceEditUI";
 
 }

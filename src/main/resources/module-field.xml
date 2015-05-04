@@ -31,5 +31,14 @@
         <field id="serviceType">servSpecId</field>
         <field id="createNewServiceButton">addBtn</field>
     </module>
+    <module name="ServiceEditUI">
+        <field id="serviceName">serviceSpecificationName</field>
+        <field id="serviceType">//*[@id="baseinfo"]/div/ul/li[3]/span[2]/button</field>
+        <field id="serviceCatagory">//*[@id="baseinfo"]/div/ul/li[4]/span[2]/button</field>
+        <field id="description">description</field>
+        <field id="saveservicebutton">btsave</field>
+        <field id="selectConditionIDorName">NameId</field>
+        <field id="queryServiceCatagoryButton">//*[@id="ServiceCatagoryQueryForm"]/div[2]/button</field>
+    </module>
 </modules>
 
