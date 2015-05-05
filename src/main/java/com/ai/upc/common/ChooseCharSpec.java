@@ -83,6 +83,7 @@ public class ChooseCharSpec extends BasePage{
 
     private List<WebElement> selectCharSpecAllRows() {
         List<WebElement> allRows = delegate.findElements(xpath(ElementXPath.CHAR_SPEC_CHOOSE_ALLROWS));
+        //TODO assert info
         return allRows;
     }
 

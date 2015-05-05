@@ -104,5 +104,4 @@ public class ServiceBasicInfo extends BasePage{
         delegate.switchTo().frame(delegate.findElement(id("F-Frame"))).switchTo().frame(delegate.findElement(id("F-TabsetFrame"))).switchTo().frame(delegate.findElement(id("F-FrameF-1")));
     }
 
-
 }
