@@ -4,7 +4,6 @@ import com.ai.config.ElementXPath;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.core.BasePage;
-import com.ai.util.TRISUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
@@ -12,8 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import java.util.List;
-
-import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
@@ -102,5 +99,10 @@ public class ServiceBasicInfo extends BasePage{
     protected FluentWebElement saveServiceSpecification() {
         return button(id("btsave"));
     }
+
+    protected void locateServiceCharFrame() {
+        delegate.switchTo().frame(delegate.findElement(id("F-Frame"))).switchTo().frame(delegate.findElement(id("F-TabsetFrame"))).switchTo().frame(delegate.findElement(id("F-FrameF-1")));
+    }
+
 
 }

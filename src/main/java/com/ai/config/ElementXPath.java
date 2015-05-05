@@ -25,7 +25,8 @@ public final class ElementXPath {
     /*单选树父节点id*/
     public static String RADIO_TREE_ROOT_NODE = "radioTree○root";
 
-
+    /*特征控件表格内所有行定位*/
+    public static String CHAR_SPEC_CHOOSE_ALLROWS = "//*[@id=\"relTable\"]/tbody/tr";
 
 
 
