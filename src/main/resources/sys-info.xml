@@ -6,6 +6,7 @@
 <system>
     <language>EN_US</language>
     <browser>chrome</browser>
+    <excel_path>./upc_data_template.xlsx</excel_path>
     <!--<browser>ie</browser>-->
     <!--<browser>firefox</browser>-->
 </system>

@@ -18,11 +18,11 @@ import java.util.Map;
  *
  * Created by zhoufan on 15/4/30.
  */
-public final class ModuleField {
+public class ModuleField {
 
     private static transient Log _log = LogFactory.getLog(ModuleField.class);
 
-    public static HashMap<String, Module> _cached = new HashMap<String, Module>();
+    private static HashMap<String, Module> _cached = new HashMap<String, Module>();
 
     private ModuleField(){}
 
