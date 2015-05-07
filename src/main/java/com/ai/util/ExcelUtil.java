@@ -74,7 +74,7 @@ public final class ExcelUtil {
                 /*if(HSSFDateUtil.isCellDateFormatted(cell)) {        // 如果是日期类型
                     value = new SimpleDateFormat(DatePattern.LOCALE_ZH_DATE.getValue()).format(cell.getDateCellValue()) ;
                 } else */
-                value = String.valueOf(cell.getNumericCellValue()) ;
+                value = String.valueOf(new Double(cell.getNumericCellValue()).longValue()) ;
                 break ;
             case Cell.CELL_TYPE_STRING:     // 字符串
                 value = cell.getStringCellValue() ;

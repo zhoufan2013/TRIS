@@ -3,11 +3,11 @@ package com.ai.upc.bean;
 /**
  * Created by zhoufan on 15/5/5.
  */
-public class CharSpec {
+public class CharSpecVO {
 
-    public CharSpec(){}
+    public CharSpecVO(){}
 
-    public CharSpec(String charSpecId){
+    public CharSpecVO(String charSpecId){
         this.charSpecId = charSpecId;
     }
 

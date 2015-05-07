@@ -8,7 +8,7 @@ import java.util.Map;
  *
  * Created by zhoufan on 15/5/5.
  */
-public class Service {
+public class ServiceVO {
 
     private String serviceName;
 
@@ -18,7 +18,7 @@ public class Service {
 
     private String description;
 
-    private List<CharSpec> servChar;
+    private List<CharSpecVO> servChar;
 
     /**
      * Map<relServiceId, relationship>
@@ -65,11 +65,11 @@ public class Service {
         this.relServices = relServices;
     }
 
-    public List<CharSpec> getServChar() {
+    public List<CharSpecVO> getServChar() {
         return servChar;
     }
 
-    public void setServChar(List<CharSpec> servChar) {
+    public void setServChar(List<CharSpecVO> servChar) {
         this.servChar = servChar;
     }
 }

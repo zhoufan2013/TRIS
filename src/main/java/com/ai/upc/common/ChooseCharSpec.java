@@ -34,7 +34,7 @@ public class ChooseCharSpec extends BasePage{
      * @param specifiedCharSpec     测试输入特征编码 TODO 是否要改成特征值?
      * @param specifiedCharValue    测试输入特征值
      */
-    protected void chooseSpecifiedServiceCatagory(String specifiedCharSpec, String specifiedCharValue) {
+    protected void chooseSpecifiedServiceChar(String specifiedCharSpec, String specifiedCharValue) {
         List<WebElement> allRows = selectCharSpecAllRows();
         for(WebElement row : allRows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));

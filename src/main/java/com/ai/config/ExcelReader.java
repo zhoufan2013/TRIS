@@ -1,13 +1,15 @@
 package com.ai.config;
 
-import com.ai.upc.bean.CharSpec;
-import com.ai.upc.bean.Service;
+import com.ai.upc.bean.CharSpecVO;
+import com.ai.upc.bean.ServiceVO;
 import com.ai.util.ExcelUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.junit.Test;
+
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,13 +26,13 @@ public class ExcelReader {
 
     private static Workbook wookbook = null;
 
-    private static Service service = new Service();
+    private static ServiceVO service = new ServiceVO();
 
     static {
         wookbook = ExcelUtil.createWb("src/main/resources/upc_data_template.xlsx"); //TODO
     }
 
-    public static Service readService() {
+    public static ServiceVO readService() {
         long startTime = System.currentTimeMillis();
         Sheet serviceSheet = ExcelUtil.getSheetViaSheetName(wookbook, ExcelConst.UPC_MODULE_SERVICE);
         List<String[]> rows = ExcelUtil.listFromSheet(serviceSheet);
@@ -91,9 +93,9 @@ public class ExcelReader {
         String charSpecValue = splitCellValue(row[2]);
         assertTrue(StringUtils.isNotEmpty(charSpecId));
         if (null == service.getServChar()) {
-            service.setServChar(new ArrayList<CharSpec>());
+            service.setServChar(new ArrayList<CharSpecVO>());
         }
-        CharSpec charSpec = new CharSpec(charSpecId);
+        CharSpecVO charSpec = new CharSpecVO(charSpecId);
         if (StringUtils.isNotEmpty(charSpecValue)) {
             charSpec.setCharValue(charSpecValue);
         }
@@ -117,5 +119,10 @@ public class ExcelReader {
 
     private static String splitCellValue(String cellValue) {
         return cellValue.substring(0, cellValue.indexOf("["));
+    }
+
+    @Test
+    public void test() {
+        readService();
     }
 }

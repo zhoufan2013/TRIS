@@ -2,8 +2,10 @@
 
 <!--警告不允许修改结构-->
 <!--Veris UPC 前台页面需要被捕捉的控件ID映射-->
+<!-- 没有使用PageObject模式主要为了维护控件映射的方便 -->
 
 <modules>
+    <!-- 登录页面 -->
     <module name="login">
         <field id="username">STAFF_ID</field>
         <field id="password">PASSWORD</field>
@@ -19,6 +21,7 @@
         <field id="createNewOfferButton">addBtn</field>
 
     </module>
+    <!-- 选择模板 -->
     <module name="TemplateChooseFrame">
         <field id="queryTemplateButton">queryButton</field>
         <field id="templateId">tempId</field>
@@ -26,11 +29,13 @@
         <field id="confirmChooseTemplate">nextID</field>
         <field id="cancelChooseTemplate">btcancel</field>
     </module>
+    <!-- 服务查询主页面 -->
     <module name="ServiceManm">
         <field id="serviceIdorName">servSpecId</field>
         <field id="serviceType">servSpecId</field>
         <field id="createNewServiceButton">addBtn</field>
     </module>
+    <!-- 编辑服务 -->
     <module name="ServiceEditUI">
         <field id="serviceName">serviceSpecificationName</field>
         <field id="serviceType">//*[@id="baseinfo"]/div/ul/li[3]/span[2]/button</field>
