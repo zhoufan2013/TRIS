@@ -16,6 +16,10 @@ import static org.openqa.selenium.By.linkText;
  */
 public class ChooseMenu extends BasePage{
 
+    public static class Contants {
+        public static String TITLE = "Base";
+    }
+
     public ChooseMenu(ChromeDriver delegate) {
         super(delegate);
     }
@@ -35,4 +39,17 @@ public class ChooseMenu extends BasePage{
     protected void enterServiceModule() {
         link(linkText(Menu.getMenuName("service"))).click().within(Period.secs(5));
     }
+
+    protected void enterCatalogModule() {
+        link(linkText(Menu.getMenuName("catalog"))).click();
+    }
+
+    protected void enterGroupModule() {
+        link(linkText(Menu.getMenuName("group"))).click();
+    }
+
+    protected void enterProductLifecycle() {
+        link(linkText(Menu.getMenuName("productlifecycle"))).click();
+    }
+
 }

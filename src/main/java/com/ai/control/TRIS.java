@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 /**
- * TRIS 系统设定
+ * TRIS 系统初始化
  *
  * Created by zhoufan on 15/5/6.
  */

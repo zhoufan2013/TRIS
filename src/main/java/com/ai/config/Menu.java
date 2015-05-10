@@ -5,8 +5,6 @@ import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.util.Properties;
 
 /**

@@ -1,7 +1,6 @@
 package com.ai.util;
 
 import com.ai.config.LogConst;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
@@ -34,11 +33,11 @@ public final class TRISUtil {
         }
 
         File file = driver.getScreenshotAs(OutputType.FILE);
-        try {
+        /*try {
             FileUtils.copyFile(file, new File(save_path + file_name));
         }catch (IOException ioe){
             _log.error(ioe.getMessage(), ioe);
-        }
+        }*/
 
     }
 

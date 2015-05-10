@@ -14,6 +14,10 @@ import static org.openqa.selenium.By.id;
  */
 public class OfferManm extends BasePage {
 
+    public static class Contants {
+        public static String TITLE = "Product Offering Management";
+    }
+
     public OfferManm(ChromeDriver delegate) {
         super(delegate);
     }

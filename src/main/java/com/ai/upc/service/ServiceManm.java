@@ -12,6 +12,10 @@ import org.seleniumhq.selenium.fluent.FluentWebElement;
  */
 public class ServiceManm extends BasePage{
 
+    public static class Contants {
+        public static String TITLE = "Service Specification Management";
+    }
+
     public ServiceManm(ChromeDriver delegate) {
         super(delegate);
     }

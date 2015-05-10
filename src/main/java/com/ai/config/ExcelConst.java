@@ -5,6 +5,8 @@ package com.ai.config;
  */
 public final class ExcelConst {
 
+    public static String XLSX_PATH = "src/main/resources/upc_data_template.xlsx";
+
     public static String UPC_MODULE_OFFER = "offer";
 
     public static String UPC_MODULE_PRODUCT = "product";

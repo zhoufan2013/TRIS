@@ -21,6 +21,10 @@ import static org.openqa.selenium.By.xpath;
  */
 public class ServiceBasicInfo extends BasePage{
 
+    public static class Contants {
+        public static String TITLE = "Service Specification Management";
+    }
+
     private static transient Log _log = LogFactory.getLog(ServiceBasicInfo.class);
 
     public ServiceBasicInfo(ChromeDriver delegate) {

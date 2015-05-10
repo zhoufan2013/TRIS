@@ -1,13 +1,10 @@
 # TRIS
-AsiaInfo Veris UPC Automate Test system
+AsiaInfo Veris UPC Auto Test system
 
 ##Introduction
-TRIS is
 
 ##Feature
 
-
 ##Licence
-
 
 ##Author

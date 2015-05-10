@@ -14,6 +14,10 @@ import static org.openqa.selenium.By.id;
  */
 public class Login extends BasePage {
 
+    public static class Contants {
+        public static String TITLE = "产品管理";
+    }
+
     public Login(ChromeDriver delegate) {
         super(delegate);
     }

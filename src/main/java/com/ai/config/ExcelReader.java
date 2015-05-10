@@ -1,6 +1,7 @@
 package com.ai.config;
 
 import com.ai.upc.bean.CharSpecVO;
+import com.ai.upc.bean.LoginVO;
 import com.ai.upc.bean.ServiceVO;
 import com.ai.util.ExcelUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -9,6 +10,8 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
+
+import javax.xml.ws.Service;
 
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
@@ -26,14 +29,28 @@ public class ExcelReader {
 
     private static Workbook wookbook = null;
 
-    private static ServiceVO service = new ServiceVO();
+    private ExcelReader() {}
 
-    static {
-        wookbook = ExcelUtil.createWb("src/main/resources/upc_data_template.xlsx"); //TODO
+    private ExcelReader(String xlsxPath) {
+        this.wookbook = ExcelUtil.createWb(xlsxPath);
     }
 
-    public static ServiceVO readService() {
-        long startTime = System.currentTimeMillis();
+    public static ExcelReader init(String xlsxPath) {
+        return new ExcelReader(xlsxPath);
+    }
+
+    public LoginVO readLoginInfo() {
+        LoginVO loginVO = new LoginVO();
+        loginVO.setUsername("21upc");
+        loginVO.setPassword("123456");
+        loginVO.setLink("");
+        return loginVO;
+    }
+
+    public ServiceVO readService() {
+        //TODO xlsx 校验
+        ServiceVO service = new ServiceVO();
+        //long startTime = System.currentTimeMillis();
         Sheet serviceSheet = ExcelUtil.getSheetViaSheetName(wookbook, ExcelConst.UPC_MODULE_SERVICE);
         List<String[]> rows = ExcelUtil.listFromSheet(serviceSheet);
 
@@ -49,22 +66,18 @@ public class ExcelReader {
 
         for(int i=0; i<rows.size(); i++) {
             if (i > 0 && i < relatedServiceRowNum) {
-                loadBasicInfo(rows.get(i));
+                loadBasicInfo(service, rows.get(i));
             }else if (i > relatedServiceRowNum+1 && i < relatedCharSpecRowNum) {
-                loadRelatedServices(rows.get(i));
+                loadRelatedServices(service, rows.get(i));
             }else if (i > relatedCharSpecRowNum+1) {
-                loadRelatedCharSpec(rows.get(i));
+                loadRelatedCharSpec(service, rows.get(i));
             }
-        }
-
-        if (_log.isDebugEnabled()) {
-            _log.info(System.currentTimeMillis() - startTime);
         }
 
         return service;
     }
 
-    private static void loadBasicInfo(String[] row) {
+    private void loadBasicInfo(ServiceVO service, String[] row) {
         if (StringUtils.equals(splitCellValue(row[0]), "service name")) {
             service.setServiceName(splitCellValue(row[1]));
         } else if (StringUtils.equals(splitCellValue(row[0]), "service type")) {
@@ -77,7 +90,7 @@ public class ExcelReader {
     }
 
 
-    private static void loadRelatedServices(String[] row) {
+    private void loadRelatedServices(ServiceVO service, String[] row) {
         String relServiceId = splitCellValue(row[0]);
         String relationship = splitCellValue(row[2]);
         assertTrue(StringUtils.isNotEmpty(relServiceId));
@@ -88,7 +101,7 @@ public class ExcelReader {
         service.getRelServices().put(relServiceId, relationship);
     }
 
-    private static void loadRelatedCharSpec(String[] row) {
+    private void loadRelatedCharSpec(ServiceVO service, String[] row) {
         String charSpecId = splitCellValue(row[0]);
         String charSpecValue = splitCellValue(row[2]);
         assertTrue(StringUtils.isNotEmpty(charSpecId));
@@ -102,14 +115,14 @@ public class ExcelReader {
         service.getServChar().add(charSpec);
     }
 
-    private static boolean subTitleRow(String subTitle, String specifiedTitle) {
+    private boolean subTitleRow(String subTitle, String specifiedTitle) {
         if (StringUtils.equals(subTitle.substring(0, subTitle.indexOf("[")), specifiedTitle)) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
-    private static int rowNum(String subTitle) {
+    private int rowNum(String subTitle) {
         String rowString = subTitle.substring(subTitle.indexOf("[")+1, subTitle.indexOf(","));
         if (StringUtils.isNotEmpty(rowString) && StringUtils.isNumeric(rowString)) {
             return Integer.parseInt(rowString);
@@ -117,12 +130,7 @@ public class ExcelReader {
         return -1;
     }
 
-    private static String splitCellValue(String cellValue) {
+    private String splitCellValue(String cellValue) {
         return cellValue.substring(0, cellValue.indexOf("["));
-    }
-
-    @Test
-    public void test() {
-        readService();
     }
 }

@@ -1,13 +1,19 @@
 package com.ai.control.upc;
 
 import com.ai.core.PageFactory;
+import com.ai.upc.common.ChooseMenu;
 import com.ai.upc.login.Login;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.omg.CORBA.PRIVATE_MEMBER;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * Created by zhoufan on 15/5/6.
  */
 public class UPCHomePage {
+
+    private static transient Log _log = LogFactory.getLog(UPCHomePage.class);
 
     private ChromeDriver driver;
 
@@ -29,6 +35,28 @@ public class UPCHomePage {
             login().click();
         }};
         return PageFactory.initPage(driver, UPCMenuPage.class);
+    }
+
+
+    public boolean login(final String username, final String password) {
+        new Login(driver) {{
+            username().clearField().sendKeys(username);
+            password().clearField().sendKeys(password);
+            login().click();
+        }};
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return ChooseMenu.Contants.TITLE.equals(driver.getTitle());
+    }
+
+    public boolean isLoaded() {
+        if (_log.isDebugEnabled()) {
+            _log.info("Current Page Title is " + driver.getTitle());
+        }
+        return Login.Contants.TITLE.equals(driver.getTitle());
     }
 
 }
