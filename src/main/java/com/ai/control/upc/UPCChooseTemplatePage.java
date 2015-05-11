@@ -18,20 +18,11 @@ public class UPCChooseTemplatePage extends UPCBasePage{
     }
 
     /**
-     * 测试人员指定模板创建
+     * 测试人员指定创建服务模板
      */
-    public UPCBasePage chooseTemplate(String tempId) {
+    public UPCServiceEditUIPage chooseServiceTemplate(String tempId) {
         templateChoose(tempId);
-        return PageFactory.initPage(driver, UPCBasePage.class);
-    }
-
-    /**
-     * 依赖输入 upc_data_template.xlsx
-     */
-    public void chooseTemplate() {
-        //TODO 解析 xlsx
-        String tempId = "47";
-        templateChoose(tempId);
+        return PageFactory.initPage(driver, UPCServiceEditUIPage.class);
     }
 
     private void templateChoose(final String tempId) {
@@ -40,7 +31,7 @@ public class UPCChooseTemplatePage extends UPCBasePage{
             templateId().sendKeys(tempId);
             queryTemplate().click();
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

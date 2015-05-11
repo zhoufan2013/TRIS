@@ -2,24 +2,16 @@ package com.ai.tc;
 
 import com.ai.config.ExcelConst;
 import com.ai.config.ExcelReader;
-import com.ai.config.Menu;
 import com.ai.control.TRIS;
-import com.ai.control.upc.UPCHomePage;
-import com.ai.control.upc.UPCMenuPage;
-import com.ai.control.upc.UPCProductManmPage;
-import com.ai.control.upc.UPCServiceManmPage;
+import com.ai.control.upc.*;
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.upc.bean.LoginVO;
-import com.ai.util.UPCUtil;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 
 /**
- * 菜单冒烟
+ * Veris UPC 菜单冒烟测试
  *
  * Created by zhoufan on 15/5/7.
  */
@@ -41,6 +33,8 @@ public class MenuTC {
 
     @AfterClass
     private void tearDown() {
+        driver.close();
+        driver.quit();
     }
 
     /**
@@ -75,7 +69,8 @@ public class MenuTC {
      */
     @Test
     public void testCatalogMenu() {
-        //TODO
+        UPCCatalogManmPage catalogManm = menu.chooseCatalogMenu();
+        catalogManm.isLoaded();
     }
 
     /**
@@ -83,7 +78,8 @@ public class MenuTC {
      */
     @Test
     public void testGroupMenu() {
-
+        UPCGroupManmPage groupManm = menu.chooseGroupMenu();
+        groupManm.isLoaded();
     }
 
     /**

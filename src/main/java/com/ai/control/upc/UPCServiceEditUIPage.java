@@ -26,8 +26,8 @@ public class UPCServiceEditUIPage extends UPCBasePage{
         this.driver = driver;
     }
 
-    private void switchToServiceEditFrame() {
-        driver.switchTo().frame(UPCUtil.findNavFrame(driver, Menu.getMenuName("service")));
+    public void switchToServiceEditFrame() {
+        driver.switchTo().frame(UPCUtil.findNavFrame(driver, "Add Service Specification"));
     }
 
     public void createService(final ServiceVO service) {
@@ -95,8 +95,6 @@ public class UPCServiceEditUIPage extends UPCBasePage{
         new MessageBox(driver) {{
             okSuccessMsg();
         }};
-
-
     }
 
     public void verify() {

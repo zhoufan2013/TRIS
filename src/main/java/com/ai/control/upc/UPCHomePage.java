@@ -24,6 +24,7 @@ public class UPCHomePage {
     }
 
     public static UPCHomePage navigate(ChromeDriver driver) {
+        //driver.get("http://10.10.12.151:8666/ALUPC-3307/");
         driver.get("http://10.10.12.185:8212/UPC-TN-MYSQL-4304-JC/");
         return PageFactory.initPage(driver, UPCHomePage.class);
     }

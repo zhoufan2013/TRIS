@@ -4,6 +4,7 @@ import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.PageFactory;
 import com.ai.upc.common.ChooseMenu;
 import org.openqa.selenium.chrome.ChromeDriver;
+import sun.jvm.hotspot.debugger.Page;
 
 /**
  * Created by zhoufan on 15/5/6.
@@ -19,6 +20,7 @@ public class UPCMenuPage {
     }
 
     public UPCServiceManmPage chooseServiceMenu() {
+        driver.switchTo().defaultContent();
         new ChooseMenu(driver){{
             enterProductServiceCatalog();
             enterServiceModule();
@@ -27,6 +29,7 @@ public class UPCMenuPage {
     }
 
     public UPCOfferManmPage chooseOfferMenu() {
+        driver.switchTo().defaultContent();
         new ChooseMenu(driver){{
            enterProductServiceCatalog();
            enterOfferModule();
@@ -35,6 +38,7 @@ public class UPCMenuPage {
     }
 
     public UPCProductManmPage chooseProductMenu() {
+        driver.switchTo().defaultContent();
         new ChooseMenu(driver) {{
             enterProductServiceCatalog();
             enterProductModule();
@@ -42,18 +46,22 @@ public class UPCMenuPage {
         return PageFactory.initPage(driver, UPCProductManmPage.class);
     }
 
-    public void chooseCatalogMenu() {
+    public UPCCatalogManmPage chooseCatalogMenu() {
+        driver.switchTo().defaultContent();
         new ChooseMenu(driver) {{
             enterProductServiceCatalog();
             enterCatalogModule();
         }};
+        return PageFactory.initPage(driver, UPCCatalogManmPage.class);
     }
 
-    public void chooseGroupMenu() {
+    public UPCGroupManmPage chooseGroupMenu() {
+        driver.switchTo().defaultContent();
         new ChooseMenu(driver) {{
             enterProductServiceCatalog();
             enterGroupModule();
         }};
+        return PageFactory.initPage(driver, UPCGroupManmPage.class);
     }
 
 
