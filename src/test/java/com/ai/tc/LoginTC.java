@@ -80,7 +80,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginTwo() {
-        assertEquals(UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern2(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "2"));
+        assertEquals(!UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern2(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "2"));
     }
 
     /**
@@ -88,7 +88,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginThree() {
-        assertEquals(UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern3(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "3"));
+        assertEquals(!UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern3(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "3"));
     }
 
     /**
@@ -96,7 +96,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginFour() {
-        assertEquals(UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern4(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "4"));
+        assertEquals(!UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern4(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "4"));
     }
 
 }

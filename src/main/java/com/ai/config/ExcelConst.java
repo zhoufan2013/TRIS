@@ -16,6 +16,9 @@ public final class ExcelConst {
     /*服务关联关系*/
     public static String SUB_TITLE_RELATED_SERVICES = "Related Services";
 
+    /*产品关联关系*/
+    public static String SUB_TITLE_RELATED_PRODUCTS = "Related Products";
+
     /*服务特征*/
     public static String SUB_TITLE_RELATED_CHAR_SPEC = "Related Characteristic Specification";
 }

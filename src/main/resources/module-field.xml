@@ -45,5 +45,24 @@
         <field id="selectConditionIDorName">NameId</field>
         <field id="queryServiceCatagoryButton">//*[@id="ServiceCatagoryQueryForm"]/div[2]/button</field>
     </module>
+    <!-- 产品查询主页面 -->
+    <module name="ProductManm">
+        <field id="prodIdorName">prodSpecId</field>
+        <field id="createNewProductButton">addBtn</field>
+    </module>
+    <!-- 编辑服务 -->
+    <module name="ProductEditUI">
+        <field id="productNodeCell">//*[@id="product"]/span/table/tbody/tr/td[2]</field>
+        <field id="productName">productSpecificationName</field>
+        <field id="productCode">productSpecificationCode</field>
+        <field id="productType">//*[@id="baseinfo"]/div/ul/li[3]/span[2]/button</field>
+        <field id="description">description</field>
+        <field id="saveProductButton">btsave</field>
+        <field id="cancelServiceButton">btcancel</field>
+        <field id="selectConditionIDorName">NameId</field>
+        <field id="queryServiceCatagoryButton">//*[@id="ServiceCatagoryQueryForm"]/div[2]/button</field>
+    </module>
+
+
 </modules>
 

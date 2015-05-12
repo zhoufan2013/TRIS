@@ -25,6 +25,12 @@ public class UPCChooseTemplatePage extends UPCBasePage{
         return PageFactory.initPage(driver, UPCServiceEditUIPage.class);
     }
 
+    public UPCProductEditUIPage chooseProductTemplate(String tempId) {
+        templateChoose(tempId);
+        return PageFactory.initPage(driver, UPCProductEditUIPage.class);
+    }
+
+
     private void templateChoose(final String tempId) {
         new ChooseTemplate(driver){{
             locateTemplateChooseFrame();

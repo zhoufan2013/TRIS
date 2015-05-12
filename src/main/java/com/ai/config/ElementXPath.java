@@ -28,6 +28,7 @@ public final class ElementXPath {
     /*特征控件表格内所有行定位*/
     public static String CHAR_SPEC_CHOOSE_ALLROWS = "//*[@id=\"relTable\"]/tbody/tr";
 
-
+    /*product type tree iframe 定位*/
+    public static String PRODUCT_TYPE_TREE_FRAME = "//iframe[@eventid='productSpecificationType']";
 
 }

@@ -2,6 +2,7 @@ package com.ai.config;
 
 import com.ai.upc.bean.CharSpecVO;
 import com.ai.upc.bean.LoginVO;
+import com.ai.upc.bean.ProductVO;
 import com.ai.upc.bean.ServiceVO;
 import com.ai.util.ExcelUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -47,6 +48,32 @@ public class ExcelReader {
         return loginVO;
     }
 
+    public ProductVO readProduct() {
+        ProductVO product = new ProductVO();
+        Sheet productSheet = ExcelUtil.getSheetViaSheetName(wookbook, ExcelConst.UPC_MODULE_PRODUCT);
+        List<String[]> rows = ExcelUtil.listFromSheet(productSheet);
+
+        int relatedProductRowNum = -1;
+        int relatedCharSpecRowNum = -1;
+        for(String[] row : rows) {
+            if (subTitleRow(row[0], ExcelConst.SUB_TITLE_RELATED_PRODUCTS)) {
+                relatedProductRowNum = rowNum(row[0]);
+            }else if (subTitleRow(row[0], ExcelConst.SUB_TITLE_RELATED_CHAR_SPEC)) {
+                relatedCharSpecRowNum = rowNum(row[0]);
+            }
+        }
+        for(int i=0; i<rows.size(); i++) {
+            if (i > 0 && i < relatedProductRowNum) {
+                loadProductBasicInfo(product, rows.get(i));
+            }else if (i > relatedProductRowNum+1 && i < relatedCharSpecRowNum) {
+                loadRelatedProduct(product, rows.get(i));
+            }else if (i > relatedCharSpecRowNum+1) {
+                loadRelatedCharSpec(product, rows.get(i));
+            }
+        }
+        return product;
+    }
+
     public ServiceVO readService() {
         //TODO xlsx 校验
         ServiceVO service = new ServiceVO();
@@ -77,6 +104,43 @@ public class ExcelReader {
         return service;
     }
 
+    private void loadProductBasicInfo(ProductVO product, String[] row) {
+        if (StringUtils.equals(splitCellValue(row[0]), "product name")) {
+            product.setProductName(splitCellValue(row[1]));
+        } else if (StringUtils.equals(splitCellValue(row[0]), "product type")) {
+            product.setProductType(splitCellValue(row[1]));
+        } else if (StringUtils.equals(splitCellValue(row[0]), "product code")) {
+            product.setProductCode(splitCellValue(row[1]));
+        } else if (StringUtils.equals(splitCellValue(row[0]), "description")) {
+            product.setDescription(splitCellValue(row[1]));
+        }
+    }
+
+    private void loadRelatedCharSpec(ProductVO product, String[] row) {
+        String charSpecId = splitCellValue(row[0]);
+        String charSpecValue = splitCellValue(row[2]);
+        assertTrue(StringUtils.isNotEmpty(charSpecId));
+        if (null == product.getProdChar()) {
+            product.setProdChar(new ArrayList<CharSpecVO>());
+        }
+        CharSpecVO charSpec = new CharSpecVO(charSpecId);
+        if (StringUtils.isNotEmpty(charSpecValue)) {
+            charSpec.setCharValue(charSpecValue);
+        }
+        product.getProdChar().add(charSpec);
+    }
+
+    private void loadRelatedProduct(ProductVO product, String[] row) {
+        String relProductId = splitCellValue(row[0]);
+        String relationship = splitCellValue(row[2]);
+        assertTrue(StringUtils.isNotEmpty(relProductId));
+        assertTrue(StringUtils.isNotEmpty(relationship));
+        if (null == product.getRelProdSpecs()) {
+            product.setRelProdSpecs(new HashMap<String, String>());
+        }
+        product.getRelProdSpecs().put(relProductId, relationship);
+    }
+
     private void loadBasicInfo(ServiceVO service, String[] row) {
         if (StringUtils.equals(splitCellValue(row[0]), "service name")) {
             service.setServiceName(splitCellValue(row[1]));
@@ -88,7 +152,6 @@ public class ExcelReader {
             service.setDescription(splitCellValue(row[1]));
         }
     }
-
 
     private void loadRelatedServices(ServiceVO service, String[] row) {
         String relServiceId = splitCellValue(row[0]);
@@ -133,4 +196,5 @@ public class ExcelReader {
     private String splitCellValue(String cellValue) {
         return cellValue.substring(0, cellValue.indexOf("["));
     }
+
 }

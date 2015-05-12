@@ -1,6 +1,8 @@
 package com.ai.control.upc;
 
 import com.ai.config.Menu;
+import com.ai.config.ModuleConst;
+import com.ai.config.ModuleField;
 import com.ai.core.PageFactory;
 import com.ai.upc.login.Login;
 import com.ai.upc.service.ServiceManm;
@@ -41,8 +43,10 @@ public class UPCServiceManmPage {
      */
     public UPCChooseTemplatePage addService() {
         driver.switchTo().frame(UPCUtil.findNavFrame(driver, Menu.getMenuName("service")));
-        List<WebElement> wes = driver.findElementsByXPath("//*[@id=\"ServSpecQueryResult\"]/div[1]/ul/li/a");//TODO
-        wes.get(0).click();
+        //List<WebElement> wes = driver.findElementsByXPath("//*[@id=\"ServSpecQueryResult\"]/div[1]/ul/li/a");//TODO
+        //wes.get(0).click();
+        //driver.findElementById("addBtn").click();
+        driver.findElementById(ModuleField.getFieldValue(ModuleConst.SERVICEMANM, "createNewServiceButton"));
         return PageFactory.initPage(driver, UPCChooseTemplatePage.class);
     }
 
