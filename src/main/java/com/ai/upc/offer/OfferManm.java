@@ -2,7 +2,7 @@ package com.ai.upc.offer;
 
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
-import com.ai.core.BasePage;
+import com.ai.core.TRISWebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import static org.openqa.selenium.By.id;
@@ -12,7 +12,7 @@ import static org.openqa.selenium.By.id;
  *
  * Created by zhoufan on 15/5/1.
  */
-public class OfferManm extends BasePage {
+public class OfferManm extends TRISWebDriver {
 
     public static class Contants {
         public static String TITLE = "Product Offering Management";

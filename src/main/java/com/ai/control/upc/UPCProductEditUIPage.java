@@ -6,6 +6,7 @@ import com.ai.upc.common.ChooseCharSpec;
 import com.ai.upc.common.MessageBox;
 import com.ai.upc.common.RadioTree;
 import com.ai.upc.product.ProductBasicInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.List;
@@ -23,9 +24,15 @@ public class UPCProductEditUIPage {
         this.driver = driver;
     }
 
-    public void createProduct(final ProductVO product) {
+    /**
+     *
+     *
+     * @param product 依据Excel 输入
+     * @return new product ID
+     */
+    public String createProduct(final ProductVO product) {
 
-
+    /*
         new ProductBasicInfo(driver){{
 
             switchToProductEditFrame();
@@ -69,5 +76,7 @@ public class UPCProductEditUIPage {
             }};
 
         }};
+            */
+        return StringUtils.EMPTY;
     }
 }

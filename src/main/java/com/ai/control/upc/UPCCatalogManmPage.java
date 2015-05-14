@@ -1,5 +1,7 @@
 package com.ai.control.upc;
 
+import com.ai.core.TRISBrowser;
+import com.ai.upc.catalog.CatalogManm;
 import com.ai.upc.product.ProductManm;
 import com.ai.util.UPCUtil;
 import org.apache.commons.logging.Log;
@@ -13,19 +15,19 @@ public class UPCCatalogManmPage {
 
     private static transient Log _log = LogFactory.getLog(UPCCatalogManmPage.class);
 
-    private ChromeDriver driver;
+    private TRISBrowser browser;
 
     public UPCCatalogManmPage() {}
 
-    public UPCCatalogManmPage(ChromeDriver driver) {
-        this.driver = driver;
+    public UPCCatalogManmPage(TRISBrowser browser) {
+        this.browser = browser;
     }
 
     public boolean isLoaded() {
-        String currTitle = UPCUtil.findPageTitle(driver, "catalog");
+        String currTitle = UPCUtil.findPageTitle(browser, "catalog");
         if (_log.isDebugEnabled()) {
             _log.info("Current Page Title is " + currTitle);
         }
-        return ProductManm.Contants.TITLE.equals(currTitle);
+        return CatalogManm.Contants.TITLE.equals(currTitle);
     }
 }

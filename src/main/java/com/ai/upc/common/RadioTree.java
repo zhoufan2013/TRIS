@@ -1,10 +1,11 @@
 package com.ai.upc.common;
 
 import com.ai.config.ElementXPath;
-import com.ai.core.BasePage;
+import com.ai.core.TRISBrowser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 import static org.openqa.selenium.By.className;
 import java.util.List;
 
@@ -13,16 +14,21 @@ import java.util.List;
  *
  * Created by zhoufan on 15/5/4.
  */
-public class RadioTree extends BasePage {
+public class RadioTree {
 
-    public RadioTree(ChromeDriver delegate) {
-        super(delegate);
+    private TRISBrowser browser;
+    private RemoteWebDriver driver ;
+
+    public RadioTree(TRISBrowser browser) {
+        this.browser = browser;
+        this.driver = browser.getInternalWebDriver();
     }
 
     protected void selectSpecifiedNode(String nodeName) {
-        recursive(delegate.findElement(By.id(ElementXPath.RADIO_TREE_ROOT_NODE)), nodeName);
+        recursive(driver.findElement(By.id(ElementXPath.RADIO_TREE_ROOT_NODE)), nodeName);
+        browser.click(browser.getWebDriver().button(className("c_submit").tagName("button")));
 
-        button(className("c_submit").tagName("button")).click();
+        //button(className("c_submit").tagName("button")).click();
         //delegate.findElement(By.className("c_submit")).findElement(By.tagName("button")).click();
     }
 

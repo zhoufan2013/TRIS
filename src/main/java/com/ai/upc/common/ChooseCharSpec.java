@@ -1,13 +1,15 @@
 package com.ai.upc.common;
 
 import com.ai.config.ElementXPath;
-import com.ai.core.BasePage;
+import com.ai.core.TRISBrowser;
+import com.ai.core.TRISWebDriver;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.List;
 
@@ -19,14 +21,18 @@ import static org.openqa.selenium.By.xpath;
  *
  * Created by zhoufan on 15/5/4.
  */
-public class ChooseCharSpec extends BasePage{
+public class ChooseCharSpec {
 
     private static transient Log _log = LogFactory.getLog(ChooseCharSpec.class);
 
     private static final String CHECK_STATE = "on";
 
-    public ChooseCharSpec(ChromeDriver delegate) {
-        super(delegate);
+    private TRISBrowser browser;
+    private RemoteWebDriver driver ;
+
+    public ChooseCharSpec(TRISBrowser browser) {
+        this.browser = browser;
+        this.driver = browser.getInternalWebDriver();
     }
 
     /**
@@ -82,7 +88,7 @@ public class ChooseCharSpec extends BasePage{
     }
 
     private List<WebElement> selectCharSpecAllRows() {
-        List<WebElement> allRows = delegate.findElements(xpath(ElementXPath.CHAR_SPEC_CHOOSE_ALLROWS));
+        List<WebElement> allRows = driver.findElements(xpath(ElementXPath.CHAR_SPEC_CHOOSE_ALLROWS));
         //TODO assert info
         return allRows;
     }

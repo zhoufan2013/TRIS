@@ -3,8 +3,7 @@ package com.ai.upc.product;
 import com.ai.config.ElementXPath;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
-import com.ai.core.BasePage;
-import com.ai.util.UPCUtil;
+import com.ai.core.TRISWebDriver;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
@@ -15,14 +14,11 @@ import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
 /**
+ * 产品规格主编辑页面
+ *
  * Created by zhoufan on 15/5/12.
  */
-public class ProductBasicInfo extends BasePage{
-
-
-    public static class Contants {
-        public static String TITLE = "Service Specification Management";
-    }
+public class ProductBasicInfo extends TRISWebDriver {
 
     private static transient Log _log = LogFactory.getLog(ProductBasicInfo.class);
 
@@ -48,7 +44,7 @@ public class ProductBasicInfo extends BasePage{
      * 定位到编辑产品的大frame框
      */
     public void switchToProductEditFrame() {
-        delegate.switchTo().frame(UPCUtil.findNavFrame(delegate, "Add Product Specification"));
+//        delegate.switchTo().frame(UPCUtil.findNavFrame(delegate, "Add Product Specification"));
     }
 
     /**

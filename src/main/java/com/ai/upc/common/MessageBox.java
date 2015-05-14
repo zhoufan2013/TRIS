@@ -1,18 +1,10 @@
 package com.ai.upc.common;
 
-import com.ai.core.BasePage;
-import org.apache.commons.lang3.StringUtils;
+import com.ai.core.TRISBrowser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.seleniumhq.selenium.fluent.FluentWebElement;
-import org.seleniumhq.selenium.fluent.FluentWebElements;
-
-import java.util.List;
-
-import static org.openqa.selenium.By.className;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 /**
@@ -20,17 +12,21 @@ import static org.openqa.selenium.By.className;
  *
  * Created by zhoufan on 15/5/5.
  */
-public class MessageBox extends BasePage{
+public class MessageBox {
 
     private static transient Log _log = LogFactory.getLog(MessageBox.class);
 
-    public MessageBox(ChromeDriver delegate) {
-        super(delegate);
+    private TRISBrowser browser;
+    private RemoteWebDriver driver ;
+
+    public MessageBox(TRISBrowser browser) {
+        this.browser = browser;
+        this.driver = browser.getInternalWebDriver();
     }
 
     protected void okSuccessMsg() {
 
-        delegate.findElement(By.xpath("//*[@id=\"wade_msg_ct\"]/div[4]/a[1]")).click();
+        driver.findElement(By.xpath("//*[@id=\"wade_msg_ct\"]/div[4]/a[1]")).click();
 
         /*
         List<WebElement> elements = delegate.findElements(By.className("c_submit").tagName("a"));

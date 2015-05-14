@@ -2,68 +2,65 @@ package com.ai.control.upc;
 
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.PageFactory;
+import com.ai.core.TRISBrowser;
 import com.ai.upc.common.ChooseMenu;
-import org.openqa.selenium.chrome.ChromeDriver;
-import sun.jvm.hotspot.debugger.Page;
 
 /**
  * Created by zhoufan on 15/5/6.
  */
 public class UPCMenuPage {
 
-    private ChromeDriver driver;
+    private static TRISBrowser browser;
 
     public UPCMenuPage() {}
 
-    public UPCMenuPage(ChromeDriver driver) {
-        this.driver = driver;
+    public UPCMenuPage(TRISBrowser browser) {
+        this.browser = browser;
     }
 
     public UPCServiceManmPage chooseServiceMenu() {
-        driver.switchTo().defaultContent();
-        new ChooseMenu(driver){{
-            enterProductServiceCatalog();
-            enterServiceModule();
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()){{
+            browser.click(productServiceCatalog());
+            browser.click(serviceModule());
         }};
-        return PageFactory.initPage(driver, UPCServiceManmPage.class);
+        return PageFactory.initPage(browser, UPCServiceManmPage.class);
     }
 
     public UPCOfferManmPage chooseOfferMenu() {
-        driver.switchTo().defaultContent();
-        new ChooseMenu(driver){{
-           enterProductServiceCatalog();
-           enterOfferModule();
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()){{
+            browser.click(productServiceCatalog());
+            browser.click(offerModule());
         }};
-        return PageFactory.initPage(driver, UPCOfferManmPage.class);
+        return PageFactory.initPage(browser, UPCOfferManmPage.class);
     }
 
     public UPCProductManmPage chooseProductMenu() {
-        driver.switchTo().defaultContent();
-        new ChooseMenu(driver) {{
-            enterProductServiceCatalog();
-            enterProductModule();
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()) {{
+            browser.click(productServiceCatalog());
+            browser.click(offerModule());
         }};
-        return PageFactory.initPage(driver, UPCProductManmPage.class);
+        return PageFactory.initPage(browser, UPCProductManmPage.class);
     }
 
     public UPCCatalogManmPage chooseCatalogMenu() {
-        driver.switchTo().defaultContent();
-        new ChooseMenu(driver) {{
-            enterProductServiceCatalog();
-            enterCatalogModule();
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()) {{
+            browser.click(productServiceCatalog());
+            browser.click(catalogModule());
         }};
-        return PageFactory.initPage(driver, UPCCatalogManmPage.class);
+        return PageFactory.initPage(browser, UPCCatalogManmPage.class);
     }
 
     public UPCGroupManmPage chooseGroupMenu() {
-        driver.switchTo().defaultContent();
-        new ChooseMenu(driver) {{
-            enterProductServiceCatalog();
-            enterGroupModule();
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()) {{
+            browser.click(productServiceCatalog());
+            browser.click(groupModule());
         }};
-        return PageFactory.initPage(driver, UPCGroupManmPage.class);
+        return PageFactory.initPage(browser, UPCGroupManmPage.class);
     }
-
-
 
 }

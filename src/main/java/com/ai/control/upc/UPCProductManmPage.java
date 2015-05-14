@@ -1,8 +1,9 @@
 package com.ai.control.upc;
 
-import com.ai.config.Menu;
 import com.ai.core.PageFactory;
+import com.ai.core.TRISBrowser;
 import com.ai.upc.catalog.CatalogManm;
+import com.ai.upc.product.ProductManm;
 import com.ai.util.UPCUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,29 +17,41 @@ public class UPCProductManmPage {
 
     private static transient Log _log = LogFactory.getLog(UPCProductManmPage.class);
 
-    private ChromeDriver driver;
+    private TRISBrowser browser;
 
     public UPCProductManmPage() {}
 
-    public UPCProductManmPage(ChromeDriver driver) {
-        this.driver = driver;
+    public UPCProductManmPage(TRISBrowser browser) {
+        this.browser = browser;
     }
 
     public boolean isLoaded() {
-        String currTitle = UPCUtil.findPageTitle(driver, "product");
+        String currTitle = UPCUtil.findPageTitle(browser, "product");
         if (_log.isDebugEnabled()) {
             _log.info("Current Page Title is " + currTitle);
         }
-        return CatalogManm.Contants.TITLE.equals(currTitle);
+        return ProductManm.Contants.TITLE.equals(currTitle);
     }
 
-    /**
-     * 新增
-     */
+    /*
     public UPCChooseTemplatePage createNewProduct() {
-        driver.switchTo().frame(UPCUtil.findNavFrame(driver, Menu.getMenuName("product")));
-        //driver.findElementById(ModuleField.getFieldValue(ModuleConst.PRODUCT_MANM, "createNewProductButton"));
-        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div[3]/ul/li/a")).click();
-        return PageFactory.initPage(driver, UPCChooseTemplatePage.class);
+        new ProductManm(browser){{
+            switchToProductManmFrame();
+            createNewProduct();
+        }};
+        //return PageFactory.initPage(driver, UPCChooseTemplatePage.class);
+        return null;
     }
+
+    public void queryProduct(final String prodIdorName) {
+        new ProductManm(driver){{
+            switchToProductManmFrame();
+            productIdorName().clearField().sendKeys(prodIdorName);
+            driver.findElement(By.xpath("//*[@id=\"ProdSpecQueryForm\"]/div[2]/button")).click();
+            //queryProduct().click();
+
+            //TODO
+            productIdorName().getText().shouldBe("333");
+        }};
+    }*/
 }

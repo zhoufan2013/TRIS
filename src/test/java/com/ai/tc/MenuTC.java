@@ -2,12 +2,12 @@ package com.ai.tc;
 
 import com.ai.config.ExcelConst;
 import com.ai.config.ExcelReader;
-import com.ai.control.TRIS;
 import com.ai.control.upc.*;
 import com.ai.control.upc.offer.UPCOfferManmPage;
+import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.LoginVO;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+import static org.testng.Assert.assertTrue;
 
 
 /**
@@ -17,24 +17,23 @@ import org.testng.annotations.*;
  */
 public class MenuTC {
 
-    private ChromeDriver driver;
+    private TRISBrowser browser;
     private LoginVO loginInfo;
     private UPCMenuPage menu;
 
     @BeforeClass
     private void setup() {
-        /*TRIS 系统初始化*/
-        driver = TRIS.init();
+        /*TRIS 浏览器模拟初始化*/
+        browser = TRISBrowser.init();
         /*Excel 输入初始化*/
         loginInfo = ExcelReader.init(ExcelConst.XLSX_PATH).readLoginInfo();
         /*MenuPage 获取菜单页面对象*/
-        menu = UPCHomePage.navigate(driver).login();
+        menu = UPCHomePage.navigate(browser).login();
     }
 
     @AfterClass
     private void tearDown() {
-        driver.close();
-        driver.quit();
+        browser.quit();
     }
 
     /**
@@ -42,8 +41,8 @@ public class MenuTC {
      */
     @Test
     public void testOfferMenu() {
-        UPCOfferManmPage offerManm = menu.chooseOfferMenu();
-        offerManm.isLoaded();
+        UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
+        offerManmPage.isLoaded();
     }
 
     /**
@@ -52,7 +51,7 @@ public class MenuTC {
     @Test
     public void testProductMenu() {
         UPCProductManmPage productManm = menu.chooseProductMenu();
-        productManm.isLoaded();
+        assertTrue(productManm.isLoaded());
     }
 
     /**
@@ -61,7 +60,7 @@ public class MenuTC {
     @Test
     public void testServiceMenu() {
         UPCServiceManmPage serviceManm = menu.chooseServiceMenu();
-        serviceManm.isLoaded();
+        assertTrue(serviceManm.isLoaded());
     }
 
     /**
@@ -69,8 +68,8 @@ public class MenuTC {
      */
     @Test
     public void testCatalogMenu() {
-        UPCCatalogManmPage catalogManm = menu.chooseCatalogMenu();
-        catalogManm.isLoaded();
+        UPCCatalogManmPage catalogManmPage = menu.chooseCatalogMenu();
+        assertTrue(catalogManmPage.isLoaded());
     }
 
     /**
@@ -78,23 +77,7 @@ public class MenuTC {
      */
     @Test
     public void testGroupMenu() {
-        UPCGroupManmPage groupManm = menu.chooseGroupMenu();
-        groupManm.isLoaded();
-    }
-
-    /**
-     * 发布菜单
-     */
-    @Test
-    public void testReleaseMenu() {
-
-    }
-
-    /**
-     * 发布日志菜单
-     */
-    @Test
-    public void testReleaseLogMenu() {
-
+        UPCGroupManmPage groupManmPage = menu.chooseGroupMenu();
+        assertTrue(groupManmPage.isLoaded());
     }
 }

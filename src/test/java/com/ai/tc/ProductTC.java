@@ -9,6 +9,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import javax.management.MBeanServerFactory;
+
 /**
  * Created by zhoufan on 15/5/11.
  */
@@ -32,20 +34,39 @@ public class ProductTC {
         //driver.quit();
     }
 
+    /**
+     * 测试根据Excel输入创建产品功能
+     * @author zhoufan
+     */
     @Test
     public void testCreateProduct() {
-
         /*登录*/
-        UPCMenuPage menu = UPCHomePage.navigate(driver).login();
+//        UPCMenuPage menu = UPCHomePage.navigate(driver).login();
         /*打开产品菜单*/
-        UPCProductManmPage productManm = menu.chooseProductMenu();
+//        UPCProductManmPage productManm = menu.chooseProductMenu();
         /*新增产品*/
-        UPCChooseTemplatePage templatePage = productManm.createNewProduct();
+//        UPCChooseTemplatePage templatePage = productManm.createNewProduct();
         /*选择模板*/
-        UPCProductEditUIPage productEditPage = templatePage.chooseProductTemplate("26");
+//        UPCProductEditUIPage productEditPage = templatePage.chooseProductTemplate("26");
         /*创建产品*/
-        productEditPage.createProduct(product);
+//        productEditPage.createProduct(product);
 
     }
+
+    /**
+     * 测试查询产品功能
+     * @author zhoufan
+     */
+    @Test
+    public void testQueryProduct() {
+
+        /*登录*/
+//        UPCMenuPage menu = UPCHomePage.navigate(driver).login();
+        /*打开产品菜单*/
+//        UPCProductManmPage productManm = menu.chooseProductMenu();
+        /*查询产品*/
+//        productManm.queryProduct("30099");
+    }
+
 
 }

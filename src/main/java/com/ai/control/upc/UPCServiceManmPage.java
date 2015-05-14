@@ -4,6 +4,7 @@ import com.ai.config.Menu;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.core.PageFactory;
+import com.ai.core.TRISBrowser;
 import com.ai.upc.login.Login;
 import com.ai.upc.service.ServiceManm;
 import com.ai.util.UPCUtil;
@@ -22,16 +23,17 @@ public class UPCServiceManmPage {
 
     private static transient Log _log = LogFactory.getLog(UPCServiceManmPage.class);
 
-    private ChromeDriver driver;
+    private TRISBrowser browser;
 
     public UPCServiceManmPage() {}
 
-    public UPCServiceManmPage(ChromeDriver driver) {
-        this.driver = driver;
+    public UPCServiceManmPage(TRISBrowser browser) {
+        this.browser = browser;
     }
 
+
     public boolean isLoaded() {
-        String currTitle = UPCUtil.findPageTitle(driver, "service");
+        String currTitle = UPCUtil.findPageTitle(browser, "service");
         if (_log.isDebugEnabled()) {
             _log.info("Current Page Title is " + currTitle);
         }
@@ -42,12 +44,11 @@ public class UPCServiceManmPage {
      * 新增
      */
     public UPCChooseTemplatePage addService() {
-        driver.switchTo().frame(UPCUtil.findNavFrame(driver, Menu.getMenuName("service")));
-        //List<WebElement> wes = driver.findElementsByXPath("//*[@id=\"ServSpecQueryResult\"]/div[1]/ul/li/a");//TODO
-        //wes.get(0).click();
-        //driver.findElementById("addBtn").click();
-        driver.findElementById(ModuleField.getFieldValue(ModuleConst.SERVICEMANM, "createNewServiceButton"));
-        return PageFactory.initPage(driver, UPCChooseTemplatePage.class);
+        browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("service")));
+        new ServiceManm(browser.getWebDriver()) {{
+            browser.click(createServiceButton());
+        }};
+        return PageFactory.initPage(browser, UPCChooseTemplatePage.class);
     }
 
     /**

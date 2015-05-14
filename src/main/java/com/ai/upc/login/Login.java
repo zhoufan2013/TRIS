@@ -2,8 +2,7 @@ package com.ai.upc.login;
 
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
-import com.ai.core.BasePage;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.ai.core.TRISWebDriver;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import static org.openqa.selenium.By.id;
 
@@ -12,34 +11,51 @@ import static org.openqa.selenium.By.id;
  *
  * Created by zhoufan on 15/4/30.
  */
-public class Login extends BasePage {
+public class Login {
 
+    //当前页面标题，用于判断页面在规定时间内是否正常加载
     public static class Contants {
         public static String TITLE = "产品管理";
     }
 
-    public Login(ChromeDriver delegate) {
-        super(delegate);
+    private TRISWebDriver fwd ;
+
+    public Login(TRISWebDriver delegate) {
+        this.fwd = delegate;
     }
 
+    /**
+     * 用户名输入框
+     */
     protected FluentWebElement username() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "username")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "username")));
     }
 
+    /**
+     * 密码输入框
+     */
     protected FluentWebElement password() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "password")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "password")));
     }
 
+    /**
+     * 验证码输入框
+     */
     protected FluentWebElement verifycode() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "verifycode")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "verifycode")));
     }
 
+    /**
+     * 是否记住用户CheckBox
+     */
     protected FluentWebElement rememberusername() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "rememberusername")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "rememberusername")));
     }
 
+    /**
+     * 登录按钮
+     */
     protected FluentWebElement login() {
-        return button(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "login")));
+        return fwd.button(id(ModuleField.getFieldValue(ModuleConst.LOGIN, "login")));
     }
-
 }

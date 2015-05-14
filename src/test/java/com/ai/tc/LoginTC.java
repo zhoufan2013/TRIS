@@ -5,6 +5,7 @@ import com.ai.config.ExcelConst;
 import com.ai.config.ExcelReader;
 import com.ai.control.TRIS;
 import com.ai.control.upc.UPCHomePage;
+import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.LoginVO;
 import com.ai.config.TestCaseUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -26,21 +27,20 @@ import java.text.MessageFormat;
  */
 public class LoginTC {
 
-    private static ChromeDriver driver;
-    private static LoginVO loginInfo;
+    private TRISBrowser browser;
+    private LoginVO loginInfo;
 
     @BeforeClass
     private void setup() {
-        /*TRIS 系统初始化*/
-        driver = TRIS.init();
+        /*TRIS 浏览器模拟初始化*/
+        browser = TRISBrowser.init();
         /*Excel 输入初始化*/
         loginInfo = ExcelReader.init(ExcelConst.XLSX_PATH).readLoginInfo();
     }
 
     @AfterClass
     private void tearDown() {
-        driver.close();
-        driver.quit();
+        browser.quit();
     }
 
     /**
@@ -48,7 +48,7 @@ public class LoginTC {
      */
     @Test
     public void testUPCHomePageloading() {
-        assertTrue(UPCHomePage.navigate(driver).isLoaded());
+        assertTrue(UPCHomePage.navigate(browser).isLoaded());
     }
 
     /**
@@ -56,7 +56,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginWithNullUserName() {
-        assertTrue(!UPCHomePage.navigate(driver).login(StringUtils.EMPTY, loginInfo.getPassword()));
+        assertTrue(!UPCHomePage.navigate(browser).login(StringUtils.EMPTY, loginInfo.getPassword()));
     }
 
     /**
@@ -64,7 +64,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginWithNullPwd() {
-        assertTrue(!UPCHomePage.navigate(driver).login(loginInfo.getUsername(), StringUtils.EMPTY));
+        assertTrue(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), StringUtils.EMPTY));
     }
 
     /**
@@ -72,7 +72,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginOne() {
-        assertEquals(UPCHomePage.navigate(driver).login(loginInfo.getUsername(), loginInfo.getPassword()), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "1"));
+        assertEquals(UPCHomePage.navigate(browser).login(loginInfo.getUsername(), loginInfo.getPassword()), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "1"));
     }
 
     /**
@@ -80,7 +80,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginTwo() {
-        assertEquals(!UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern2(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "2"));
+        assertEquals(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern2(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "2"));
     }
 
     /**
@@ -88,7 +88,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginThree() {
-        assertEquals(!UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern3(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "3"));
+        assertEquals(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern3(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "3"));
     }
 
     /**
@@ -96,7 +96,7 @@ public class LoginTC {
      */
     @Test
     public void testLoginFour() {
-        assertEquals(!UPCHomePage.navigate(driver).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern4(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "4"));
+        assertEquals(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern4(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "4"));
     }
 
 }

@@ -1,16 +1,11 @@
 package com.ai.upc.service;
 
-import com.ai.config.ElementXPath;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
-import com.ai.core.BasePage;
+import com.ai.core.TRISWebDriver;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
-import java.util.List;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
@@ -19,7 +14,7 @@ import static org.openqa.selenium.By.xpath;
  *
  * Created by zhoufan on 15/5/3.
  */
-public class ServiceBasicInfo extends BasePage{
+public class ServiceBasicInfo {
 
     public static class Contants {
         public static String TITLE = "Service Specification Management";
@@ -27,50 +22,45 @@ public class ServiceBasicInfo extends BasePage{
 
     private static transient Log _log = LogFactory.getLog(ServiceBasicInfo.class);
 
-    public ServiceBasicInfo(ChromeDriver delegate) {
-        super(delegate);
+    private TRISWebDriver fwd ;
+
+    public ServiceBasicInfo(TRISWebDriver delegate) {
+        this.fwd = delegate;
+    }
+
+    protected FluentWebElement confirmTypeButton() {
+        return fwd.link(xpath("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a"));
     }
 
     protected FluentWebElement serviceName() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "serviceName")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "serviceName")));
     }
 
     protected FluentWebElement serviceType() {
-        return button(xpath(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "serviceType")));
+        return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "serviceType")));
     }
 
     protected FluentWebElement serviceCatagory() {
-        return button(xpath(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "serviceCatagory")));
+        return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "serviceCatagory")));
     }
 
     protected FluentWebElement serviceDescription() {
-        return textarea(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "description")));
+        return fwd.textarea(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "description")));
     }
 
     protected FluentWebElement saveServiceButton() {
-        return button(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "saveservicebutton")));
-    }
-
-    protected void locateServiceBasicInfoFrame() {
-        delegate.switchTo().frame(delegate.findElement(id("F-Frame"))).switchTo().frame(delegate.findElement(id("F-TabsetFrame"))).switchTo().frame(delegate.findElement(id("F-Frame")));
-    }
-
-    protected void locateServiceTypeTreeFrame() {
-        delegate.switchTo().frame(delegate.findElement(By.xpath(ElementXPath.SERVICE_TYPE_TREE_FRAME)));
-    }
-
-    protected void locateSelectServiceCatagoryFrame() {
-        delegate.switchTo().frame(delegate.findElement(By.xpath(ElementXPath.SERVICE_CATAGORY_FRAME))).switchTo().frame(delegate.findElement(By.id("selectServiceCatalogFrame")));
+        return fwd.button(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "saveservicebutton")));
     }
 
     protected FluentWebElement selectConditionIDorName() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "selectConditionIDorName")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "selectConditionIDorName")));
     }
 
     protected FluentWebElement queryServiceCatagoryButton() {
-        return button(xpath(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "queryServiceCatagoryButton")));
+        return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.SERVICE_EDIT_UI, "queryServiceCatagoryButton")));
     }
 
+    /*
     protected void chooseSpecifiedServiceCatagory(String specifiedServiceCatagoryId) {
         try {
             Thread.sleep(500);
@@ -90,22 +80,23 @@ public class ServiceBasicInfo extends BasePage{
     private List<WebElement> selectServiceCatagoryAllRows() {
         List<WebElement> allRows = delegate.findElements(By.xpath(ElementXPath.SERVICE_CATAGORY_CHOOSE_ALLROWS));
         return allRows;
-    }
+    }*/
 
-    protected void confirmSelectServiceCatagory() {
-        button(id("btsave")).click();
+    protected FluentWebElement confirmSelectServiceCatagory() {
+        return fwd.button(id("btsave"));
     }
 
     protected void cancelSelectServiceCatagory() {
-        button(id("btcancel")).click();
+        fwd.button(id("btcancel"));
     }
 
     protected FluentWebElement saveServiceSpecification() {
-        return button(id("btsave"));
+        return fwd.button(id("btsave"));
     }
 
+    /*
     protected void locateServiceCharFrame() {
         delegate.switchTo().frame(delegate.findElement(id("F-Frame"))).switchTo().frame(delegate.findElement(id("F-TabsetFrame"))).switchTo().frame(delegate.findElement(id("F-FrameF-1")));
-    }
+    }*/
 
 }

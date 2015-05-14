@@ -4,6 +4,7 @@ import com.ai.config.ExcelConst;
 import com.ai.config.ExcelReader;
 import com.ai.control.TRIS;
 import com.ai.control.upc.*;
+import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ServiceVO;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -17,21 +18,20 @@ import org.testng.annotations.Test;
  */
 public class ServiceTC {
 
-    private ChromeDriver driver;
+    private TRISBrowser browser;
     private ServiceVO service;
 
     @BeforeClass
     private void setup() {
-        /*TRIS 系统初始化*/
-        driver = TRIS.init();
+        /*TRIS 浏览器模拟初始化*/
+        browser = TRISBrowser.init();
         /*Excel 输入初始化*/
         service = ExcelReader.init(ExcelConst.XLSX_PATH).readService();
     }
 
     @AfterClass
     private void tearDown() {
-        //driver.close();
-        //driver.quit();
+        //browser.quit();
     }
 
     /**
@@ -40,7 +40,7 @@ public class ServiceTC {
     @Test
     public void testCreateService() {
         /*登录*/
-        UPCMenuPage menu = UPCHomePage.navigate(driver).login();
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开服务菜单*/
         UPCServiceManmPage serviceManm = menu.chooseServiceMenu();
         /*新增服务*/

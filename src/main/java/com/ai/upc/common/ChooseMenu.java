@@ -1,10 +1,8 @@
 package com.ai.upc.common;
 
 import com.ai.config.Menu;
-import com.ai.core.BasePage;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.seleniumhq.selenium.fluent.Period;
-
+import com.ai.core.TRISWebDriver;
+import org.seleniumhq.selenium.fluent.FluentWebElement;
 import static org.openqa.selenium.By.linkText;
 
 /**
@@ -14,42 +12,44 @@ import static org.openqa.selenium.By.linkText;
  *
  * Created by zhoufan on 15/5/1.
  */
-public class ChooseMenu extends BasePage{
+public class ChooseMenu {
 
     public static class Contants {
         public static String TITLE = "Base";
     }
 
-    public ChooseMenu(ChromeDriver delegate) {
-        super(delegate);
+    private TRISWebDriver fwd ;
+
+    public ChooseMenu(TRISWebDriver delegate) {
+        this.fwd = delegate;
     }
 
-    protected void enterProductServiceCatalog() {
-        link(linkText(Menu.getMenuName("productservicecatalog"))).click();
+    protected FluentWebElement productServiceCatalog() {
+        return fwd.link(linkText(Menu.getMenuName("productservicecatalog")));
     }
 
-    protected void enterOfferModule() {
-        link(linkText(Menu.getMenuName("offer"))).click();
+    protected FluentWebElement offerModule() {
+        return fwd.link(linkText(Menu.getMenuName("offer")));
     }
 
-    protected void enterProductModule() {
-        link(linkText(Menu.getMenuName("product"))).click();
+    protected FluentWebElement productModule() {
+        return fwd.link(linkText(Menu.getMenuName("product")));
     }
 
-    protected void enterServiceModule() {
-        link(linkText(Menu.getMenuName("service"))).click().within(Period.secs(5));
+    protected FluentWebElement serviceModule() {
+        return fwd.link(linkText(Menu.getMenuName("service")));
     }
 
-    protected void enterCatalogModule() {
-        link(linkText(Menu.getMenuName("catalog"))).click();
+    protected FluentWebElement catalogModule() {
+        return fwd.link(linkText(Menu.getMenuName("catalog")));
     }
 
-    protected void enterGroupModule() {
-        link(linkText(Menu.getMenuName("group"))).click();
+    protected FluentWebElement groupModule() {
+        return fwd.link(linkText(Menu.getMenuName("group")));
     }
 
-    protected void enterProductLifecycle() {
-        link(linkText(Menu.getMenuName("productlifecycle"))).click();
+    protected FluentWebElement productLifecycle() {
+        return fwd.link(linkText(Menu.getMenuName("productlifecycle")));
     }
 
 }

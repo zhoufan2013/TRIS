@@ -30,24 +30,24 @@ public class PageFactory {
      * which takes a WebDriver instance as its only argument or falling back on a no-arg constructor.
      * An exception will be thrown if the class cannot be instantiated.
      *
-     * @param driver           The driver that will be used to look up the elements
+     * @param browser           The driver that will be used to look up the elements
      * @param pageClassToProxy A class which will be initialised.
      * @return An instantiated instance of the class with WebElement and List&lt;WebElement&gt;
      * fields proxied
      * @see org.openqa.selenium.support.FindBy
      * @see org.openqa.selenium.support.CacheLookup
      */
-    public static <T> T initPage(ChromeDriver driver, Class<T> pageClassToProxy) {
-        T page = instantiatePage(driver, pageClassToProxy);
+    public static <T> T initPage(TRISBrowser browser, Class<T> pageClassToProxy) {
+        T page = instantiatePage(browser, pageClassToProxy);
         return page;
     }
 
 
-    private static <T> T instantiatePage(ChromeDriver driver, Class<T> pageClassToProxy) {
+    private static <T> T instantiatePage(TRISBrowser browser, Class<T> pageClassToProxy) {
         try {
             try {
                 //Constructor<T> constructor = pageClassToProxy.getConstructor(WebDriver.class);
-                return pageClassToProxy.getConstructor(ChromeDriver.class).newInstance(driver);
+                return pageClassToProxy.getConstructor(TRISBrowser.class).newInstance(browser);
             } catch (NoSuchMethodException e) {
                 return pageClassToProxy.newInstance();
             }
