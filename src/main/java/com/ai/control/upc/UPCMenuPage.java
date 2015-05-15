@@ -40,7 +40,7 @@ public class UPCMenuPage {
         browser.leaveFrame();
         new ChooseMenu(browser.getWebDriver()) {{
             browser.click(productServiceCatalog());
-            browser.click(offerModule());
+            browser.click(productModule());
         }};
         return PageFactory.initPage(browser, UPCProductManmPage.class);
     }

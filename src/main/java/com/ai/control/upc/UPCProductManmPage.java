@@ -1,5 +1,6 @@
 package com.ai.control.upc;
 
+import com.ai.config.Menu;
 import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.catalog.CatalogManm;
@@ -33,16 +34,22 @@ public class UPCProductManmPage {
         return ProductManm.Contants.TITLE.equals(currTitle);
     }
 
-    /*
-    public UPCChooseTemplatePage createNewProduct() {
-        new ProductManm(browser){{
-            switchToProductManmFrame();
-            createNewProduct();
-        }};
-        //return PageFactory.initPage(driver, UPCChooseTemplatePage.class);
-        return null;
+    /**
+     * 定位到查询产品主页面frame
+     */
+    private void switchToProductManmFrame() {
+        browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("product")));
     }
 
+
+    public UPCChooseTemplatePage addProduct() {
+        new ProductManm(browser.getWebDriver()){{
+            browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("product")));
+            browser.click(createProductButton());
+        }};
+        return PageFactory.initPage(browser, UPCChooseTemplatePage.class);
+    }
+/*
     public void queryProduct(final String prodIdorName) {
         new ProductManm(driver){{
             switchToProductManmFrame();

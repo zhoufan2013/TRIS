@@ -1,29 +1,26 @@
 package com.ai.tc;
 
 import com.ai.config.*;
-import com.ai.control.TRIS;
 import com.ai.control.upc.*;
+import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.ai.upc.bean.ServiceVO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import javax.management.MBeanServerFactory;
 
 /**
  * Created by zhoufan on 15/5/11.
  */
 public class ProductTC {
 
-    private ChromeDriver driver;
+    private TRISBrowser browser;
     private ProductVO product;
-    private ExcelReader excel;
 
     @BeforeClass
     private void setup() {
-        /*TRIS 系统初始化*/
-        driver = TRIS.init();
+        /*TRIS 浏览器模拟初始化*/
+        browser = TRISBrowser.init();
         /*Excel 输入初始化*/
         product = ExcelReader.init(ExcelConst.XLSX_PATH).readProduct();
     }
@@ -41,15 +38,15 @@ public class ProductTC {
     @Test
     public void testCreateProduct() {
         /*登录*/
-//        UPCMenuPage menu = UPCHomePage.navigate(driver).login();
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
-//        UPCProductManmPage productManm = menu.chooseProductMenu();
+        UPCProductManmPage productManm = menu.chooseProductMenu();
         /*新增产品*/
-//        UPCChooseTemplatePage templatePage = productManm.createNewProduct();
+        UPCChooseTemplatePage templatePage = productManm.addProduct();
         /*选择模板*/
-//        UPCProductEditUIPage productEditPage = templatePage.chooseProductTemplate("26");
+        UPCProductEditUIPage productEditPage = templatePage.chooseProductTemplate("26");
         /*创建产品*/
-//        productEditPage.createProduct(product);
+        productEditPage.createProduct(product);
 
     }
 
