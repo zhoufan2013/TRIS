@@ -35,7 +35,7 @@ public class ProductManm {
      * 查询产品按钮
      */
     protected FluentWebElement queryProduct() {
-        return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.PRODUCT_MANM, "queryProduct")));
+        return fwd.button(id(ModuleField.getFieldValue(ModuleConst.PRODUCT_MANM, "queryProduct")));
     }
 
     /**

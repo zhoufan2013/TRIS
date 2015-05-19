@@ -48,7 +48,7 @@
     <!-- 产品查询主页面 -->
     <module name="ProductManm">
         <field id="prodIdorName">prodSpecId</field>
-        <field id="queryProduct">//*[@id="ProdSpecQueryForm"]/div[2]/button</field>
+        <field id="queryProduct">queryBtn</field>
         <field id="createNewProductButton">addBtn</field>
     </module>
     <!-- 编辑服务 -->

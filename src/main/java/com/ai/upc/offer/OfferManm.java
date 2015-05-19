@@ -12,22 +12,24 @@ import static org.openqa.selenium.By.id;
  *
  * Created by zhoufan on 15/5/1.
  */
-public class OfferManm extends TRISWebDriver {
+public class OfferManm {
 
     public static class Contants {
         public static String TITLE = "Product Offering Management";
     }
 
-    public OfferManm(ChromeDriver delegate) {
-        super(delegate);
+    private TRISWebDriver fwd ;
+
+    public OfferManm(TRISWebDriver delegate) {
+        this.fwd = delegate;
     }
 
     protected FluentWebElement offerId() {
-        return input(id(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "offerId")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "offerId")));
     }
 
     protected FluentWebElement createNewOffer() {
-        return button(id(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "createNewOfferButton")));
+        return fwd.button(id(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "createNewOfferButton")));
     }
 
 

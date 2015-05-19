@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 
 /**
+ * 服务规格主查询页面控件收集
+ *
  * Created by zhoufan on 15/5/3.
  */
 public class ServiceManm {

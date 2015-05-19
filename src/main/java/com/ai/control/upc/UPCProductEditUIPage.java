@@ -10,9 +10,10 @@ import com.ai.upc.common.RadioTree;
 import com.ai.upc.product.ProductBasicInfo;
 import com.ai.util.UPCUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.Assert;
+
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zhoufan on 15/5/12.
@@ -26,6 +27,8 @@ public class UPCProductEditUIPage {
     public UPCProductEditUIPage(TRISBrowser browser) {
         this.browser = browser;
     }
+
+    String createdProductId = "-1";
 
     /**
      * 定位到编辑产品的大frame框
@@ -57,6 +60,14 @@ public class UPCProductEditUIPage {
 
     /**
      *
+     */
+    private String fetchNewCreatedProductId (String message) {
+        Assert.assertTrue(StringUtils.contains(message, "Save successfully"));
+        return StringUtils.substring(message, message.indexOf("=")+1, message.indexOf("】"));
+    }
+
+    /**
+     *
      *
      * @param product 依据Excel 输入
      * @return new product ID
@@ -66,10 +77,12 @@ public class UPCProductEditUIPage {
         new ProductBasicInfo(browser.getWebDriver()){{
 
             switchToProductEditFrame();
-            String handler = browser.getInternalWebDriver().getWindowHandle();
+            String handler = browser.getWindowHandler();
             browser.click(productNodeCell());
 
-            browser.getInternalWebDriver().findElement(By.xpath("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a")).click();//TODO
+            browser.getElement("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a").click();;
+
+            //browser.getInternalWebDriver().findElement(By.xpath("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a")).click();//TODO
             switchToProductBasicInfoFrame();
 
             browser.input(productName(), product.getProductName());
@@ -88,7 +101,7 @@ public class UPCProductEditUIPage {
             switchToProductEditFrame();
             switchToProductCharFrame();
 
-            browser.pause(1000l);
+            browser.pause(1l, TimeUnit.SECONDS);
 
             new ChooseCharSpec(browser) {{
                 List<CharSpecVO> charSpecs = product.getProdChar();
@@ -100,42 +113,17 @@ public class UPCProductEditUIPage {
             browser.selectWindow(handler);
             switchToProductEditFrame();
             browser.click(saveProductButton());
+            browser.pause(1l, TimeUnit.SECONDS);
+
+            String message = browser.getText(okMsg().getWebElement());
+            createdProductId = fetchNewCreatedProductId(message);
 
             new MessageBox(browser){{
                 okSuccessMsg();
             }};
 
-            /*
-            driver.switchTo().window(handler);
-            switchToProductEditFrame();
-            switchToProductTypeTreeFrame();
-            new RadioTree(driver){{
-                selectSpecifiedNode(product.getProductType());
-            }};
-            switchToProductEditFrame();
-            switchToProductCharFrame();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            new ChooseCharSpec(driver){{
-                List<CharSpecVO> charSpecs = product.getProdChar();
-                for(CharSpecVO charSpec : charSpecs) {
-                    chooseSpecifiedServiceChar(charSpec.getCharSpecId(), charSpec.getCharValue());
-                }
-            }};
-
-            driver.switchTo().window(handler);
-            switchToProductEditFrame();
-            saveProductButton().click();
-
-            new MessageBox(driver) {{
-                okSuccessMsg();
-            }};*/
-
         }};
-        return StringUtils.EMPTY;
+        return createdProductId;
     }
+
 }

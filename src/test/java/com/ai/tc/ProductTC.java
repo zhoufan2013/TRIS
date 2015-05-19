@@ -4,7 +4,6 @@ import com.ai.config.*;
 import com.ai.control.upc.*;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
-import com.ai.upc.bean.ServiceVO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -46,7 +45,9 @@ public class ProductTC {
         /*选择模板*/
         UPCProductEditUIPage productEditPage = templatePage.chooseProductTemplate("26");
         /*创建产品*/
-        productEditPage.createProduct(product);
+        String productId = productEditPage.createProduct(product);
+        /*校验数据正确性*/
+        productManm.queryProduct(productId);
 
     }
 
@@ -56,13 +57,12 @@ public class ProductTC {
      */
     @Test
     public void testQueryProduct() {
-
         /*登录*/
-//        UPCMenuPage menu = UPCHomePage.navigate(driver).login();
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
-//        UPCProductManmPage productManm = menu.chooseProductMenu();
+        UPCProductManmPage productManm = menu.chooseProductMenu();
         /*查询产品*/
-//        productManm.queryProduct("30099");
+        productManm.queryProduct("30099");
     }
 
 

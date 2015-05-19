@@ -10,7 +10,7 @@ import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
 /**
- * 服务基本信息控件
+ * 服务基本信息控件收集
  *
  * Created by zhoufan on 15/5/3.
  */

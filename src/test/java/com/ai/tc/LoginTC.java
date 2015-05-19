@@ -3,13 +3,11 @@ package com.ai.tc;
 import com.ai.config.AssertConst;
 import com.ai.config.ExcelConst;
 import com.ai.config.ExcelReader;
-import com.ai.control.TRIS;
 import com.ai.control.upc.UPCHomePage;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.LoginVO;
 import com.ai.config.TestCaseUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.chrome.ChromeDriver;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
 

@@ -69,4 +69,11 @@ public class ProductBasicInfo {
         return fwd.button(id(ModuleField.getFieldValue(ModuleConst.PRODUCT_EDIT_UI, "saveProductButton")));
     }
 
+    /**
+     * 产品规格提交保存成功提示框
+     */
+    protected FluentWebElement okMsg() {
+        return fwd.div(xpath("//*[@id=\"wade_msg_ct\"]/div[1]/div[1]"));
+    }
+
 }

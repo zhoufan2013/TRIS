@@ -119,6 +119,13 @@ public class TRISBrowser {
     }
 
     /**
+     * 获取当前窗口句柄
+     */
+    public String getWindowHandler() {
+        return internalWebDriver.getWindowHandle();
+    }
+
+    /**
      * 选择窗口
      *
      * @param nameOrHandler
@@ -170,7 +177,7 @@ public class TRISBrowser {
         if (_log.isDebugEnabled()) {
             _log.info("TRIS get text [" + element.getText() + "]");
         }
-        return element.getText().toString();
+        return element.getText();
 
     }
 

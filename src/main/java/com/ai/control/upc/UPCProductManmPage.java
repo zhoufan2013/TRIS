@@ -3,6 +3,7 @@ package com.ai.control.upc;
 import com.ai.config.Menu;
 import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
+import com.ai.core.TRISWebDriver;
 import com.ai.upc.catalog.CatalogManm;
 import com.ai.upc.product.ProductManm;
 import com.ai.util.UPCUtil;
@@ -20,10 +21,13 @@ public class UPCProductManmPage {
 
     private TRISBrowser browser;
 
+    private TRISWebDriver driver;
+
     public UPCProductManmPage() {}
 
     public UPCProductManmPage(TRISBrowser browser) {
         this.browser = browser;
+        this.driver = browser.getWebDriver();
     }
 
     public boolean isLoaded() {
@@ -43,22 +47,23 @@ public class UPCProductManmPage {
 
 
     public UPCChooseTemplatePage addProduct() {
-        new ProductManm(browser.getWebDriver()){{
+        new ProductManm(driver){{
             browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("product")));
             browser.click(createProductButton());
         }};
         return PageFactory.initPage(browser, UPCChooseTemplatePage.class);
     }
-/*
+
     public void queryProduct(final String prodIdorName) {
         new ProductManm(driver){{
             switchToProductManmFrame();
-            productIdorName().clearField().sendKeys(prodIdorName);
-            driver.findElement(By.xpath("//*[@id=\"ProdSpecQueryForm\"]/div[2]/button")).click();
+            browser.input(productIdorName(), prodIdorName);
+            //productIdorName().clearField().sendKeys(prodIdorName);
+            browser.click(queryProduct());
+            //driver.findElement(By.xpath("//*[@id=\"ProdSpecQueryForm\"]/div[2]/button")).click();
             //queryProduct().click();
-
             //TODO
-            productIdorName().getText().shouldBe("333");
+            //productIdorName().getText().shouldBe("333");
         }};
-    }*/
+    }
 }
