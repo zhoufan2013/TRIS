@@ -25,4 +25,6 @@ public final class ModuleConst {
 
     public static String PRODUCT_EDIT_UI = "ProductEditUI";
 
+    public static String PRODUCT_ADD_SERVICE = "ProductAddService";
+
 }

@@ -1,15 +1,15 @@
 package com.ai.upc.product;
 
-import com.ai.config.ElementXPath;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
+import com.ai.core.TRISBrowser;
 import com.ai.core.TRISWebDriver;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.By;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.name;
 import static org.openqa.selenium.By.xpath;
 
 /**
@@ -23,8 +23,8 @@ public class ProductBasicInfo {
 
     private TRISWebDriver fwd ;
 
-    public ProductBasicInfo(TRISWebDriver delegate) {
-        this.fwd = delegate;
+    public ProductBasicInfo(TRISBrowser browser) {
+        this.fwd = browser.getWebDriver();
     }
 
     /**
@@ -75,5 +75,27 @@ public class ProductBasicInfo {
     protected FluentWebElement okMsg() {
         return fwd.div(xpath("//*[@id=\"wade_msg_ct\"]/div[1]/div[1]"));
     }
+
+    /**
+     * 产品关联服务查询条件的输入框
+     */
+    protected FluentWebElement serviceId() {
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "serviceId")));
+    }
+
+    /**
+     * 产品关联服务查询条件的输入框
+     */
+    protected FluentWebElement serviceName() {
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "serviceName")));
+    }
+
+    /**
+     * 产品关联服务搜索按钮
+     */
+    protected FluentWebElement queryServiceButton() {
+        return fwd.button(name(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "queryServiceButton")));
+    }
+
 
 }

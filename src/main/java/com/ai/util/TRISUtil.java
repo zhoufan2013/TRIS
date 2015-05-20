@@ -1,15 +1,17 @@
 package com.ai.util;
 
+import com.ai.config.ElementXPath;
 import com.ai.config.LogConst;
+import com.ai.core.TRISBrowser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
+import static org.openqa.selenium.By.xpath;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -69,5 +71,16 @@ public final class TRISUtil {
         }
     }
 
+    /**
+     *
+     * @param browser
+     * @param trXpath table-tr-xpath
+     * @return
+     */
+    public static List<WebElement> allRows(TRISBrowser browser, String trXpath) {
+        browser.pause(1000);//todo hehe
+        List<WebElement> allRows = browser.getInternalWebDriver().findElements(xpath(trXpath));
+        return allRows;
+    }
 
 }

@@ -1,16 +1,21 @@
 package com.ai.control.upc;
 
+import com.ai.config.ElementXPath;
 import com.ai.config.Menu;
 import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
 import com.ai.core.TRISWebDriver;
 import com.ai.upc.catalog.CatalogManm;
 import com.ai.upc.product.ProductManm;
+import com.ai.util.TRISUtil;
 import com.ai.util.UPCUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
 
 /**
  * Created by zhoufan on 15/5/10.
@@ -54,16 +59,48 @@ public class UPCProductManmPage {
         return PageFactory.initPage(browser, UPCChooseTemplatePage.class);
     }
 
-    public void queryProduct(final String prodIdorName) {
+    public UPCProductManmPage queryProduct(final String prodIdorName) {
         new ProductManm(driver){{
             switchToProductManmFrame();
             browser.input(productIdorName(), prodIdorName);
-            //productIdorName().clearField().sendKeys(prodIdorName);
             browser.click(queryProduct());
-            //driver.findElement(By.xpath("//*[@id=\"ProdSpecQueryForm\"]/div[2]/button")).click();
-            //queryProduct().click();
+
             //TODO
             //productIdorName().getText().shouldBe("333");
         }};
+        return this;
+    }
+
+    public UPCProductEditUIPage editProduct(String productId) {
+        chooseSpecifiedProduct(productId);
+        return PageFactory.initPage(browser, UPCProductEditUIPage.class);
+    }
+
+    public void launchProduct() {
+
+
+    }
+
+    public void deleteProduct() {
+
+
+    }
+
+
+    protected void chooseSpecifiedProduct(String specifiedTemplateId) {
+        List<WebElement> allRows = TRISUtil.allRows(browser, ElementXPath.PRODUCT_MANM_QUERY_ALLROWS);
+        for(WebElement row : allRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            List<WebElement> actions = cells.get(6).findElements(By.tagName("a"));
+            for(WebElement action : actions) {
+                if (action.getAttribute("onclick").equals("updInfo($(this))") && action.getAttribute("itemid").equals(specifiedTemplateId)) {
+                    String prodTitleName = new StringBuilder().append(action.getAttribute("itemname")).append("[").append(action.getAttribute("itemid")).append("]").toString();
+                    action.click();
+                    browser.leaveFrame();
+                    browser.enterFrame(UPCUtil.findNavFrame(browser, prodTitleName));
+                    break;
+                }
+            }
+        }
     }
 }

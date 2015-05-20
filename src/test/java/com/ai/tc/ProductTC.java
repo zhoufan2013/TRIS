@@ -4,6 +4,7 @@ import com.ai.config.*;
 import com.ai.control.upc.*;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
+import com.ai.upc.product.ProductBasicInfo;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -26,8 +27,7 @@ public class ProductTC {
 
     @AfterClass
     private void tearDown() {
-        //driver.close();
-        //driver.quit();
+//        browser.quit();
     }
 
     /**
@@ -54,16 +54,19 @@ public class ProductTC {
     /**
      * 测试查询产品功能
      * @author zhoufan
+     * @casecode UPC_CRM_0002
+     * @casename product关联service
      */
     @Test
-    public void testQueryProduct() {
+    public void testProductRelatedService() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
         UPCProductManmPage productManm = menu.chooseProductMenu();
-        /*查询产品*/
-        productManm.queryProduct("30099");
+        /*查询产品,编辑产品*/
+        UPCProductEditUIPage productEditUI = productManm.queryProduct("1010065").editProduct("1010065");
+
+        productEditUI.addServiceSpecification("2200000");
+
     }
-
-
 }

@@ -31,4 +31,18 @@ public final class ElementXPath {
     /*product type tree iframe 定位*/
     public static String PRODUCT_TYPE_TREE_FRAME = "//iframe[@eventid='productSpecificationType']";
 
+    /*产品规格主查询页面所有行定位*/
+    public static String PRODUCT_MANM_QUERY_ALLROWS = "//*[@id=\"ProdSpecTableTable\"]/tbody/tr";
+
+    /**/
+    public static String PRODUCT_HTREE_HORIZONAL = "//*[@id=\"product\"]/span/table/tbody/tr/td[2]";
+
+    /**/
+    public static String PRODUCT_HTREE_HORIZONAL_PLUS = "//*[@id=\"product\"]/span/table/tbody/tr/td[3]";
+
+    /**/
+    public static String PRODUCT_HTREE_ADD_SERVICE = "//*[@id=\"product\"]/span/table/tbody/tr/td[3]/div/div[3]/div/div/div[2]/ul/li[2]/a";
+
+    /**/
+    public static String PRODUCT_ADD_SERVICE_FRAME = "//iframe[@eventid='addServiceAfter']";
 }

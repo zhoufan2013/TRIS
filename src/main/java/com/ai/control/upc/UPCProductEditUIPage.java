@@ -8,9 +8,11 @@ import com.ai.upc.common.ChooseCharSpec;
 import com.ai.upc.common.MessageBox;
 import com.ai.upc.common.RadioTree;
 import com.ai.upc.product.ProductBasicInfo;
+import com.ai.util.TRISUtil;
 import com.ai.util.UPCUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -67,6 +69,22 @@ public class UPCProductEditUIPage {
     }
 
     /**
+     * 图形树添加服务规格
+     */
+    public void addServiceSpecification(final String serviceId) {
+
+        browser.upcHTreeHover(ElementXPath.PRODUCT_HTREE_HORIZONAL, ElementXPath.PRODUCT_HTREE_HORIZONAL_PLUS, ElementXPath.PRODUCT_HTREE_ADD_SERVICE);
+        browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_ADD_SERVICE_FRAME));
+
+        new ProductBasicInfo(browser){{
+            browser.input(serviceId(), serviceId);
+            browser.click(queryServiceButton());
+        }};
+
+    }
+
+
+    /**
      *
      *
      * @param product 依据Excel 输入
@@ -74,7 +92,7 @@ public class UPCProductEditUIPage {
      */
     public String createProduct(final ProductVO product) {
 
-        new ProductBasicInfo(browser.getWebDriver()){{
+        new ProductBasicInfo(browser){{
 
             switchToProductEditFrame();
             String handler = browser.getWindowHandler();

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,6 +19,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -257,6 +259,59 @@ public class TRISBrowser {
         if (_log.isDebugEnabled()) {
             _log.info("TRIS verify " + element.getText());
         }
+    }
+
+
+    /**
+     * [VerisUPC] 图形树Hover交互
+     * @param xpath1
+     * @param xpath2
+     * @param xpath3
+     */
+    public void upcHTreeHover(String xpath1, String xpath2, String xpath3) {
+
+        pause(1l, TimeUnit.SECONDS);
+
+        Actions builder = new Actions(internalWebDriver);
+        WebElement w1 = this.getElement(xpath1);
+        builder.moveToElement(w1);
+
+        WebElement w2 = this.getElement(xpath2);
+        builder.moveToElement(w2);
+
+        WebElement w3 = this.getElement(xpath3);
+        builder.moveToElement(w3);
+        builder.click();
+        builder.perform();
+    }
+
+    public void mouseOver(String xpath) {
+        pause(1l, TimeUnit.SECONDS);
+
+        Actions builder = new Actions(internalWebDriver);
+        WebElement we = this.getElement(xpath);
+        builder.moveToElement(we);
+
+        WebElement w2 = this.getElement("//*[@id=\"product\"]/span/table/tbody/tr/td[3]");
+        builder.moveToElement(w2);
+
+        WebElement w = this.getElement("//*[@id=\"product\"]/span/table/tbody/tr/td[3]/div/div[3]/div/div/div[2]/ul/li[2]/a");
+        builder.moveToElement(w);
+        builder.click();
+        builder.perform();
+
+        /*
+        Firefox and IE require multiple cycles, more than twice, to cause a
+        hovering effect
+        if (GlobalSettings.browserCoreType == 1
+                || GlobalSettings.browserCoreType == 3) {
+            for (int i = 0; i < 5; i++) {
+                Actions builder = new Actions(browserCore);
+                builder.moveToElement(we).build().perform();
+            }
+            logger.info("Mouseover " + xpath);
+            return;
+        }*/
     }
 
     private void setupBrowser(int browserType) {

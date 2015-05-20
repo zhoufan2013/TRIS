@@ -63,7 +63,12 @@
         <field id="selectConditionIDorName">NameId</field>
         <field id="queryServiceCatagoryButton">//*[@id="ServiceCatagoryQueryForm"]/div[2]/button</field>
     </module>
-
+    <!-- 产品添加服务 -->
+    <module name="ProductAddService">
+        <field id="serviceId">serviceSpecId</field>
+        <field id="serviceName">serviceSpecName</field>
+        <field id="queryServiceButton">QueryServiceBtn</field>
+    </module>
 
 </modules>
 
