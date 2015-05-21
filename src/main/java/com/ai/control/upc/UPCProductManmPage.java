@@ -6,16 +6,19 @@ import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
 import com.ai.core.TRISWebDriver;
 import com.ai.upc.catalog.CatalogManm;
+import com.ai.upc.product.ProductBasicInfo;
 import com.ai.upc.product.ProductManm;
 import com.ai.util.TRISUtil;
 import com.ai.util.UPCUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zhoufan on 15/5/10.
@@ -76,16 +79,34 @@ public class UPCProductManmPage {
         return PageFactory.initPage(browser, UPCProductEditUIPage.class);
     }
 
-    public void launchProduct() {
+    public UPCProductEditUIPage launchProduct(String productId) {
+        List<WebElement> allRows = TRISUtil.allRows(browser, ElementXPath.PRODUCT_MANM_QUERY_ALLROWS);
+        for(WebElement row : allRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            List<WebElement> actions = cells.get(6).findElements(By.tagName("a"));
+            for(WebElement action : actions) {
+                if (action.getAttribute("onclick").equals("launch($(this))") && action.getAttribute("itemid").equals(productId)) {
+                    action.click();
+                    break;
+                }
+            }
+        }
 
+        new ProductBasicInfo(browser){{
+            browser.getElement("//*[@id=\"wade_msg_ct\"]/div[4]/a[1]").click();//TODO
+        }};
 
+        new UPCSingleLaunchPage(browser){{
+            chooseLaunchPath("CRM_SR0.3.2_dev");
+            okLaunch();
+        }};
+
+        return PageFactory.initPage(browser, UPCProductEditUIPage.class);
     }
 
     public void deleteProduct() {
 
-
     }
-
 
     protected void chooseSpecifiedProduct(String specifiedTemplateId) {
         List<WebElement> allRows = TRISUtil.allRows(browser, ElementXPath.PRODUCT_MANM_QUERY_ALLROWS);

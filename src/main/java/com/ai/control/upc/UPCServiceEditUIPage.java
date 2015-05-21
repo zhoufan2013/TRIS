@@ -70,7 +70,8 @@ public class UPCServiceEditUIPage {
         }
     }
     private List<WebElement> selectServiceCatagoryAllRows() {
-        List<WebElement> allRows = browser.getInternalWebDriver().findElements(By.xpath(ElementXPath.SERVICE_CATAGORY_CHOOSE_ALLROWS));
+        List<WebElement> allRows = browser.getElements(ElementXPath.SERVICE_CATAGORY_CHOOSE_ALLROWS);
+//        List<WebElement> allRows = browser.getInternalWebDriver().findElements(By.xpath(ElementXPath.SERVICE_CATAGORY_CHOOSE_ALLROWS));
         return allRows;
     }
 

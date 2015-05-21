@@ -52,4 +52,12 @@ public class ChooseMenu {
         return fwd.link(linkText(Menu.getMenuName("productlifecycle")));
     }
 
+    protected FluentWebElement releaseModule() {
+        return fwd.link(linkText(Menu.getMenuName("release")));
+    }
+
+    protected FluentWebElement releaseLogModule() {
+        return fwd.link(linkText(Menu.getMenuName("releaseLog")));
+    }
+
 }

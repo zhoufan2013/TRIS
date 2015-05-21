@@ -27,4 +27,8 @@ public final class ModuleConst {
 
     public static String PRODUCT_ADD_SERVICE = "ProductAddService";
 
+    public static String SINGLE_LAUNCH = "Launch";
+
+    public static String RELEASE_LOG = "ReleaseLog";
+
 }

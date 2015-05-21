@@ -68,7 +68,15 @@
         <field id="serviceId">serviceSpecId</field>
         <field id="serviceName">serviceSpecName</field>
         <field id="queryServiceButton">QueryServiceBtn</field>
+        <field id="addServiceRightButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[1]/a</field>
+        <field id="addServiceLeftButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[2]/a</field>
     </module>
-
+    <!-- 发布 -->
+    <module name="Launch">
+        <field id="confirmLauchButton">//*[@id="wade_msg_ct"]/div[4]/a[1]</field>
+    </module>
+    <module name="ReleaseLog">
+        <field id="objectId">objectId</field>
+    </module>
 </modules>
 

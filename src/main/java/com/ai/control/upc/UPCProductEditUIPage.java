@@ -1,6 +1,8 @@
 package com.ai.control.upc;
 
 import com.ai.config.ElementXPath;
+import com.ai.config.ModuleConst;
+import com.ai.config.ModuleField;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.CharSpecVO;
 import com.ai.upc.bean.ProductVO;
@@ -12,7 +14,9 @@ import com.ai.util.TRISUtil;
 import com.ai.util.UPCUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.seleniumhq.selenium.fluent.FluentWebElement;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -71,18 +75,45 @@ public class UPCProductEditUIPage {
     /**
      * 图形树添加服务规格
      */
-    public void addServiceSpecification(final String serviceId) {
-
+    public UPCProductEditUIPage addServiceSpecification(final String serviceId) {
         browser.upcHTreeHover(ElementXPath.PRODUCT_HTREE_HORIZONAL, ElementXPath.PRODUCT_HTREE_HORIZONAL_PLUS, ElementXPath.PRODUCT_HTREE_ADD_SERVICE);
         browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_ADD_SERVICE_FRAME));
-
         new ProductBasicInfo(browser){{
             browser.input(serviceId(), serviceId);
             browser.click(queryServiceButton());
+            chooseSpecifiedService(serviceId);
+            browser.getElement(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceRightButton")).click();//TODO 优化
+            browser.click(addServiceOKButton());
         }};
-
+        return this;
     }
 
+    private void chooseSpecifiedService(String serviceId) {
+        browser.pause(1l, TimeUnit.SECONDS);
+        List<WebElement> allRows = browser.getElements(ElementXPath.PRODUCT_ADD_SERVICE_SELECTABLE_TABLE_ALLROWS);
+        for(WebElement row : allRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            for(WebElement cell : cells) {
+                WebElement c = cell.findElement(By.tagName("input"));
+                if(c.getAttribute("value").equals(serviceId) && !c.isSelected()) {
+                    c.click();
+                    break;
+                }
+            }
+        }
+    }
+
+    public void saveProduct() {
+        new ProductBasicInfo(browser){{
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrame(browser, UPCUtil.findOnPageName(browser)));
+            browser.click(saveProductButton());
+            browser.pause(1l, TimeUnit.SECONDS);
+            new MessageBox(browser){{
+                okSuccessMsg();
+            }};
+        }};
+    }
 
     /**
      *

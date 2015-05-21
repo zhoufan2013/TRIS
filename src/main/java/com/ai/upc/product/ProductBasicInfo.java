@@ -8,9 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.name;
-import static org.openqa.selenium.By.xpath;
+import static org.openqa.selenium.By.*;
 
 /**
  * 产品规格主编辑页面
@@ -97,5 +95,34 @@ public class ProductBasicInfo {
         return fwd.button(name(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "queryServiceButton")));
     }
 
+    /**
+     * 选择服务到右框
+     */
+    public FluentWebElement addServiceRightButton() {
+        return fwd.link(xpath(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceRightButton")));
+    }
+
+    /**
+     *
+     */
+    public FluentWebElement addServiceLeftButton() {
+        return fwd.link(xpath(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceLeftButton")));
+    }
+
+    /**
+     *
+     * @return
+     */
+    public FluentWebElement addServiceOKButton() {
+        return fwd.div(className("c_submit")).button(name("submitBtn"));
+    }
+
+    /**
+     * 确认发布按钮
+     */
+    public FluentWebElement confirmLauchButton() {
+//        return fwd.link(xpath(ModuleField.getFieldValue(ModuleConst.SINGLE_LAUNCH, "confirmLauchButton")));
+        return fwd.link(xpath("//*[@id=\"wade_msg_ct\"]/div[4]/a[1]"));
+    }
 
 }

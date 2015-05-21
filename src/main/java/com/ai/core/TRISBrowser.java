@@ -15,14 +15,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -197,6 +196,19 @@ public class TRISBrowser {
     }
 
     /**
+     *
+     * @param xpath
+     * @return
+     */
+    public List<WebElement> getElements(String xpath) {
+        pause(1l, TimeUnit.SECONDS);
+        if (_log.isDebugEnabled()) {
+            _log.info("TRIS try to find elements on [" + xpath + "]");
+        }
+        return internalWebDriver.findElementsByXPath(xpath);
+    }
+
+    /**
      * //TODO
      */
     public void select(FluentWebElement element, String option) {
@@ -218,14 +230,10 @@ public class TRISBrowser {
      * @param element
      */
     public void click(FluentWebElement element) {
-        pause(10l);
+//        pause(10l);
         WebDriverWait wait = new WebDriverWait(internalWebDriver, TimeUnit.MILLISECONDS.toSeconds(10000l));//TODO
         WebElement webElement = wait.until(ExpectedConditions.elementToBeClickable(element.getWebElement()));
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.pause(1l, TimeUnit.SECONDS);
         webElement.click();
         if (_log.isDebugEnabled()) {
             _log.info("TRIS click " + element.getText());

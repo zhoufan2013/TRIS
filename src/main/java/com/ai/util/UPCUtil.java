@@ -31,6 +31,21 @@ public final class UPCUtil {
         return StringUtils.EMPTY;
     }
 
+    /**
+     *
+     * @param browser
+     * @return
+     */
+    public static String findOnPageName(TRISBrowser browser) {
+        List<WebElement> elements =browser.getElements("//*[@id=\"tab_ct_tr\"]/td");
+        for(WebElement element : elements) {
+            if (element.getAttribute("class").equals("on")) {
+                return element.getAttribute("title");
+            }
+        }
+        return StringUtils.EMPTY;
+    }
+
     public static String findPageTitle(TRISBrowser browser, String menuName) {
         browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName(menuName)));
         return browser.getText(browser.getElement("/html/body/div[1]/div[1]/div/div[1]/div[1]"));

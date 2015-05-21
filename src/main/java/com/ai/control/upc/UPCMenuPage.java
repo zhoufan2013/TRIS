@@ -63,4 +63,21 @@ public class UPCMenuPage {
         return PageFactory.initPage(browser, UPCGroupManmPage.class);
     }
 
+    public void chooseReleaseMenu() {
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()){{
+            browser.click(productLifecycle());
+            browser.click(releaseModule());
+        }};
+    }
+
+    public UPCReleaseLogPage chooseReleaseLogMenu() {
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()) {{
+            browser.click(productLifecycle());
+            browser.click(releaseLogModule());
+        }};
+        return PageFactory.initPage(browser, UPCReleaseLogPage.class);
+    }
+
 }

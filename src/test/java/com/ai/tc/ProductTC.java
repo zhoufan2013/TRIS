@@ -4,10 +4,11 @@ import com.ai.config.*;
 import com.ai.control.upc.*;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
-import com.ai.upc.product.ProductBasicInfo;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zhoufan on 15/5/11.
@@ -64,9 +65,32 @@ public class ProductTC {
         /*打开产品菜单*/
         UPCProductManmPage productManm = menu.chooseProductMenu();
         /*查询产品,编辑产品*/
-        UPCProductEditUIPage productEditUI = productManm.queryProduct("1010065").editProduct("1010065");
+        UPCProductEditUIPage productEditUIPage = productManm.queryProduct("1010065").editProduct("1010065");
+        /*产品关联服务后并提交*/
+        productEditUIPage.addServiceSpecification("2200000").saveProduct();
 
-        productEditUI.addServiceSpecification("2200000");
+    }
+
+    /**
+     * 测试产品发布功能
+     * @author zhoufan
+     * @casecode UPC_CRM_0003
+     * @casename 发布产品规格至CRM_SR0.3.2_dev环境
+     */
+    @Test
+    public void testProductLaunch() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开产品菜单*/
+        UPCProductManmPage productManm = menu.chooseProductMenu();
+        /*查询产品,编辑产品*/
+        productManm.queryProduct("1010065").launchProduct("1010065");
+        /*发布等待时常5秒*/
+        browser.pause(5l, TimeUnit.SECONDS);
+        /*打开发布菜单*/
+        UPCReleaseLogPage releaseLogPage = menu.chooseReleaseLogMenu();
+        /*确认同步结果2000546*/
+        releaseLogPage.checkLaunchResult("1010065");
 
     }
 }

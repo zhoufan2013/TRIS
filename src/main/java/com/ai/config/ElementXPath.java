@@ -45,4 +45,17 @@ public final class ElementXPath {
 
     /**/
     public static String PRODUCT_ADD_SERVICE_FRAME = "//iframe[@eventid='addServiceAfter']";
+
+    /*产品关联服务可选表格内所有行定位*/
+    public static String PRODUCT_ADD_SERVICE_SELECTABLE_TABLE_ALLROWS = "//*[@id=\"SelectableServiceTable\"]/tbody/tr";
+
+    /*产品关联服务已选表格内所有行定位*/
+    public static String PRODUCT_ADD_SERVICE_SELECTED_TABLE_ALLROWS = "//*[@id=\"SelectedServiceTable\"]/tbody/tr";
+
+    /**/
+    public static String SINGLE_LAUNCH_ALLROWS = "//*[@id=\"AreaTreeTable\"]/tbody/tr";
+
+    /*发布日志表格内所有行*/
+    public static String RELEASE_LOG_ALLROWS = "//*[@id=\"launchLogListTable\"]/tbody/tr";
+
 }
