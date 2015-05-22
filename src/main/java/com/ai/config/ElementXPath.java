@@ -58,4 +58,7 @@ public final class ElementXPath {
     /*发布日志表格内所有行*/
     public static String RELEASE_LOG_ALLROWS = "//*[@id=\"launchLogListTable\"]/tbody/tr";
 
+    /*产品关联产品 iframe 定位*/
+    public static String PRODUCT_RELATED_PRODUCT_FRAME = "//iframe[@eventid='addAfter']";
+
 }

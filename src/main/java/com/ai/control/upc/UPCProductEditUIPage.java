@@ -10,14 +10,11 @@ import com.ai.upc.common.ChooseCharSpec;
 import com.ai.upc.common.MessageBox;
 import com.ai.upc.common.RadioTree;
 import com.ai.upc.product.ProductBasicInfo;
-import com.ai.util.TRISUtil;
 import com.ai.util.UPCUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.seleniumhq.selenium.fluent.FluentWebElement;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -58,10 +55,24 @@ public class UPCProductEditUIPage {
     }
 
     /**
+     * 定位到产品关联关系frame框
+     */
+    private void switchToProductRelFrame() {
+        browser.enterFrame(browser.getInternalWebDriver().findElementById("detailFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-TabsetFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-FrameF-0"));
+    }
+
+    /**
      * 定位到产品特征编辑frame框
      */
     private void switchToProductCharFrame() {
         browser.enterFrame(browser.getInternalWebDriver().findElementById("detailFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-TabsetFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-FrameF-1"));
+    }
+
+    /**
+     * 定位到选择关联产品的frame框
+     */
+    private void switchToAddRelatedProductFrame() {
+        browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_RELATED_PRODUCT_FRAME));
     }
 
     /**
@@ -103,6 +114,25 @@ public class UPCProductEditUIPage {
         }
     }
 
+    /**
+     * 添加产品关联关系
+     */
+    public void addproductRelationships() {
+        new ProductBasicInfo(browser){{
+            browser.click(productNodeCell());
+            browser.pause(1l, TimeUnit.SECONDS);
+            switchToProductRelFrame();
+            browser.click(addRelProductButton());
+            switchToAddRelatedProductFrame();
+            browser.getInternalWebDriver().findElementById("prodSpecId").sendKeys("213123123");
+
+        }};
+
+    }
+
+    /**
+     * 保存产品信息
+     */
     public void saveProduct() {
         new ProductBasicInfo(browser){{
             browser.leaveFrame();
@@ -113,6 +143,17 @@ public class UPCProductEditUIPage {
                 okSuccessMsg();
             }};
         }};
+    }
+
+    /**
+     * 打开产品基本信息后直接提交保存
+     */
+    public UPCProductEditUIPage openThenSave() {
+        new ProductBasicInfo(browser){{
+            browser.click(productNodeCell());
+            browser.click(saveProductButton());
+        }};
+        return this;
     }
 
     /**

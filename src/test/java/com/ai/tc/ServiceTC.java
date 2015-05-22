@@ -12,9 +12,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
- * Veris UPC Service Test Case
+ * @author zhoufan
+ * @version 1.0.0
+ * @date 15/5/7
+ * @description Veris UPC Service Test Case
+ * <p/>
+ * Modification History:
+ * Date         Author          Version            Description
+ * ------------------------------------------------------------
+ * 15/5/7       zhoufan         1.0.0              initial
  *
- * Created by zhoufan on 15/5/7.
  */
 public class ServiceTC {
 

@@ -6,7 +6,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zhoufan on 15/5/7.
@@ -50,7 +54,5 @@ public final class UPCUtil {
         browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName(menuName)));
         return browser.getText(browser.getElement("/html/body/div[1]/div[1]/div/div[1]/div[1]"));
     }
-
-
 
 }

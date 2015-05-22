@@ -110,11 +110,17 @@ public class ProductBasicInfo {
     }
 
     /**
-     *
-     * @return
+     * 确认已选择的服务关联到产品下
      */
     public FluentWebElement addServiceOKButton() {
         return fwd.div(className("c_submit")).button(name("submitBtn"));
+    }
+
+    /**
+     *
+     */
+    public FluentWebElement addRelProductButton() {
+        return fwd.link(id("baddrow"));
     }
 
     /**

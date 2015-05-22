@@ -1,6 +1,5 @@
 package com.ai.upc.release;
 
-import com.ai.config.ElementXPath;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.core.TRISWebDriver;
@@ -10,13 +9,27 @@ import org.openqa.selenium.WebElement;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import org.seleniumhq.selenium.fluent.FluentWebElements;
 
-import static org.openqa.selenium.By.*;
+import static org.openqa.selenium.By.className;
+import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.name;
 
 /**
- * Created by zhoufan on 15/5/21.
+ * @author zhoufan
+ * @version 1.0.0
+ * @date 15/5/22
+ * @description 收集发布日志页面元素
+ * <p/>
+ * Modification History:
+ * Date         Author          Version            Description
+ * ------------------------------------------------------------
+ * 15/5/22      zhoufan         1.0.0              initial
+ *
  */
 public class ReleaseLog {
 
+    /**
+     * Release Log 页面标题
+     */
     public static class Contants {
         public static String TITLE = "Service Specification Management";
     }
@@ -50,5 +63,4 @@ public class ReleaseLog {
 //        return fwd.trs(xpath(ElementXPath.RELEASE_LOG_ALLROWS)).get(0).tds().get(0).links().get(0);
         return null;
     }
-
 }

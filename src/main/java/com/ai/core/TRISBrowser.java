@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import org.testng.Assert;
 
+import static org.openqa.selenium.By.xpath;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
@@ -26,14 +27,16 @@ import java.util.concurrent.TimeUnit;
 
 /**
  *
- * 1、引入Java统计度量工具 Metrics @link{https://dropwizard.github.io/metrics/3.1.0/}
- * 2、Error自动截图
- * 3、高亮页面Error
- * 4、支持多浏览器 (1)Chrome (2)IE (3)FireFox
- * 5、重新封装 Web UI interaction API
- * 6、支持配置操作间隔时间，满足不同人员要求
+ * 1、引入Java统计度量工具 Metrics @link{https://dropwizard.github.io/metrics/3.1.0/}<br>
+ * 2、Error自动截图<br>
+ * 3、高亮页面Error<br>
+ * 4、支持多浏览器 (1)Chrome (2)IE (3)FireFox<br>
+ * 5、重新封装 Web UI interaction API<br>
+ * 6、支持配置操作间隔时间，满足不同人员要求<br>
  *
- * Created by zhoufan on 15/5/13.
+ * @author zhoufan
+ * @version 1.0
+ * @date 15/5/13
  */
 public class TRISBrowser {
 
@@ -291,6 +294,19 @@ public class TRISBrowser {
         builder.moveToElement(w3);
         builder.click();
         builder.perform();
+    }
+
+    /**
+     * 获取VerisUPC弹窗
+     * @param xpath
+     * @return
+     */
+    public WebElement switchToUPCAlert(String xpath) {
+        pause(1l, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(internalWebDriver, TimeUnit.MILLISECONDS.toSeconds(1000l));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(xpath(xpath)));
+        _log.info(element.getText());
+        return element;
     }
 
     public void mouseOver(String xpath) {

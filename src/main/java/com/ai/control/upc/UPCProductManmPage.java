@@ -67,9 +67,6 @@ public class UPCProductManmPage {
             switchToProductManmFrame();
             browser.input(productIdorName(), prodIdorName);
             browser.click(queryProduct());
-
-            //TODO
-            //productIdorName().getText().shouldBe("333");
         }};
         return this;
     }

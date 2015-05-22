@@ -11,9 +11,16 @@ import static org.testng.Assert.assertTrue;
 
 
 /**
- * Veris UPC 菜单冒烟测试
+ * @author zhoufan
+ * @version 1.0.0
+ * @date 15/5/7
+ * @description Veris UPC 菜单冒烟
+ * <p/>
+ * Modification History:
+ * Date         Author          Version            Description
+ * ------------------------------------------------------------
+ * 15/5/7       zhoufan         1.0.0              initial
  *
- * Created by zhoufan on 15/5/7.
  */
 public class MenuTC {
 

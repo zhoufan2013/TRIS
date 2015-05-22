@@ -19,9 +19,16 @@ import java.text.MessageFormat;
 
 
 /**
- * Veris UPC Login Test Case
+ * @author zhoufan
+ * @version 1.0.0
+ * @date 15/5/7
+ * @description Veris UPC 登录功能自动化case
+ * <p/>
+ * Modification History:
+ * Date         Author          Version            Description
+ * ------------------------------------------------------------
+ * 15/5/7       zhoufan         1.0.0              initial
  *
- * Created by zhoufan on 15/5/7.
  */
 public class LoginTC {
 

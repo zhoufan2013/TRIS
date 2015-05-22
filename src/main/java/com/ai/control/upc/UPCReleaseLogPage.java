@@ -8,7 +8,6 @@ import com.ai.util.UPCUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.seleniumhq.selenium.fluent.FluentWebElements;
 
@@ -40,7 +39,6 @@ public class UPCReleaseLogPage {
     public void checkLaunchResult(final String objId) {
 
         switchToReleaseLogFrame();
-
         new ReleaseLog(browser.getWebDriver()) {{
             browser.input(objectId(), objId);
             browser.click(queryButton());

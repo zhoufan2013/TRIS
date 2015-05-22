@@ -11,7 +11,16 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by zhoufan on 15/5/11.
+ * @author zhoufan
+ * @version 1.0.0
+ * @date 15/5/11
+ * @description 产品模块自动化case
+ * <p/>
+ * Modification History:
+ * Date         Author          Version            Description
+ * ------------------------------------------------------------
+ * 15/5/11      zhoufan         1.0.0              initial
+ *
  */
 public class ProductTC {
 
@@ -36,7 +45,7 @@ public class ProductTC {
      * @author zhoufan
      */
     @Test
-    public void testCreateProduct() {
+    public void UPC_CRM_0001() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
@@ -55,18 +64,16 @@ public class ProductTC {
     /**
      * 测试查询产品功能
      * @author zhoufan
-     * @casecode UPC_CRM_0002
-     * @casename product关联service
      */
     @Test
-    public void testProductRelatedService() {
+    public void UPC_CRM_0002() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
         UPCProductManmPage productManm = menu.chooseProductMenu();
         /*查询产品,编辑产品*/
         UPCProductEditUIPage productEditUIPage = productManm.queryProduct("1010065").editProduct("1010065");
-        /*产品关联服务后并提交*/
+        /*产品关联服务后并保存产品*/
         productEditUIPage.addServiceSpecification("2200000").saveProduct();
 
     }
@@ -74,11 +81,9 @@ public class ProductTC {
     /**
      * 测试产品发布功能
      * @author zhoufan
-     * @casecode UPC_CRM_0003
-     * @casename 发布产品规格至CRM_SR0.3.2_dev环境
      */
     @Test
-    public void testProductLaunch() {
+    public void UPC_CRM_0003() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
@@ -91,6 +96,39 @@ public class ProductTC {
         UPCReleaseLogPage releaseLogPage = menu.chooseReleaseLogMenu();
         /*确认同步结果2000546*/
         releaseLogPage.checkLaunchResult("1010065");
+    }
 
+    /**
+     * 测试非必选特征是否弹出校验框
+     * @author zhoufan
+     */
+    @Test
+    public void UPC_CRM_0004() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开产品菜单*/
+        UPCProductManmPage productManm = menu.chooseProductMenu();
+        /*查询产品,编辑产品*/
+        UPCProductEditUIPage productEditUIPage = productManm.queryProduct("1010065").editProduct("1010065").openThenSave();
+        /*校验是否弹出校验不通过的提示框*/
+        browser.switchToUPCAlert("//*[@id=\"wade_ext_msg_title\"]");
+    }
+
+    /**
+     * 测试新增产品关系
+     * @author zhoufan
+     */
+    @Test
+    public void UPC_CRM_0005() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开产品菜单*/
+        UPCProductManmPage productManm = menu.chooseProductMenu();
+        /*查询产品,编辑产品*/
+        UPCProductEditUIPage productEditUIPage = productManm.queryProduct("1010065").editProduct("1010065");
+        /*新增产品关联关系并保存*/
+        productEditUIPage.addproductRelationships();
+        /*数据校验*/
+        // TODO
     }
 }
