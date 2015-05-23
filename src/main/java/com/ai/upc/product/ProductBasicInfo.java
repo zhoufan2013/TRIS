@@ -131,4 +131,25 @@ public class ProductBasicInfo {
         return fwd.link(xpath("//*[@id=\"wade_msg_ct\"]/div[4]/a[1]"));
     }
 
+    /**
+     * 查询关联产品的IdorName框
+     */
+    protected FluentWebElement qryRelatedProductIdOrName() {
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.PRODUCT_RELATED_PRODUCT, "IdorName")));
+    }
+
+    /**
+     * 查询关联产品的query按钮
+     */
+    protected FluentWebElement qryRelatedProductButton() {
+        return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.PRODUCT_RELATED_PRODUCT, "qryBtn")));
+    }
+
+    /**
+     * 确认已选择的产品关联到产品下
+     */
+    public FluentWebElement addProductOKButton() {
+        return fwd.div(className("c_submit")).button(name("submitBtn"));
+    }
+
 }

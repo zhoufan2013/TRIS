@@ -71,6 +71,13 @@
         <field id="addServiceRightButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[1]/a</field>
         <field id="addServiceLeftButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[2]/a</field>
     </module>
+    <!-- 产品关联产品 -->
+    <module name="ProductRelatedProduct">
+        <field id="IdorName">prodSpecId</field>
+        <field id="qryBtn">//*[@id="ProdSpecQueryForm"]/div[2]/button</field>
+        <field id="addProductRightButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[1]/a</field>
+        <field id="addProductLeftButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[2]/a</field>
+    </module>
     <!-- 发布 -->
     <module name="Launch">
         <field id="confirmLauchButton">//*[@id="wade_msg_ct"]/div[4]/a[1]</field>

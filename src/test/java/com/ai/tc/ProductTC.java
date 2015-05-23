@@ -127,7 +127,7 @@ public class ProductTC {
         /*查询产品,编辑产品*/
         UPCProductEditUIPage productEditUIPage = productManm.queryProduct("1010065").editProduct("1010065");
         /*新增产品关联关系并保存*/
-        productEditUIPage.addproductRelationships();
+        productEditUIPage.addproductRelationships().saveProduct();
         /*数据校验*/
         // TODO
     }

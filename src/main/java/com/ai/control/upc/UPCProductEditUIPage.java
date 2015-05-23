@@ -72,7 +72,7 @@ public class UPCProductEditUIPage {
      * 定位到选择关联产品的frame框
      */
     private void switchToAddRelatedProductFrame() {
-        browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_RELATED_PRODUCT_FRAME));
+        browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_RELATED_PRODUCT_FRAME)).enterFrame(browser.getInternalWebDriver().findElementById("selectProductFrame"));
     }
 
     /**
@@ -117,17 +117,37 @@ public class UPCProductEditUIPage {
     /**
      * 添加产品关联关系
      */
-    public void addproductRelationships() {
+    public UPCProductEditUIPage addproductRelationships() {
         new ProductBasicInfo(browser){{
             browser.click(productNodeCell());
             browser.pause(1l, TimeUnit.SECONDS);
             switchToProductRelFrame();
             browser.click(addRelProductButton());
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrame(browser, UPCUtil.findOnPageName(browser)));
             switchToAddRelatedProductFrame();
-            browser.getInternalWebDriver().findElementById("prodSpecId").sendKeys("213123123");
-
+            browser.input(qryRelatedProductIdOrName(), "2100339");
+            browser.click(qryRelatedProductButton());
+            chooseSpecifiedProduct("2100339");
+            browser.getElement(ModuleField.getFieldValue(ModuleConst.PRODUCT_RELATED_PRODUCT, "addProductRightButton")).click();
+            browser.click(addProductOKButton());
         }};
+        return this;
+    }
 
+    private void chooseSpecifiedProduct(String productId) {
+        browser.pause(1l, TimeUnit.SECONDS);
+        List<WebElement> allRows = browser.getElements(ElementXPath.PRODUCT_RELATED_PRODUCT_SELECTABLE_TABLE_ALLROWS);
+        for(WebElement row : allRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            for(WebElement cell : cells) {
+                WebElement c = cell.findElement(By.tagName("input"));
+                if(c.getAttribute("value").equals(productId) && !c.isSelected()) {
+                    c.click();
+                    break;
+                }
+            }
+        }
     }
 
     /**

@@ -61,4 +61,10 @@ public final class ElementXPath {
     /*产品关联产品 iframe 定位*/
     public static String PRODUCT_RELATED_PRODUCT_FRAME = "//iframe[@eventid='addAfter']";
 
+    /*产品关联产品可选表格内所有行定位*/
+    public static String PRODUCT_RELATED_PRODUCT_SELECTABLE_TABLE_ALLROWS = "//*[@id=\"SelectableProductTable\"]/tbody/tr";
+
+    /*产品关联产品已选表格内所有行定位*/
+    public static String PRODUCT_RELATED_PRODUCT_SELECTED_TABLE_ALLROWS = "//*[@id=\"SelectedProductTable\"]/tbody/tr";
+
 }

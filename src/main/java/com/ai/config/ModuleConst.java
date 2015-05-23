@@ -31,4 +31,6 @@ public final class ModuleConst {
 
     public static String RELEASE_LOG = "ReleaseLog";
 
+    public static String PRODUCT_RELATED_PRODUCT = "ProductRelatedProduct";
+
 }
