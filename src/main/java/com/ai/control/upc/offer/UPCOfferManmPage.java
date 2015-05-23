@@ -113,4 +113,15 @@ public class UPCOfferManmPage {
         return this;
     }
 
+    /**
+     * 新增Offer
+     */
+    public UPCChooseTemplatePage addOffer() {
+        new OfferManm(browser.getWebDriver()){{
+            browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("offer")));
+            browser.click(createNewOfferButton());
+        }};
+        return PageFactory.initPage(browser, UPCChooseTemplatePage.class);
+    }
+
 }

@@ -34,7 +34,7 @@ public class UPCProductEditUIPage {
     String createdProductId = "-1";
 
     /**
-     * 定位到编辑产品的大frame框
+     * 定位到新增产品的大frame框
      */
     private void switchToProductEditFrame() {
         browser.enterFrame(UPCUtil.findNavFrame(browser, "Add Product Specification"));

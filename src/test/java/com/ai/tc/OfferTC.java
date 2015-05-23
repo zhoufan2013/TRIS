@@ -2,8 +2,10 @@ package com.ai.tc;
 
 import com.ai.config.ExcelConst;
 import com.ai.config.ExcelReader;
+import com.ai.control.upc.UPCChooseTemplatePage;
 import com.ai.control.upc.UPCHomePage;
 import com.ai.control.upc.UPCMenuPage;
+import com.ai.control.upc.offer.UPCOfferEditUIPage;
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
@@ -46,7 +48,16 @@ public class OfferTC {
      */
     @Test
     public void UPC_CRM_0001() {
-
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开策划菜单*/
+        UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
+        /*新增策划*/
+        UPCChooseTemplatePage templatePage = offerManmPage.addOffer();
+        /*选择模板*/
+        UPCOfferEditUIPage offerEditUIPage = templatePage.chooseOfferTemplate("45");
+        /*进入编辑页面并输入基本信息*/
+        offerEditUIPage.intoBasicInfo().insertBasicInfo().insertOfferChar();
 
     }
 

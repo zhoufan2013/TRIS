@@ -1,6 +1,7 @@
 package com.ai.control.upc;
 
 import com.ai.config.ElementXPath;
+import com.ai.control.upc.offer.UPCOfferEditUIPage;
 import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.common.ChooseTemplate;
@@ -23,16 +24,33 @@ public class UPCChooseTemplatePage {
     }
 
     /**
-     * 测试人员指定创建服务模板
+     * 创建指定服务模板
+     * @param tempId 模板ID
+     * @return 服务模块交互编排
      */
     public UPCServiceEditUIPage chooseServiceTemplate(String tempId) {
         templateChoose(tempId);
         return PageFactory.initPage(browser, UPCServiceEditUIPage.class);
     }
 
+    /**
+     * 创建指定产品模板
+     * @param tempId 模板ID
+     * @return 产品模块交互编排
+     */
     public UPCProductEditUIPage chooseProductTemplate(String tempId) {
         templateChoose(tempId);
         return PageFactory.initPage(browser, UPCProductEditUIPage.class);
+    }
+
+    /**
+     * 创建指定策划模板
+     * @param tempId 模板ID
+     * @return 策划模块交互编排
+     */
+    public UPCOfferEditUIPage chooseOfferTemplate(String tempId) {
+        templateChoose(tempId);
+        return PageFactory.initPage(browser, UPCOfferEditUIPage.class);
     }
 
     private WebElement locateTemplateChooseFrame() {

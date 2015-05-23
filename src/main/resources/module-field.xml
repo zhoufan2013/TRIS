@@ -92,5 +92,16 @@
         <field id="createNewOfferButton">addBtn</field>
         <field id="offerTable">offerTableTable</field>
     </module>
+    <!-- 编辑策划 -->
+    <module name="OfferEditUI">
+        <field id="OfferNodeCell">//*[@id="offer"]/span/table/tbody/tr/td[2]</field>
+        <field id="offerId">offerId</field>
+        <field id="offerName">offerName</field>
+        <field id="offerType">//*[@id="baseinfo"]/div[1]/ul/li[3]/span[2]/button</field>
+        <field id="brand">brand</field>
+        <field id="offerCode">offerCode</field>
+        <field id="desc">desc</field>
+        <field id="interalDesc">interalDesc</field>
+    </module>
 </modules>
 
