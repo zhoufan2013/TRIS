@@ -16,11 +16,6 @@
     <module name="logout">
         <field id="exit">btn_exit</field>
     </module>
-    <module name="OfferManm">
-        <field id="offerId">offerId</field>
-        <field id="createNewOfferButton">addBtn</field>
-
-    </module>
     <!-- 选择模板 -->
     <module name="TemplateChooseFrame">
         <field id="queryTemplateButton">queryButton</field>
@@ -82,8 +77,20 @@
     <module name="Launch">
         <field id="confirmLauchButton">//*[@id="wade_msg_ct"]/div[4]/a[1]</field>
     </module>
+    <!-- 发布日志 -->
     <module name="ReleaseLog">
         <field id="objectId">objectId</field>
+    </module>
+    <!-- Offer查询主页面 -->
+    <module name="OfferManm">
+        <field id="offerIdorName">offerId</field>
+        <field id="qryOfferTypeBtn">//*[@id="condForm"]/ul/li[2]/span[2]/button</field>
+        <field id="selectBrand">brand</field>
+        <field id="startDate"></field><!--TODO-->
+        <field id="endDate"></field><!--TODO-->
+        <field id="qryOfferBtn">queryBtn</field>
+        <field id="createNewOfferButton">addBtn</field>
+        <field id="offerTable">offerTableTable</field>
     </module>
 </modules>
 

@@ -6,6 +6,7 @@ import com.ai.core.TRISWebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.name;
 
 /**
  * offer主查询页面
@@ -24,12 +25,25 @@ public class OfferManm {
         this.fwd = delegate;
     }
 
-    protected FluentWebElement offerId() {
-        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "offerId")));
+    /**
+     * 查询Offer时的id和name框
+     */
+    protected FluentWebElement offerIdorName() {
+        return fwd.input(name(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "offerIdorName")));
     }
 
-    protected FluentWebElement createNewOffer() {
+    /**
+     * 新建Offer按钮
+     */
+    protected FluentWebElement createNewOfferButton() {
         return fwd.button(id(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "createNewOfferButton")));
+    }
+
+    /**
+     * 查询Offer按钮
+     */
+    protected FluentWebElement qryOfferButton() {
+        return fwd.button(id(ModuleField.getFieldValue(ModuleConst.OFFERMANM, "qryOfferBtn")));
     }
 
 

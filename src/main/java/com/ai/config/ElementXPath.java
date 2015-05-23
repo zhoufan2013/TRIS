@@ -67,4 +67,7 @@ public final class ElementXPath {
     /*产品关联产品已选表格内所有行定位*/
     public static String PRODUCT_RELATED_PRODUCT_SELECTED_TABLE_ALLROWS = "//*[@id=\"SelectedProductTable\"]/tbody/tr";
 
+    /*查询Offer主页面表格所有行定位*/
+    public static String OFFER_MANM_QUERY_ALLROWS = "//*[@id=\"offerTableTable\"]/tbody/tr";
+
 }
