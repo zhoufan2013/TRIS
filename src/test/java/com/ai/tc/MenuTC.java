@@ -28,7 +28,7 @@ public class MenuTC {
     private LoginVO loginInfo;
     private UPCMenuPage menu;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     private void setup() {
         /*TRIS 浏览器模拟初始化*/
         browser = TRISBrowser.init();
@@ -38,7 +38,7 @@ public class MenuTC {
         menu = UPCHomePage.navigate(browser).login();
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     private void tearDown() {
         browser.quit();
     }
@@ -46,7 +46,7 @@ public class MenuTC {
     /**
      * 销售品菜单
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testOfferMenu() {
         UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
         offerManmPage.isLoaded();
@@ -55,7 +55,7 @@ public class MenuTC {
     /**
      * 产品规格菜单
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testProductMenu() {
         UPCProductManmPage productManm = menu.chooseProductMenu();
         assertTrue(productManm.isLoaded());
@@ -64,7 +64,7 @@ public class MenuTC {
     /**
      * 服务规格菜单
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testServiceMenu() {
         UPCServiceManmPage serviceManm = menu.chooseServiceMenu();
         assertTrue(serviceManm.isLoaded());
@@ -73,7 +73,7 @@ public class MenuTC {
     /**
      * 目录菜单
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testCatalogMenu() {
         UPCCatalogManmPage catalogManmPage = menu.chooseCatalogMenu();
         assertTrue(catalogManmPage.isLoaded());
@@ -82,7 +82,7 @@ public class MenuTC {
     /**
      * 策划组菜单
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testGroupMenu() {
         UPCGroupManmPage groupManmPage = menu.chooseGroupMenu();
         assertTrue(groupManmPage.isLoaded());

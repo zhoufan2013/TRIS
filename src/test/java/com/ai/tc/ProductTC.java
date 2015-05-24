@@ -27,7 +27,7 @@ public class ProductTC {
     private TRISBrowser browser;
     private ProductVO product;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     private void setup() {
         /*TRIS 浏览器模拟初始化*/
         browser = TRISBrowser.init();
@@ -35,7 +35,7 @@ public class ProductTC {
         product = ExcelReader.init(ExcelConst.XLSX_PATH).readProduct();
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     private void tearDown() {
 //        browser.quit();
     }
@@ -44,7 +44,7 @@ public class ProductTC {
      * 测试根据Excel输入创建产品功能
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0001() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
@@ -65,7 +65,7 @@ public class ProductTC {
      * 测试查询产品功能
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0002() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
@@ -82,7 +82,7 @@ public class ProductTC {
      * 测试产品发布功能
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0003() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
@@ -102,7 +102,7 @@ public class ProductTC {
      * 测试非必选特征是否弹出校验框
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0004() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
@@ -118,7 +118,7 @@ public class ProductTC {
      * 测试新增产品关系
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0005() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();

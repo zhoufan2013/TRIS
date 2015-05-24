@@ -28,7 +28,7 @@ public class ServiceTC {
     private TRISBrowser browser;
     private ServiceVO service;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     private void setup() {
         /*TRIS 浏览器模拟初始化*/
         browser = TRISBrowser.init();
@@ -36,7 +36,7 @@ public class ServiceTC {
         service = ExcelReader.init(ExcelConst.XLSX_PATH).readService();
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     private void tearDown() {
         //browser.quit();
     }
@@ -44,7 +44,7 @@ public class ServiceTC {
     /**
      * 依据输入测试创建服务规格
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testCreateService() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();

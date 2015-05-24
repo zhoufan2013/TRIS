@@ -29,7 +29,7 @@ public class OfferTC {
     private TRISBrowser browser;
     private ProductVO product;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     private void setup() {
         /*TRIS 浏览器模拟初始化*/
         browser = TRISBrowser.init();
@@ -37,7 +37,7 @@ public class OfferTC {
         product = ExcelReader.init(ExcelConst.XLSX_PATH).readProduct();
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     private void tearDown() {
 //        browser.quit();
     }
@@ -46,7 +46,7 @@ public class OfferTC {
      * 测试根据GSM模板新增销售品
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0001() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
@@ -65,7 +65,7 @@ public class OfferTC {
      * 测试offer校验功能之必选特征
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "medium"})
     public void UPC_CRM_0002() {
 
     }
@@ -75,7 +75,7 @@ public class OfferTC {
      * offer校验功能之关联操作
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "medium"})
     public void UPC_CRM_0003() {
 
     }
@@ -84,7 +84,7 @@ public class OfferTC {
      * 测试拷贝DSL主套餐
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0004() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
@@ -100,7 +100,7 @@ public class OfferTC {
      * 测试发布DSL主套餐功能
      * @author zhoufan
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void UPC_CRM_0005() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();

@@ -2,8 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="tris_testng">
     <test name="tris_testng">
+        <groups>
+            <run>
+                <include name="medium"/>
+            </run>
+        </groups>
         <packages>
-            <package name="com.ai.tc.ProductTC"></package>
+            <package name="com.ai.tc"></package>
         </packages>
     </test>
 </suite>

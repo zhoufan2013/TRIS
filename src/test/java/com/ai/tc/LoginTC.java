@@ -11,9 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.text.MessageFormat;
 
@@ -35,7 +33,7 @@ public class LoginTC {
     private TRISBrowser browser;
     private LoginVO loginInfo;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     private void setup() {
         /*TRIS 浏览器模拟初始化*/
         browser = TRISBrowser.init();
@@ -43,7 +41,7 @@ public class LoginTC {
         loginInfo = ExcelReader.init(ExcelConst.XLSX_PATH).readLoginInfo();
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     private void tearDown() {
         browser.quit();
     }
@@ -51,7 +49,7 @@ public class LoginTC {
     /**
      * 测试页面是否正常加载
      */
-    @Test
+    @Test(groups = {"functest", "checkintest", "high"})
     public void testUPCHomePageloading() {
         assertTrue(UPCHomePage.navigate(browser).isLoaded());
     }
@@ -59,7 +57,7 @@ public class LoginTC {
     /**
      * 测试 username 为空是否正常登录
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testLoginWithNullUserName() {
         assertTrue(!UPCHomePage.navigate(browser).login(StringUtils.EMPTY, loginInfo.getPassword()));
     }
@@ -67,7 +65,7 @@ public class LoginTC {
     /**
      * 测试 password 为空是否正常登录
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testLoginWithNullPwd() {
         assertTrue(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), StringUtils.EMPTY));
     }
@@ -75,7 +73,7 @@ public class LoginTC {
     /**
      * login with password pattern #1 {123456}
      */
-    @Test
+    @Test(groups = {"functest", "checkintest", "high"})
     public void testLoginOne() {
         assertEquals(UPCHomePage.navigate(browser).login(loginInfo.getUsername(), loginInfo.getPassword()), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "1"));
     }
@@ -83,7 +81,7 @@ public class LoginTC {
     /**
      * login with password pattern #2 {123  456}
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testLoginTwo() {
         assertEquals(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern2(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "2"));
     }
@@ -91,7 +89,7 @@ public class LoginTC {
     /**
      * login with password pattern #3 {  123456}
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testLoginThree() {
         assertEquals(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern3(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "3"));
     }
@@ -99,7 +97,7 @@ public class LoginTC {
     /**
      * login with password pattern #4 {123456  }
      */
-    @Test
+    @Test(groups = {"functest", "high"})
     public void testLoginFour() {
         assertEquals(!UPCHomePage.navigate(browser).login(loginInfo.getUsername(), TestCaseUtil.pwdPattern4(loginInfo.getPassword())), true, MessageFormat.format(AssertConst.PASSWORD_PATTERN, "4"));
     }

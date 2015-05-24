@@ -125,16 +125,35 @@ public class UPCOfferEditUIPage {
     }
 
     /**
-     * Offer关联
+     * Offer关联公共条件
      */
     public UPCOfferEditUIPage insertEligibilityCriteria() {
         return this;
     }
 
     /**
-     *
+     * 校验
      */
     public UPCOfferEditUIPage verifyEligibilityCriteria() {
+        return this;
+    }
+
+    public UPCOfferEditUIPage insertOfferRelations() {
+        return this;
+    }
+
+    public UPCOfferEditUIPage verifyOfferRelations() {
+        return this;
+    }
+
+    /**
+     * Offer关联操作
+     */
+    public UPCOfferEditUIPage insertBusiInterItems() {
+        return this;
+    }
+
+    public UPCOfferEditUIPage verifyBusiInterItems() {
         return this;
     }
 
