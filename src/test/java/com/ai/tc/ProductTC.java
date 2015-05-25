@@ -4,9 +4,7 @@ import com.ai.config.*;
 import com.ai.control.upc.*;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,9 +33,9 @@ public class ProductTC {
         product = ExcelReader.init(ExcelConst.XLSX_PATH).readProduct();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     private void tearDown() {
-//        browser.quit();
+        browser.quit();
     }
 
     /**

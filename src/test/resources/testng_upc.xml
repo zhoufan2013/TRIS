@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="testng_upc" parallel="classes" thread-count="2">
+    <test verbose="2" name="testng_high" >
+        <groups>
+            <run>
+                <include name="high"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.ai.tc"></package>
+        </packages>
+    </test>
+    <test verbose="2" name="testng_medium">
+        <groups>
+            <run>
+                <include name="medium"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.ai.tc"></package>
+        </packages>
+    </test>
+</suite>

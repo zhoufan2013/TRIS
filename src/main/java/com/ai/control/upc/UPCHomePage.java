@@ -42,6 +42,7 @@ public class UPCHomePage {
             browser.input(password(), password);
             browser.click(login());
         }};
+        browser.pause(1000l);
         return StringUtils.equals(ChooseMenu.Contants.TITLE, browser.getCurrentTitle());
     }
 

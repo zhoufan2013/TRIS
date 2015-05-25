@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="tris_testng">
-    <test name="tris_testng">
-        <groups>
-            <run>
-                <include name="medium"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="com.ai.tc"></package>
-        </packages>
+<suite name="testng">
+    <test verbose="2" name="testng" >
+        <classes>
+            <class name="com.ai.tc.LoginTC"></class>
+            <!--<class name="com.ai.tc.MenuTC"></class>-->
+        </classes>
     </test>
 </suite>

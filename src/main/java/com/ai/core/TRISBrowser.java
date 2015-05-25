@@ -3,6 +3,7 @@ package com.ai.core;
 import com.ai.config.LogConst;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,6 +22,8 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -233,10 +236,10 @@ public class TRISBrowser {
      * @param element
      */
     public void click(FluentWebElement element) {
-//        pause(10l);
+        //pause(1000l);
         WebDriverWait wait = new WebDriverWait(internalWebDriver, TimeUnit.MILLISECONDS.toSeconds(10000l));//TODO
         WebElement webElement = wait.until(ExpectedConditions.elementToBeClickable(element.getWebElement()));
-        this.pause(1l, TimeUnit.SECONDS);
+        pause(1l, TimeUnit.SECONDS);
         webElement.click();
         if (_log.isDebugEnabled()) {
             _log.info("TRIS click " + element.getText());
@@ -250,9 +253,9 @@ public class TRISBrowser {
      * @param text
      */
     public void input(FluentWebElement element, String text) {
-        pause(10l);
-        element.clearField();
-        element.sendKeys(text);
+        pause(1l, TimeUnit.SECONDS);
+        element.clearField().sendKeys(text);
+        //element.sendKeys(text);
         if (_log.isDebugEnabled()) {
             _log.info("TRIS input " + text);
         }
@@ -348,15 +351,23 @@ public class TRISBrowser {
     }
 
     private void chromeDriver() {
-        ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/zhoufan/chromedriver")).usingAnyFreePort().build();
+        /*ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/zhoufan/chromedriver")).build();
         try {
             chromeService.start();
         } catch (IOException e) {
             _log.error(MessageFormat.format(LogConst.START_ERROR, "ChromeDriver"), e);
-        }
+        }*/
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         //capabilities.setCapability("chrome.switches", Arrays.asList("--start-maximized"));
-        internalWebDriver = new RemoteWebDriver(chromeService.getUrl(), capabilities);
+        capabilities.setPlatform(Platform.ANY);
+        capabilities.setBrowserName("chrome");
+        URL url = null;
+        try {
+            url = new URL("http://10.11.17.238:4444/wd/hub");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        internalWebDriver = new RemoteWebDriver(url, capabilities);
         internalWebDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         internalWebDriver.manage().window().maximize();
         if (_log.isDebugEnabled()) {

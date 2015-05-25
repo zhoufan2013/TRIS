@@ -5,6 +5,8 @@ import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.common.ChooseMenu;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by zhoufan on 15/5/6.
  */
@@ -30,6 +32,7 @@ public class UPCMenuPage {
     public UPCOfferManmPage chooseOfferMenu() {
         browser.leaveFrame();
         new ChooseMenu(browser.getWebDriver()){{
+            browser.pause(2l, TimeUnit.SECONDS);
             browser.click(productServiceCatalog());
             browser.click(offerModule());
         }};

@@ -23,6 +23,7 @@
             <version>6.9.4</version>
         </dependency>
 
+        <!--
         <dependency>
             <groupId>org.uncommons</groupId>
             <artifactId>reportng</artifactId>
@@ -34,6 +35,12 @@
                     <artifactId>testng</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>-->
+
+        <dependency>
+            <groupId>velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.5</version>
         </dependency>
 
         <dependency>
@@ -170,6 +177,8 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemProperties>
+                    </systemProperties>
                 </configuration>
             </plugin>
             <plugin>

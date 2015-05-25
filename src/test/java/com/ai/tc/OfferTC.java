@@ -9,9 +9,7 @@ import com.ai.control.upc.offer.UPCOfferEditUIPage;
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * @author zhoufan
@@ -39,7 +37,7 @@ public class OfferTC {
 
     @AfterClass(alwaysRun = true)
     private void tearDown() {
-//        browser.quit();
+        browser.quit();
     }
 
     /**
@@ -67,7 +65,6 @@ public class OfferTC {
      */
     @Test(groups = {"functest", "medium"})
     public void UPC_CRM_0002() {
-
     }
 
 
@@ -77,7 +74,6 @@ public class OfferTC {
      */
     @Test(groups = {"functest", "medium"})
     public void UPC_CRM_0003() {
-
     }
 
     /**

@@ -7,9 +7,7 @@ import com.ai.control.upc.*;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ServiceVO;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * @author zhoufan
@@ -36,9 +34,9 @@ public class ServiceTC {
         service = ExcelReader.init(ExcelConst.XLSX_PATH).readService();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     private void tearDown() {
-        //browser.quit();
+        browser.quit();
     }
 
     /**
