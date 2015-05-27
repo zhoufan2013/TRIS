@@ -83,4 +83,14 @@ public class UPCMenuPage {
         return PageFactory.initPage(browser, UPCReleaseLogPage.class);
     }
 
+    //added by tianhj
+    public UPCOfferGroupManmPage chooseofferGroupMenu() {
+        browser.leaveFrame();
+        new ChooseMenu(browser.getWebDriver()) {{
+            browser.click(productServiceCatalog());
+            browser.click(offerGroupModule());
+        }};
+        return PageFactory.initPage(browser, UPCOfferGroupManmPage.class);
+    }
+
 }

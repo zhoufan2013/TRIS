@@ -13,6 +13,10 @@ public final class ExcelConst {
 
     public static String UPC_MODULE_SERVICE = "service";
 
+    public static String UPC_MODULE_OFFERGROUP = "offerGroup";
+
+    public static String SUB_TITLE_RELATED_OFFERS = "Related Offer";
+
     /*服务关联关系*/
     public static String SUB_TITLE_RELATED_SERVICES = "Related Services";
 

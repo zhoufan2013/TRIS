@@ -58,6 +58,37 @@
         <field id="selectConditionIDorName">NameId</field>
         <field id="queryServiceCatagoryButton">//*[@id="ServiceCatagoryQueryForm"]/div[2]/button</field>
     </module>
+
+    <!-- offergroup added by tinahj -->
+    <module name="OfferGroupManm">
+        <field id="offerGroupIdorName">prodSpecId</field>
+        <field id="queryOfferGroup">//*[@id="condition"]/div[2]/button/span</field>
+        <field id="createNewOfferGroupButton">/html/body/div[1]/div[1]/div[1]/div[3]/ul/li/a</field></module>
+    <module name="OfferGroupEditUi">
+        <field id="offerGroupName">groupName</field>
+        <field id="mutuallyExclusiveYES">isInnerMutexradio0</field>
+        <field id="mutuallyExclusiveNO">isInnerMutexradio1</field>
+        <field id="mutualConversionTypeDisable">innerChangeTyperadio0</field>
+        <field id="mutualConversionTypeEnabel">innerChangeTyperadio1</field>
+        <field id="mutualConversionTypeEnabelUpwaordConversion">innerChangeTyperadio2</field>
+        <field id="subscribeQuantityRestriction">minCardinality</field>
+        <field id="to">maxCardinality</field>
+        <field id="descriptionCustomer">description</field>
+        <field id="addRelatedOffers">baddrow</field>
+        <field id="saveOfferGroupButton">/html/body/div[1]/div[1]/div/div[2]/button[2]</field>
+    </module>
+    <module name="OfferChooseFrame">
+        <field id="offerNameorID">offerId</field>
+        <field id="offerType">offerType</field>
+        <field id="query">//*[@id="condForm"]/div[2]/button</field>
+        <field id="add">selectOffer</field>
+        <field id="delete">/html/body/div[1]/div[1]/div[1]/div[2]/div/div[3]/div/div/div[2]/ul/li[2]/a</field>
+        <field id="OK">btnOk</field>
+        <field id="cancel">//*[@id="operPart"]/div/button[2]</field>
+    </module>
+    <!--end: offergroup added by tinahj -->
+
+
     <!-- 产品添加服务 -->
     <module name="ProductAddService">
         <field id="serviceId">serviceSpecId</field>

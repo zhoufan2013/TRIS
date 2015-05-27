@@ -1,5 +1,7 @@
 package com.ai.config;
 
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+
 /**
  * VerisUPC 界面元素定位XPATH集合
  *
@@ -30,6 +32,10 @@ public final class ElementXPath {
 
     /*product type tree iframe 定位*/
     public static String PRODUCT_TYPE_TREE_FRAME = "//iframe[@eventid='productSpecificationType']";
+
+    /*offer choose iframe 定位*/
+    public static String OFFER_CHOOSE_FRAME = "//iframe[@eventid='addAfter']";
+    public static String OFFER_CHOOSE_ALLROWS = "//*[@id=\"offerTableTable\"]/tbody/tr";
 
     /*产品规格主查询页面所有行定位*/
     public static String PRODUCT_MANM_QUERY_ALLROWS = "//*[@id=\"ProdSpecTableTable\"]/tbody/tr";

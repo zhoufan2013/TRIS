@@ -1,9 +1,6 @@
 package com.ai.config;
 
-import com.ai.upc.bean.CharSpecVO;
-import com.ai.upc.bean.LoginVO;
-import com.ai.upc.bean.ProductVO;
-import com.ai.upc.bean.ServiceVO;
+import com.ai.upc.bean.*;
 import com.ai.util.ExcelUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -102,6 +99,58 @@ public class ExcelReader {
         }
 
         return service;
+    }
+
+    public OfferGroupVO readOfferGroup() {
+        //TODO xlsx 校验
+        OfferGroupVO offerGroup = new OfferGroupVO();
+        //long startTime = System.currentTimeMillis();
+        Sheet offerGroupSheet = ExcelUtil.getSheetViaSheetName(wookbook, ExcelConst.UPC_MODULE_OFFERGROUP);
+        List<String[]> rows = ExcelUtil.listFromSheet(offerGroupSheet);
+
+
+        int relatedOfferRowNum = -1;
+        for(String[] row : rows) {
+            if (subTitleRow(row[0], ExcelConst.SUB_TITLE_RELATED_OFFERS)) {
+                relatedOfferRowNum = rowNum(row[0]);
+            }
+        }
+
+
+        for (int i=0; i<rows.size(); i++) {
+            if (i>0 && i < relatedOfferRowNum) {
+                loadOfferGroupBasicInfo(offerGroup,rows.get(i));
+            }
+        }
+
+        return offerGroup;
+    }
+
+    private void loadOfferGroupBasicInfo(OfferGroupVO offergroup, String[] row) {
+        if (StringUtils.equals(splitCellValue(row[0]),"Product Offering Group Name")) {
+            offergroup.setOfferGroupName(splitCellValue(row[1]));
+        } else  if (StringUtils.equals(splitCellValue(row[0]),"Subscribe Quantity Restriction")) {
+            offergroup.setSubscribeQuantityRestriction(splitCellValue(row[1]));
+        } else  if (StringUtils.equals(splitCellValue(row[0]),"To")) {
+            offergroup.setTo(splitCellValue(row[1]));
+        } else  if (StringUtils.equals(splitCellValue(row[0]),"Description Customer")) {
+            offergroup.setDescriptionCustomer(splitCellValue(row[1]));
+        } else  if (StringUtils.equals(splitCellValue(row[0]),"Mutually Exclusive")) {
+            if (StringUtils.equals(splitCellValue(row[1]), "NO")) {
+                offergroup.setMutuallyExclusive("NO");
+            } else {
+                offergroup.setMutuallyExclusive("YES");
+            }
+        } else  if (StringUtils.equals(splitCellValue(row[0]),"Mutual Conversion Type")) {
+            if (StringUtils.equals(splitCellValue(row[1]), "Enable")) {
+                offergroup.setMutualConversionType("Enable");
+            } else  if (StringUtils.equals(splitCellValue(row[1]), "Enable upward conversion")) {
+                offergroup.setMutualConversionType("Enable upward conversion");
+            } else {
+                offergroup.setMutualConversionType("Disable");
+            }
+
+        }
     }
 
     private void loadProductBasicInfo(ProductVO product, String[] row) {

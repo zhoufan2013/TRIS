@@ -48,6 +48,10 @@ public class ChooseMenu {
         return fwd.link(linkText(Menu.getMenuName("group")));
     }
 
+    protected FluentWebElement offerGroupModule() {
+        return fwd.link(linkText(Menu.getMenuName("offerGroup")));
+    }
+
     protected FluentWebElement productLifecycle() {
         return fwd.link(linkText(Menu.getMenuName("productlifecycle")));
     }

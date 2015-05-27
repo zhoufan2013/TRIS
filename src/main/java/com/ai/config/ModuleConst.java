@@ -35,4 +35,13 @@ public final class ModuleConst {
 
     public static String PRODUCT_RELATED_PRODUCT = "ProductRelatedProduct";
 
+
+    //ADDED BY TIANHJ FOR OFFER GROUP
+    public static String OFFERGROUP_MANM = "OfferGroupManm";
+
+    public static String OFFERGROUP_EDIT_UI = "OfferGroupEditUi";
+
+    public static String OFFER_CHOOSE_FRAME = "OfferChooseFrame";
+
+
 }
