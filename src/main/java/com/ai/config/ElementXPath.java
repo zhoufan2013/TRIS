@@ -76,4 +76,7 @@ public final class ElementXPath {
     /*查询Offer主页面表格所有行定位*/
     public static String OFFER_MANM_QUERY_ALLROWS = "//*[@id=\"offerTableTable\"]/tbody/tr";
 
+    /*查询OfferGroup主页面表格所有行定位*/
+    public static String OFFERGROUP_MANM_QUERY_ALLROWS = "//*[@id=\"ProdOfferingGroupTableTable\"]/tbody/tr";
+
 }

@@ -42,15 +42,16 @@ public class GroupManm {
     /**
      * 查询offergroup按钮
      */
-    protected FluentWebElement queryOfferGroupButton() {
-        return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.OFFERGROUP_MANM, "queryOfferGroup")));
+    protected void queryOfferGroupButton() {
+        //return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.OFFERGROUP_MANM, "queryOfferGroup")));
+        browser.getInternalWebDriver().findElementByXPath(ModuleField.getFieldValue(ModuleConst.OFFERGROUP_MANM, "queryOfferGroup")).click();
     }
 
     /**
      * offergroup的ID和名称输入框
      */
     protected FluentWebElement offerGroupIdorName() {
-        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.PRODUCT_MANM, "offerGroupIdorName")));
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFERGROUP_MANM, "offerGroupIdorName")));
     }
 
 }

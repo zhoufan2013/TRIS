@@ -69,6 +69,10 @@ public class UPCOfferManmPage {
         doAction(offerId, "launch");
     }
 
+    public UPCOfferEditUIPage editOffer(String offerId) {
+        doAction(offerId, "edit");
+        return PageFactory.initPage(browser, UPCOfferEditUIPage.class);
+    }
     /**
      * 导出Offer
      */

@@ -36,7 +36,7 @@ public class OfferGroupTC {
      * 依据输入测试创建服offerGroup
      */
     @Test
-    public void testCreateOfferGroup() {
+    public void UPC_CRM_OFFERGROUP_0001() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开offerGroup菜单*/
@@ -46,5 +46,35 @@ public class OfferGroupTC {
 
         /*创建offerGroup*/
         offerGroupEditUIPage.createOfferGroup(offerGroup);
+    }
+
+    /**
+     * 查询offerGroup
+     */
+    @Test
+    public void UPC_CRM_OFFERGROUP_0002() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开offerGroup菜单*/
+        UPCOfferGroupManmPage offerGroupManm = menu.chooseofferGroupMenu();
+        /*查询offerGroup*/
+        offerGroupManm.queryOfferGroup("30207");
+    }
+
+    /**
+     * 编辑offerGroup
+     */
+    @Test
+    public void UPC_CRM_OFFERGROUP_0003() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开offerGroup菜单*/
+        UPCOfferGroupManmPage offerGroupManm = menu.chooseofferGroupMenu();
+        /*查询offerGroup*/
+        offerGroupManm.queryOfferGroup("30207");
+        /*点编辑按钮*/
+        UPCOfferGroupEditUIPage offerGroupEditUIPage = offerGroupManm.editOfferGroup("30207");
+        /*编辑并保存*/
+        offerGroupEditUIPage.editOfferGroup(offerGroup);
     }
 }

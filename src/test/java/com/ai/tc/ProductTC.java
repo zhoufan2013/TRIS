@@ -43,7 +43,7 @@ public class ProductTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0001() {
+    public void UPC_CRM_PROD_0001() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
@@ -64,7 +64,7 @@ public class ProductTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0002() {
+    public void UPC_CRM_PROD_0002() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
@@ -81,7 +81,7 @@ public class ProductTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0003() {
+    public void UPC_CRM_PROD_0003() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
@@ -101,7 +101,7 @@ public class ProductTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0004() {
+    public void UPC_CRM_PROD_0004() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/
@@ -117,7 +117,7 @@ public class ProductTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0005() {
+    public void UPC_CRM_PROD_0005() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开产品菜单*/

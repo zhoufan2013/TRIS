@@ -351,23 +351,15 @@ public class TRISBrowser {
     }
 
     private void chromeDriver() {
-        /*ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/zhoufan/chromedriver")).build();
+        ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/zhoufan/chromedriver/chromedriver.exe")).usingAnyFreePort().build();
         try {
             chromeService.start();
         } catch (IOException e) {
             _log.error(MessageFormat.format(LogConst.START_ERROR, "ChromeDriver"), e);
-        }*/
+        }
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         //capabilities.setCapability("chrome.switches", Arrays.asList("--start-maximized"));
-        capabilities.setPlatform(Platform.ANY);
-        capabilities.setBrowserName("chrome");
-        URL url = null;
-        try {
-            url = new URL("http://10.11.17.238:4444/wd/hub");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        internalWebDriver = new RemoteWebDriver(url, capabilities);
+        internalWebDriver = new RemoteWebDriver(chromeService.getUrl(), capabilities);
         internalWebDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         internalWebDriver.manage().window().maximize();
         if (_log.isDebugEnabled()) {

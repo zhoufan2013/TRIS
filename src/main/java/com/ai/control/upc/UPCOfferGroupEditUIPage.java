@@ -106,4 +106,49 @@ public class UPCOfferGroupEditUIPage {
             okSuccessMsg();
         }};
     }
+
+    public void editOfferGroup(final OfferGroupVO offerGroup) {
+
+        browser.leaveFrame();
+        browser.enterFrame(UPCUtil.findNavFrame(browser, offerGroup.getOfferGroupName()+"["+offerGroup.getOfferGroupID()+"]"));
+
+        //获取当前页面句柄
+        final String handler = browser.getInternalWebDriver().getWindowHandle();
+        new GroupBasicInfo(browser){{
+            switchToOfferGroupBasicInfoFrame();
+
+            browser.input(offerGroupName(), offerGroup.getOfferGroupName());
+            browser.input(subscribeQuantityRestriction(), offerGroup.getSubscribeQuantityRestriction());
+            browser.input(to(),offerGroup.getTo());
+            mutualConversionTypeEnabel();
+            mutuallyExclusiveNO();
+            browser.input(descriptionCustomer(),offerGroup.getDescriptionCustomer());
+
+        }};
+
+        new GroupBasicInfo(browser) {{
+            browser.selectWindow(handler);
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrame(browser, offerGroup.getOfferGroupName()+"["+offerGroup.getOfferGroupID()+"]"));
+
+
+            /*选择关联offer*/
+            UPCChooseOfferPage chooseOfferPage = addOffers();
+
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrame(browser, offerGroup.getOfferGroupName()+"["+offerGroup.getOfferGroupID()+"]"));
+
+            chooseOfferPage.chooseOffers("95042552");
+
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrame(browser, offerGroup.getOfferGroupName()+"["+offerGroup.getOfferGroupID()+"]"));
+
+            saveOfferGroupButton();
+        }};
+
+
+        new MessageBox(browser) {{
+            okSuccessMsg();
+        }};
+    }
 }

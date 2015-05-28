@@ -59,6 +59,15 @@ public class UPCOfferEditUIPage {
         return this;
     }
 
+    public UPCOfferEditUIPage intoEditBaseicInfo(final String offerId) {
+        new OfferBasicInfo(browser){{
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrameIncludeID(browser, offerId));
+            browser.click(offerNodeCell());
+        }};
+        return this;
+    }
+
     /**
      * 输入Offer基本信息
      */
@@ -102,6 +111,17 @@ public class UPCOfferEditUIPage {
 
         return this;
     }
+
+
+    public boolean checkEnumChar(final String offerId,final String charSepc) {
+        new OfferBasicInfo(browser){{
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrameIncludeID(browser, offerId));
+            switchToOfferCharFrame();
+        }};
+        return (new ChooseCharSpec(browser).isCharHaveEnumValue(charSepc));
+    }
+
 
     /**
      * 校验Offer关联特征

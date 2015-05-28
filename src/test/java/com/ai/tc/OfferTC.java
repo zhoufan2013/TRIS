@@ -11,6 +11,8 @@ import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
 import org.testng.annotations.*;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author zhoufan
  * @version 1.0.0
@@ -45,7 +47,7 @@ public class OfferTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0001() {
+    public void UPC_CRM_OFFER_0001() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开策划菜单*/
@@ -64,7 +66,7 @@ public class OfferTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "medium"})
-    public void UPC_CRM_0002() {
+    public void UPC_CRM_OFFER_0002() {
     }
 
 
@@ -73,7 +75,7 @@ public class OfferTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "medium"})
-    public void UPC_CRM_0003() {
+    public void UPC_CRM_OFFER_0003() {
     }
 
     /**
@@ -81,7 +83,7 @@ public class OfferTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0004() {
+    public void UPC_CRM_OFFER_0004() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开策划菜单*/
@@ -97,7 +99,7 @@ public class OfferTC {
      * @author zhoufan
      */
     @Test(groups = {"functest", "high"})
-    public void UPC_CRM_0005() {
+    public void UPC_CRM_OFFER_0005() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开策划菜单*/
@@ -107,6 +109,28 @@ public class OfferTC {
         /*校验*/
         //TODO
 
+    }
+
+    /**
+     * 测试offer编辑页面枚举特征是否显示正常
+     * @author tianhj
+     */
+    @Test
+    public void UPC_CRM_OFFER_0006() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开策划菜单*/
+        UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
+        /*查询*/
+        offerManmPage.queryOffer("95042611");
+        /*点击编辑按钮*/
+        UPCOfferEditUIPage offerEditUIPage = offerManmPage.editOffer("95042611");
+        /*进入编辑页面*/
+        offerEditUIPage.intoEditBaseicInfo("95042611");
+        /*编辑并保存*/
+        offerEditUIPage.checkEnumChar("95042611","200063");
+
+        assertTrue(offerEditUIPage.checkEnumChar("95042611","200063"));
     }
 
 }

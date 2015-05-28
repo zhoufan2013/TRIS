@@ -68,6 +68,39 @@ public class ChooseCharSpec {
         }
     }
 
+    public boolean isCharHaveEnumValue(String specifiedCharSpec) {
+        List<WebElement> allRows = selectCharSpecAllRows();
+        for(WebElement row : allRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            WebElement cellElement = cells.get(2).findElement(tagName("img"));
+            if (isMatched(cellElement, specifiedCharSpec)) {
+
+                if (isOnStatus(cellElement)) {
+                    return true;
+                } else if(!isOnStatus(cellElement)) {
+                    cellElement.click();//先选中这个特征
+
+                    String charType = cellElement.getAttribute("chartype");
+                    switch(charType) {
+                        case "1" : return true;
+                        case "2" : return true;
+                        case "3" : return true;
+                        case "4" : return true;
+                        case "5" :
+                            try {
+                                cells.get(3).findElement(tagName("li"));
+                                return true;
+                            } catch (Exception e) {
+                                return false;
+                            }
+                        default: break;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     private boolean isMatched(WebElement cellElement, String specifiedCharSpec) {
         if (StringUtils.equals(cellElement.getAttribute("id"), specifiedCharSpec)) {
             return Boolean.TRUE;

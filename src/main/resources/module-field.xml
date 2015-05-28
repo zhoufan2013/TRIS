@@ -61,8 +61,8 @@
 
     <!-- offergroup added by tinahj -->
     <module name="OfferGroupManm">
-        <field id="offerGroupIdorName">prodSpecId</field>
-        <field id="queryOfferGroup">//*[@id="condition"]/div[2]/button/span</field>
+        <field id="offerGroupIdorName">groupName</field>
+        <field id="queryOfferGroup">//*[@id="condition"]/div[2]/button</field>
         <field id="createNewOfferGroupButton">/html/body/div[1]/div[1]/div[1]/div[3]/ul/li/a</field></module>
     <module name="OfferGroupEditUi">
         <field id="offerGroupName">groupName</field>

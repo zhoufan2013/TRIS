@@ -35,6 +35,18 @@ public final class UPCUtil {
         return StringUtils.EMPTY;
     }
 
+    public static String findNavFrameIncludeID(TRISBrowser browser, String titleID) {
+        List<WebElement> elements = browser.getInternalWebDriver().findElement(By.id("tab_ct_tr")).findElements(By.tagName("td"));
+        for (WebElement element : elements) {
+            if (element.getAttribute("title").contains(titleID)) {
+                String idx = element.getAttribute("idx");
+                //Assert.assertThat();
+                return new StringBuilder().append("navframe_").append(idx).toString();
+            }
+        }
+        return StringUtils.EMPTY;
+    }
+
     /**
      *
      * @param browser

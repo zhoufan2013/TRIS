@@ -32,7 +32,7 @@ public class UPCHomePage {
 
     public static UPCHomePage navigate(TRISBrowser browser) {
         browser.open("http://10.10.12.185:8212/UPC-TN-MYSQL-4304-JC/");
-//        browser.open("http://10.10.12.151:8666/ALUPC-3307/");
+        //browser.open("http://10.10.12.151:8666/ALUPC-3307/");
         return PageFactory.initPage(browser, UPCHomePage.class);
     }
 

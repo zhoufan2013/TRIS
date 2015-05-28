@@ -6,6 +6,7 @@ import java.util.List;
  * Created by asiainfo on 2015/5/19.
  */
 public class OfferGroupVO {
+    private String offerGroupID;
     private String offerGroupName;
     private String mutuallyExclusive;
     private String mutualConversionType;
@@ -15,6 +16,13 @@ public class OfferGroupVO {
 
     //private List<OfferVO> offerVOs;
 
+    public String getOfferGroupID() {
+        return offerGroupID;
+    }
+
+    public void setOfferGroupID(String offerGroupID) {
+        this.offerGroupID = offerGroupID;
+    }
 
     public String getOfferGroupName() {
         return offerGroupName;

@@ -127,7 +127,9 @@ public class ExcelReader {
     }
 
     private void loadOfferGroupBasicInfo(OfferGroupVO offergroup, String[] row) {
-        if (StringUtils.equals(splitCellValue(row[0]),"Product Offering Group Name")) {
+        if (StringUtils.equals(splitCellValue(row[0]),"Offering Group ID")) {
+            offergroup.setOfferGroupID(splitCellValue(row[1]));
+        } else if (StringUtils.equals(splitCellValue(row[0]),"Product Offering Group Name")) {
             offergroup.setOfferGroupName(splitCellValue(row[1]));
         } else  if (StringUtils.equals(splitCellValue(row[0]),"Subscribe Quantity Restriction")) {
             offergroup.setSubscribeQuantityRestriction(splitCellValue(row[1]));
