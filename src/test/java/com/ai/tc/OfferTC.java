@@ -9,6 +9,7 @@ import com.ai.control.upc.offer.UPCOfferEditUIPage;
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ProductVO;
+import com.ai.upc.bean.SaleChannelVO;
 import org.testng.annotations.*;
 
 /**
@@ -37,7 +38,7 @@ public class OfferTC {
 
     @AfterClass(alwaysRun = true)
     private void tearDown() {
-        browser.quit();
+        //browser.quit();
     }
 
     /**
@@ -56,6 +57,8 @@ public class OfferTC {
         UPCOfferEditUIPage offerEditUIPage = templatePage.chooseOfferTemplate("45");
         /*进入编辑页面并输入基本信息*/
         offerEditUIPage.intoBasicInfo().insertBasicInfo().insertOfferChar();
+        /*配置约束条件*/
+        offerEditUIPage.intoEligibilityCriteria().insertSaleChannel();
 
     }
 

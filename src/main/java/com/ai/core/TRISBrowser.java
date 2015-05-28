@@ -159,12 +159,13 @@ public class TRISBrowser {
         return this;
     }
 
-    public void enterFrame(String nameOrId) {
+    public TRISBrowser enterFrame(String nameOrId) {
         pause(1000l);
         internalWebDriver.switchTo().frame(nameOrId);
         if (_log.isDebugEnabled()) {
             _log.info("TRIS enter frame [" + nameOrId + "]");
         }
+        return this;
     }
 
     /**
@@ -363,7 +364,7 @@ public class TRISBrowser {
         capabilities.setBrowserName("chrome");
         URL url = null;
         try {
-            url = new URL("http://10.11.17.238:4444/wd/hub");
+            url = new URL("http://10.11.17.122:4444/wd/hub");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

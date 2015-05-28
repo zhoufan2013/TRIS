@@ -134,5 +134,18 @@
         <field id="desc">desc</field>
         <field id="interalDesc">interalDesc</field>
     </module>
+    <!-- Offer页签 -->
+    <module name="OfferTabTitle">
+        <field id="basicinfo">Basic Information</field>
+        <field id="hierarchy">Hierarchy</field>
+        <field id="pricing">Pricing</field>
+        <field id="eligibility">Eligibility Criteria</field>
+        <field id="associations">Product Offering Associations</field>
+        <field id="policyrule">Configuration Rules</field>
+        <field id="busiitems">Relate Business Interaction</field>
+        <field id="nodes">Catalog Nodes</field>
+        <field id="offerlog">Offering Log</field>
+        <field id="proration">Journal RC Proration</field>
+    </module>
 </modules>
 

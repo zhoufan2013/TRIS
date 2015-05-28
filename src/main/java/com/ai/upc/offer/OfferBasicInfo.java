@@ -6,6 +6,7 @@ import com.ai.core.TRISBrowser;
 import com.ai.core.TRISWebDriver;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.WebElement;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 
 import static org.openqa.selenium.By.id;
@@ -66,7 +67,5 @@ public class OfferBasicInfo {
     protected FluentWebElement internalDescription() {
         return fwd.textarea(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "interalDesc")));
     }
-
-
 
 }
