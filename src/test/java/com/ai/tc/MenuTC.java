@@ -47,7 +47,7 @@ public class MenuTC {
      * 销售品菜单
      */
     @Test(groups = {"functest", "high"})
-    public void testOfferMenu() {
+    public void UPC_CRM_MENU_0001() {
         UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
         offerManmPage.isLoaded();
     }
@@ -56,7 +56,7 @@ public class MenuTC {
      * 产品规格菜单
      */
     @Test(groups = {"functest", "high"})
-    public void testProductMenu() {
+    public void UPC_CRM_MENU_0002() {
         UPCProductManmPage productManm = menu.chooseProductMenu();
         assertTrue(productManm.isLoaded());
     }
@@ -65,7 +65,7 @@ public class MenuTC {
      * 服务规格菜单
      */
     @Test(groups = {"functest", "high"})
-    public void testServiceMenu() {
+    public void UPC_CRM_MENU_0003() {
         UPCServiceManmPage serviceManm = menu.chooseServiceMenu();
         assertTrue(serviceManm.isLoaded());
     }
@@ -74,7 +74,7 @@ public class MenuTC {
      * 目录菜单
      */
     @Test(groups = {"functest", "high"})
-    public void testCatalogMenu() {
+    public void UPC_CRM_MENU_0005() {
         UPCCatalogManmPage catalogManmPage = menu.chooseCatalogMenu();
         assertTrue(catalogManmPage.isLoaded());
     }
@@ -83,7 +83,7 @@ public class MenuTC {
      * 策划组菜单
      */
     @Test(groups = {"functest", "high"})
-    public void testGroupMenu() {
+    public void UPC_CRM_MENU_0006() {
         UPCGroupManmPage groupManmPage = menu.chooseGroupMenu();
         assertTrue(groupManmPage.isLoaded());
     }
