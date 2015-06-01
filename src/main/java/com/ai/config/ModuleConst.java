@@ -23,6 +23,10 @@ public final class ModuleConst {
 
     public static String SERVICE_EDIT_UI = "ServiceEditUI";
 
+    public static String OFFERGROUP_EDIT_UI = "OfferGroupEditUI";
+
+    public static String OFFERGROUP_MANM = "OfferGroupManm";
+
     public static String PRODUCT_MANM = "ProductManm";
 
     public static String PRODUCT_EDIT_UI = "ProductEditUI";
@@ -36,5 +40,9 @@ public final class ModuleConst {
     public static String PRODUCT_RELATED_PRODUCT = "ProductRelatedProduct";
 
     public static String OFFER_TAB_TITLE = "OfferTabTitle";
+
+    public static String OFFER_CHOOSE_FRAME = "OfferChosseFrame";
+
+    public static String CHANGE_PAGE = "ChangePage";
 
 }
