@@ -23,10 +23,13 @@ public class UPCReleaseLogPage {
 
     private TRISBrowser browser;
 
+    private boolean checkresult;
+
     public UPCReleaseLogPage() {}
 
     public UPCReleaseLogPage(TRISBrowser browser) {
         this.browser = browser;
+        checkresult = true;
     }
 
     /**
@@ -36,9 +39,10 @@ public class UPCReleaseLogPage {
         browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("releaseLog")));
     }
 
-    public void checkLaunchResult(final String objId) {
+    public boolean checkLaunchResult(final String objId) {
 
         switchToReleaseLogFrame();
+        boolean result = true;
         new ReleaseLog(browser.getWebDriver()) {{
             browser.input(objectId(), objId);
             browser.click(queryButton());
@@ -50,10 +54,18 @@ public class UPCReleaseLogPage {
 
             FluentWebElements fwes = newTr();
             for(int i=0; fwes.size()>i; i++) {
-                fwes.get(i).tds().get(5).getText().shouldBe("Successful");
+                if ("Failure".equals(fwes.get(i).tds().get(5).getText().toString())) {
+                    checkresult = false;
+                    break;
+                }
             }
         }};
 
+        if (checkresult == false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Deprecated

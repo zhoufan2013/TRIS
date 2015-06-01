@@ -72,6 +72,14 @@ public class UPCOfferGroupManmPage {
     }
 
     /**
+     * 发布
+     */
+    public UPCSingleLaunchPage launchOfferGroup(String offerGroupId) {
+        doAction(offerGroupId, "groupLaunch");
+        return PageFactory.initPage(browser, UPCSingleLaunchPage.class);
+    }
+
+    /**
      * offergroup 操作接口
      */
     private void doAction(String offerGroupId, String action) {
@@ -85,6 +93,12 @@ public class UPCOfferGroupManmPage {
                         ele.click();
                     }
                 }
+
+                List<WebElement> eles2 = cells.get(3).findElements(By.tagName("img"));
+                if (eles2.get(1).getAttribute("onclick").equals(OfferAction.convert(action).getFunction())) {
+                    eles2.get(1).click();
+                }
+
             }
         }
     }

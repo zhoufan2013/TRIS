@@ -2,9 +2,12 @@ package com.ai.control.upc.offer;
 
 import com.ai.config.ElementXPath;
 import com.ai.config.Menu;
+import com.ai.config.ModuleConst;
+import com.ai.config.ModuleField;
 import com.ai.control.upc.UPCChooseTemplatePage;
 import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
+import com.ai.upc.common.ChangePage;
 import com.ai.upc.enumeration.OfferAction;
 import com.ai.upc.offer.OfferManm;
 import com.ai.upc.product.ProductManm;
@@ -17,6 +20,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+
+import static org.openqa.selenium.By.xpath;
 
 /**
  * Created by zhoufan on 15/5/10.
@@ -126,6 +131,33 @@ public class UPCOfferManmPage {
             browser.click(createNewOfferButton());
         }};
         return PageFactory.initPage(browser, UPCChooseTemplatePage.class);
+    }
+
+    /**
+     * 翻页
+     */
+    public boolean nextPage() {
+
+        WebElement frontPage = browser.getElement(ModuleField.getFieldValue(ModuleConst.CHANGE_PAGE, "page1"));
+        String front = frontPage.getText();
+        new ChangePage(browser) {{
+            //browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("offer")));
+            nextPageButton1();
+
+            }};
+        WebElement backPage = browser.getElement(ModuleField.getFieldValue(ModuleConst.CHANGE_PAGE, "pageN"));
+        String back = backPage.getText();
+
+        String frontA = (front.split("/"))[0];
+        String frontB = (front.split("/"))[1];
+
+        String backA = (back.split("/"))[0];
+        String backB = (back.split("/"))[1];
+
+        if(frontB.equals(backB) && (Integer.parseInt(frontA)+1)==Integer.parseInt(backA)) {
+            return true;
+        }
+        return false;
     }
 
 }

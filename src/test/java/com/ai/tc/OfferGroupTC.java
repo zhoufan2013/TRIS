@@ -10,6 +10,7 @@ import com.ai.util.UPCUtil;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by asiainfo on 2015/5/19.
@@ -58,7 +59,7 @@ public class OfferGroupTC {
         /*打开offerGroup菜单*/
         UPCOfferGroupManmPage offerGroupManm = menu.chooseofferGroupMenu();
         /*查询offerGroup*/
-        offerGroupManm.queryOfferGroup("30207");
+        offerGroupManm.queryOfferGroup("31000001");
     }
 
     /**
@@ -71,10 +72,28 @@ public class OfferGroupTC {
         /*打开offerGroup菜单*/
         UPCOfferGroupManmPage offerGroupManm = menu.chooseofferGroupMenu();
         /*查询offerGroup*/
-        offerGroupManm.queryOfferGroup("30207");
+        offerGroupManm.queryOfferGroup("31000001");
         /*点编辑按钮*/
-        UPCOfferGroupEditUIPage offerGroupEditUIPage = offerGroupManm.editOfferGroup("30207");
+        UPCOfferGroupEditUIPage offerGroupEditUIPage = offerGroupManm.editOfferGroup("31000001");
         /*编辑并保存*/
         offerGroupEditUIPage.editOfferGroup(offerGroup);
+    }
+
+    /*发布offerGroup*/
+    @Test
+    public void UPC_CRM_OFFERGROUP_0004() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开offerGroup菜单*/
+        UPCOfferGroupManmPage offerGroupManm = menu.chooseofferGroupMenu();
+        /*查询offerGroup*/
+        offerGroupManm.queryOfferGroup("31000001");
+        /*点击发布按钮*/
+        UPCSingleLaunchPage launchPage = offerGroupManm.launchOfferGroup("31000001");
+        /*发布*/
+        launchPage.launchObject("CRM_SR0.3.2_dev");
+        /*校验发布是否成功*/
+        UPCReleaseLogPage releaseLogPage = menu.chooseReleaseLogMenu();
+        assertTrue(releaseLogPage.checkLaunchResult("31000001"));
     }
 }

@@ -45,4 +45,9 @@ public class UPCSingleLaunchPage {
         return tr.findElements(By.tagName("td")).get(0).findElement(By.id("Table_Text_areas")).getText();
     }
 
+    public void launchObject(String evename) {
+        chooseLaunchPath(evename);
+        okLaunch();
+    }
+
 }

@@ -134,5 +134,32 @@
         <field id="desc">desc</field>
         <field id="interalDesc">interalDesc</field>
     </module>
+    <!-- Offer页签 -->
+    <module name="OfferTabTitle">
+        <field id="basicinfo">Basic Information</field>
+        <field id="hierarchy">Hierarchy</field>
+        <field id="pricing">Pricing</field>
+        <field id="eligibility">Eligibility Criteria</field>
+        <field id="associations">Product Offering Associations</field>
+        <field id="policyrule">Configuration Rules</field>
+        <field id="busiitems">Relate Business Interaction</field>
+        <field id="nodes">Catalog Nodes</field>
+        <field id="offerlog">Offering Log</field>
+        <field id="proration">Journal RC Proration</field>
+    </module>
+
+    <module name="ChangePage">
+        <field id="firstpage1">//*[@id="NavBar"]/div/span[1]</field>
+        <field id="firstpageN">//*[@id="NavBar"]/div/a[1]</field>
+        <field id="previouspage1">//*[@id="NavBar"]/div/span[2]</field>
+        <field id="previouspageN">//*[@id="NavBar"]/div/a[2]</field>
+        <field id="nextpage1">//*[@id="NavBar"]/div/a[1]</field>
+        <field id="nextpageN">//*[@id="NavBar"]/div/a[3]</field>
+        <field id="lastpage1">//*[@id="NavBar"]/div/a[2]</field>
+        <field id="lastpageN">//*[@id="NavBar"]/div/a[4]</field>
+        <field id="page1">//*[@id="NavBar"]/div/span[3]</field>
+        <field id="pageN">//*[@id="NavBar"]/div/span</field>
+    </module>
+
 </modules>
 

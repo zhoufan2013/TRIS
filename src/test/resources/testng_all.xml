@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="testng_upc">
+    <test verbose="2" name="testng_high" >
+        <groups>
+            <define name="functest">
+            </define>
+
+            <define name="all">
+                <include name="high"/>
+                <include name="medium"/>
+            </define>
+
+            <run>
+                <include name="all"/>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.ai.tc"></package>
+        </packages>
+    </test>
+</suite>
