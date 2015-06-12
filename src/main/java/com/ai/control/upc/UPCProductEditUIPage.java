@@ -225,12 +225,10 @@ public class UPCProductEditUIPage {
             browser.click(saveProductButton());
             browser.pause(1l, TimeUnit.SECONDS);
 
-           // String message = browser.getText(okMsg().getWebElement());
-           // createdProductId = fetchNewCreatedProductId(message);
+            String message = browser.getText( browser.getElement("//*[@id=\"wade_msg_ct\"]/div[1]/div[1]") );
+            createdProductId = fetchNewCreatedProductId(message);
 
             new MessageBox(browser){{
-                String message = browser.getText(okMsg().getWebElement());
-                createdProductId = fetchNewCreatedProductId(message);
                 okSuccessMsg();
             }};
 
