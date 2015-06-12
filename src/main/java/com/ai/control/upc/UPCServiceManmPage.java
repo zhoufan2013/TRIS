@@ -85,8 +85,9 @@ public class UPCServiceManmPage {
     /**
      * 发布
      */
-    public void launchService(String serviceId) {
-
+    public UPCSingleLaunchPage launchService(String serviceId) {
+        doAction(serviceId, "launch");
+        return PageFactory.initPage(browser, UPCSingleLaunchPage.class);
     }
 
     /**

@@ -6,8 +6,13 @@ import com.ai.control.TRIS;
 import com.ai.control.upc.*;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.ServiceVO;
+import com.ai.upc.common.MessageBox;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertTrue;
 
 /**
  * @author zhoufan
@@ -87,6 +92,35 @@ public class ServiceTC {
         /*编辑保存*/
         service.setServiceId("30192");
         serviceEditPage.editService(service);
+    }
+
+    /**
+     * SERVICE发布
+     * tianhj
+     */
+    @Test
+    public void UPC_CRM_SERV_0004() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开服务菜单*/
+        UPCServiceManmPage serviceManm = menu.chooseServiceMenu();
+        /*查询服务*/
+        serviceManm.queryService("30192","");
+       /*点击发布按钮*/
+        UPCSingleLaunchPage launchPage = serviceManm.launchService("30192");
+
+        new MessageBox(browser){{
+            okSuccessMsg();
+        }};
+
+        /*发布*/
+        launchPage.launchObject("CRM_SR0.3.2_dev");
+
+        browser.pause(1, TimeUnit.MINUTES);
+
+        /*校验发布是否成功*/
+        UPCReleaseLogPage releaseLogPage = menu.chooseReleaseLogMenu();
+        assertTrue(releaseLogPage.checkLaunchResult("30192"));
     }
 
 }

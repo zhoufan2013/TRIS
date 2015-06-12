@@ -5,6 +5,7 @@ import com.ai.config.Menu;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.control.upc.UPCChooseTemplatePage;
+import com.ai.control.upc.UPCSingleLaunchPage;
 import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.common.ChangePage;
@@ -70,8 +71,9 @@ public class UPCOfferManmPage {
     /**
      * 发布Offer
      */
-    public void launchOffer(String offerId) {
+    public UPCSingleLaunchPage launchOffer(String offerId) {
         doAction(offerId, "launch");
+        return PageFactory.initPage(browser, UPCSingleLaunchPage.class);
     }
 
     public UPCOfferEditUIPage editOffer(String offerId) {

@@ -2,16 +2,17 @@ package com.ai.tc;
 
 import com.ai.config.ExcelConst;
 import com.ai.config.ExcelReader;
-import com.ai.control.upc.UPCChooseTemplatePage;
-import com.ai.control.upc.UPCHomePage;
-import com.ai.control.upc.UPCMenuPage;
+import com.ai.control.upc.*;
 import com.ai.control.upc.offer.UPCOfferEditUIPage;
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.OfferVO;
 import com.ai.upc.bean.ProductVO;
 import com.ai.upc.bean.SaleChannelVO;
+import com.ai.upc.common.MessageBox;
 import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
 
@@ -111,9 +112,20 @@ public class OfferTC {
         /*打开策划菜单*/
         UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
         /*查询并发布*/
-        offerManmPage.queryOffer("2000539").launchOffer("2000539");
-        /*校验*/
-        //TODO
+        UPCSingleLaunchPage launchPage = offerManmPage.queryOffer("2000539").launchOffer("2000539");
+
+        new MessageBox(browser){{
+            okSuccessMsg();
+        }};
+
+        /*发布*/
+        launchPage.launchObject("CRM_SR0.3.2_dev");
+
+        browser.pause(1, TimeUnit.MINUTES);
+
+        /*校验发布是否成功*/
+        UPCReleaseLogPage releaseLogPage = menu.chooseReleaseLogMenu();
+        assertTrue(releaseLogPage.checkLaunchResult("30192"));
 
     }
 

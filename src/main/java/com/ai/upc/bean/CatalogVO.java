@@ -1,5 +1,7 @@
 package com.ai.upc.bean;
 
+import java.util.List;
+
 /**
  * @author tianhj
  * @version 1.0.0
@@ -20,6 +22,8 @@ public class CatalogVO {
 
     private String catalogId;
     private String catalogName;
+    private String catalogType;
+    private List<CatalogVO> catalogNodes;
 
     public String getCatalogId() {
         return catalogId;
@@ -37,7 +41,19 @@ public class CatalogVO {
         this.catalogName = catalogName;
     }
 
+    public String getCatalogType() {
+        return catalogType;
+    }
 
+    public void setCatalogType(String catalogType) {
+        this.catalogType = catalogType;
+    }
 
+    public List<CatalogVO> getCatalogNodes() {
+        return catalogNodes;
+    }
 
+    public void setCatalogNodes(List<CatalogVO> catalogNodes) {
+        this.catalogNodes = catalogNodes;
+    }
 }
