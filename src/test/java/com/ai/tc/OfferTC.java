@@ -8,6 +8,7 @@ import com.ai.control.upc.UPCMenuPage;
 import com.ai.control.upc.offer.UPCOfferEditUIPage;
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.TRISBrowser;
+import com.ai.upc.bean.OfferVO;
 import com.ai.upc.bean.ProductVO;
 import com.ai.upc.bean.SaleChannelVO;
 import org.testng.annotations.*;
@@ -29,6 +30,7 @@ public class OfferTC {
 
     private TRISBrowser browser;
     private ProductVO product;
+    private OfferVO offer;
 
     @BeforeClass(alwaysRun = true)
     private void setup() {
@@ -36,6 +38,7 @@ public class OfferTC {
         browser = TRISBrowser.init();
         /*Excel 输入初始化*/
         product = ExcelReader.init(ExcelConst.XLSX_PATH).readProduct();
+        offer = ExcelReader.init(ExcelConst.XLSX_PATH).readOffer();
     }
 
     @AfterClass(alwaysRun = true)
@@ -58,9 +61,9 @@ public class OfferTC {
         /*选择模板*/
         UPCOfferEditUIPage offerEditUIPage = templatePage.chooseOfferTemplate("45");
         /*进入编辑页面并输入基本信息*/
-        offerEditUIPage.intoBasicInfo().insertBasicInfo().insertOfferChar();
+        offerEditUIPage.intoBasicInfo().insertBasicInfo(offer).insertOfferChar(offer);
         /*配置约束条件*/
-        offerEditUIPage.intoEligibilityCriteria().insertSaleChannel();
+        offerEditUIPage.intoEligibilityCriteria().insertSaleChannel(offer);
 
     }
 

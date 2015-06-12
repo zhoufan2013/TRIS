@@ -29,6 +29,7 @@
         <field id="serviceIdorName">servSpecId</field>
         <field id="serviceType">servSpecId</field>
         <field id="createNewServiceButton">addBtn</field>
+        <field id="queryServiceButton">queryBtn</field>
     </module>
     <!-- 编辑服务 -->
     <module name="ServiceEditUI">

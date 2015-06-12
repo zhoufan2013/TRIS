@@ -24,6 +24,8 @@ public final class ElementXPath {
     /*service catagory查询表格内所有行定位*/
     public static String SERVICE_CATAGORY_CHOOSE_ALLROWS = "//*[@id=\"ServiceCatagoryTableTable\"]/tbody/tr";
 
+    public static String SERVICE_MANM_QUERY_ALLROWS = "//*[@id=\"ServSpecQueryResultTable\"]/tbody/tr";
+
     /*单选树父节点id*/
     public static String RADIO_TREE_ROOT_NODE = "radioTree○root";
 

@@ -1,13 +1,18 @@
 package com.ai.control.upc;
 
+import com.ai.config.ElementXPath;
 import com.ai.config.Menu;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.core.PageFactory;
 import com.ai.core.TRISBrowser;
+import com.ai.upc.common.RadioTree;
+import com.ai.upc.enumeration.OfferAction;
 import com.ai.upc.login.Login;
 import com.ai.upc.service.ServiceManm;
+import com.ai.util.TRISUtil;
 import com.ai.util.UPCUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
@@ -45,7 +50,7 @@ public class UPCServiceManmPage {
      */
     public UPCChooseTemplatePage addService() {
         browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("service")));
-        new ServiceManm(browser.getWebDriver()) {{
+        new ServiceManm(browser) {{
             browser.click(createServiceButton());
         }};
         return PageFactory.initPage(browser, UPCChooseTemplatePage.class);
@@ -54,9 +59,20 @@ public class UPCServiceManmPage {
     /**
      * 查询
      */
-    public void queryService(String serviceIdorName, String servType) {
+    public void queryService(final  String serviceIdorName, final String servType) {
+        browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName("service")));
+        new ServiceManm(browser) {{
 
-
+            if (!StringUtils.isEmpty(serviceIdorName)) {
+                browser.input(serviceIdorName(),serviceIdorName);
+            }
+            if (!StringUtils.isEmpty(servType)) {
+                new RadioTree(browser){{
+                    selectSpecifiedNode(servType);
+                }};
+            }
+            queryServiceButton();
+        }};
     }
 
     /**
@@ -76,8 +92,28 @@ public class UPCServiceManmPage {
     /**
      * 编辑
      */
-    public void editService(String serviceId) {
+    public UPCServiceEditUIPage editService(String serviceId) {
+        doAction(serviceId, "edit");
+        return PageFactory.initPage(browser, UPCServiceEditUIPage.class);
+    }
 
+
+    /**
+     * service 操作接口
+     */
+    private void doAction(String serviceId, String action) {
+        List<WebElement> allRows = TRISUtil.allRows(browser, ElementXPath.SERVICE_MANM_QUERY_ALLROWS);
+        for(WebElement row : allRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            if (StringUtils.equals(cells.get(2).getText(), serviceId)) {
+                List<WebElement> eles = cells.get(7).findElements(By.tagName("a"));
+                for (WebElement ele : eles) {
+                    if (ele.getAttribute("onclick").equals(OfferAction.convert(action).getFunction())) {
+                        ele.click();
+                    }
+                }
+            }
+        }
     }
 
 }

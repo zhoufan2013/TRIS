@@ -43,7 +43,7 @@ public class ServiceTC {
      * 依据输入测试创建服务规格
      */
     @Test(groups = {"functest", "high"})
-    public void testCreateService() {
+    public void UPC_CRM_SERV_0001() {
         /*登录*/
         UPCMenuPage menu = UPCHomePage.navigate(browser).login();
         /*打开服务菜单*/
@@ -56,5 +56,37 @@ public class ServiceTC {
         serviceEditPage.createService(service);
     }
 
+    /**
+     * SERVICE查询
+     * tianhj
+     */
+    @Test
+    public void UPC_CRM_SERV_0002() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开服务菜单*/
+        UPCServiceManmPage serviceManm = menu.chooseServiceMenu();
+        /*查询服务*/
+        serviceManm.queryService("","");
+    }
+
+    /**
+     * SERVICE编辑
+     * tianhj
+     */
+    @Test
+    public void UPC_CRM_SERV_0003() {
+        /*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开服务菜单*/
+        UPCServiceManmPage serviceManm = menu.chooseServiceMenu();
+        /*查询服务*/
+        serviceManm.queryService("30192","");
+        /*点击编辑按钮*/
+        UPCServiceEditUIPage serviceEditPage = serviceManm.editService("30192");
+        /*编辑保存*/
+        service.setServiceId("30192");
+        serviceEditPage.editService(service);
+    }
 
 }

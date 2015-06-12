@@ -3,6 +3,8 @@ package com.ai.control.upc.offer;
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.core.TRISBrowser;
+import com.ai.upc.bean.CharSpecVO;
+import com.ai.upc.bean.OfferVO;
 import com.ai.upc.bean.SaleChannelVO;
 import com.ai.upc.common.ChooseCharSpec;
 import com.ai.upc.common.MessageBox;
@@ -136,14 +138,14 @@ public class UPCOfferEditUIPage {
     /**
      * 输入Offer基本信息
      */
-    public UPCOfferEditUIPage insertBasicInfo() {
+    public UPCOfferEditUIPage insertBasicInfo(final OfferVO offer) {
         new OfferBasicInfo(browser){{
             browser.pause(1l, TimeUnit.SECONDS);
             switchToOfferBasicInfoFrame();
-            browser.input(offerName(), "zhoufan");
-            browser.input(offerCode(), "999");
-            browser.input(description(), "111");
-            browser.input(internalDescription(), "222");
+            browser.input(offerName(), offer.getOfferName());
+            browser.input(offerCode(), offer.getOfferCode());
+            browser.input(description(), offer.getDescriptionCustomer());
+            browser.input(internalDescription(), offer.getInternalDescription());
         }};
         return this;
     }
@@ -158,15 +160,19 @@ public class UPCOfferEditUIPage {
     /**
      * Offer关联特征
      */
-    public UPCOfferEditUIPage insertOfferChar() {
+    public UPCOfferEditUIPage insertOfferChar(final OfferVO offer) {
         new OfferBasicInfo(browser){{
             browser.leaveFrame();
             switchToOfferEditFrame();
             switchToOfferCharFrame();
             new ChooseCharSpec(browser) {{
+                List<CharSpecVO> charSpecs = offer.getOfferChar();
+                for (CharSpecVO charSpec : charSpecs ) {
+                    chooseSpecifiedServiceChar(charSpec.getCharSpecId(),charSpec.getCharValue());
+                }
+                /*
                 chooseSpecifiedServiceChar("2700035", "111");
                 chooseSpecifiedServiceChar("27000029", "222");
-                /*
                 List<CharSpecVO> charSpecs = product.getProdChar();
                 for(CharSpecVO charSpec : charSpecs) {
                     chooseSpecifiedServiceChar(charSpec.getCharSpecId(), charSpec.getCharValue());
@@ -212,7 +218,7 @@ public class UPCOfferEditUIPage {
     /**
      * Offer关联销售渠道
      */
-    public UPCOfferEditUIPage insertSaleChannel() {
+    public UPCOfferEditUIPage insertSaleChannel(OfferVO offer) {
         switchToSubFrameViaTitle(OfferUIConst.CHANNEL);
         List<WebElement> trs = browser.getElements("//*[@id=\"relTable\"]/tbody/tr");
         for(WebElement tr : trs) {

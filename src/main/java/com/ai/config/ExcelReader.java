@@ -45,6 +45,11 @@ public class ExcelReader {
         return loginVO;
     }
 
+    public OfferVO readOffer() {
+        OfferVO offer = new OfferVO();
+        return offer;
+    }
+
     public ProductVO readProduct() {
         ProductVO product = new ProductVO();
         Sheet productSheet = ExcelUtil.getSheetViaSheetName(wookbook, ExcelConst.UPC_MODULE_PRODUCT);

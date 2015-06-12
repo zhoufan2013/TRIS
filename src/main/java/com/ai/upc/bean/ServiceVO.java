@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public class ServiceVO {
 
+    private String serviceId;
+
     private String serviceName;
 
     private String serviceType;
@@ -24,6 +26,14 @@ public class ServiceVO {
      * Map<relServiceId, relationship>
      */
     private Map<String, String> relServices;
+
+    public String getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(String serviceId) {
+        this.serviceId  = serviceId;
+    }
 
     public String getServiceName() {
         return serviceName;

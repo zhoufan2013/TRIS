@@ -149,6 +149,18 @@ public class UPCServiceEditUIPage {
         }};
     }
 
+    public void editService(final ServiceVO service) {
+        new ServiceBasicInfo(browser.getWebDriver()) {{
+            browser.leaveFrame();
+            browser.enterFrame(UPCUtil.findNavFrameIncludeID(browser,service.getServiceId()));
+            browser.click(saveServiceButton());
+        }};
+
+        new MessageBox(browser) {{
+            okSuccessMsg();
+        }};
+    }
+
     public void verifyCreatedService() {
         System.out.println("verifying ... ");
     }

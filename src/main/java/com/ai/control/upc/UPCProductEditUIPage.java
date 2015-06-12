@@ -190,7 +190,7 @@ public class UPCProductEditUIPage {
             String handler = browser.getWindowHandler();
             browser.click(productNodeCell());
 
-            browser.getElement("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a").click();;
+            //browser.getElement("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a").click();;
 
             //browser.getInternalWebDriver().findElement(By.xpath("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a")).click();//TODO
             switchToProductBasicInfoFrame();
@@ -225,10 +225,12 @@ public class UPCProductEditUIPage {
             browser.click(saveProductButton());
             browser.pause(1l, TimeUnit.SECONDS);
 
-            String message = browser.getText(okMsg().getWebElement());
-            createdProductId = fetchNewCreatedProductId(message);
+           // String message = browser.getText(okMsg().getWebElement());
+           // createdProductId = fetchNewCreatedProductId(message);
 
             new MessageBox(browser){{
+                String message = browser.getText(okMsg().getWebElement());
+                createdProductId = fetchNewCreatedProductId(message);
                 okSuccessMsg();
             }};
 

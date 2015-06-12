@@ -18,6 +18,8 @@ public class ProductVO {
 
     private List<CharSpecVO> prodChar;
 
+    private List<ServiceVO> relService;
+
     /**
      * Map<relProdIds, relationship>
      */
@@ -69,5 +71,13 @@ public class ProductVO {
 
     public void setRelProdSpecs(Map<String, String> relProdSpecs) {
         this.relProdSpecs = relProdSpecs;
+    }
+
+    public List<ServiceVO> getRelService() {
+        return relService;
+    }
+
+    public void setRelService(List<ServiceVO> relService) {
+        this.relService = relService;
     }
 }

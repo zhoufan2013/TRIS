@@ -2,6 +2,7 @@ package com.ai.upc.service;
 
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
+import com.ai.core.TRISBrowser;
 import com.ai.core.TRISWebDriver;
 import static org.openqa.selenium.By.id;
 
@@ -20,14 +21,26 @@ public class ServiceManm {
     }
 
     private TRISWebDriver fwd ;
+    private TRISBrowser browser;
 
-    public ServiceManm(TRISWebDriver delegate) {
-        this.fwd = delegate;
+    public ServiceManm(TRISBrowser browsers) {
+        this.browser = browsers;
+        this.fwd = browser.getWebDriver();
     }
 
     protected FluentWebElement createServiceButton() {
         return fwd.link(id(ModuleField.getFieldValue(ModuleConst.SERVICEMANM, "createNewServiceButton")));
     }
 
+    protected void queryServiceButton() {
+        //return fwd.link(id(ModuleField.getFieldValue(ModuleConst.SERVICEMANM,"queryServiceButton")));
+        browser.getInternalWebDriver().findElementById(ModuleField.getFieldValue(ModuleConst.SERVICEMANM,"queryServiceButton")).click();
+    }
 
+    /**
+     * ID和名称输入框
+     */
+    protected FluentWebElement serviceIdorName() {
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.SERVICEMANM, "serviceIdorName")));
+    }
 }
