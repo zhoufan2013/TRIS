@@ -45,4 +45,6 @@ public final class ModuleConst {
 
     public static String CHANGE_PAGE = "ChangePage";
 
+    public static String CATALOG_MANM = "CatalogManm";
+
 }

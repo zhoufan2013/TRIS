@@ -162,5 +162,12 @@
         <field id="pageN">//*[@id="NavBar"]/div/span</field>
     </module>
 
+    <module name="CATALOG_MANM">
+        <field id="nameorId">catalogName</field>
+        <field id="queryBtn">queryBtn</field>
+        <field id="clearBtn">//*[@id="condition"]/div[2]/button[2]</field>
+        <field id="addBtn">addBtn</field>
+    </module>
+
 </modules>
 
