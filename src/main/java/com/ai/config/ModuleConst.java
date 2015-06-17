@@ -41,10 +41,12 @@ public final class ModuleConst {
 
     public static String OFFER_TAB_TITLE = "OfferTabTitle";
 
-    public static String OFFER_CHOOSE_FRAME = "OfferChosseFrame";
+    public static String OFFER_CHOOSE_FRAME = "OfferChooseFrame";
 
     public static String CHANGE_PAGE = "ChangePage";
 
     public static String CATALOG_MANM = "CatalogManm";
+
+    public static String CATALOG_EDIT = "CatalogEdit";
 
 }

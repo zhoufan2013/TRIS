@@ -39,6 +39,8 @@ public final class ElementXPath {
     public static String OFFER_CHOOSE_FRAME = "//iframe[@eventid='addAfter']";
     public static String OFFER_CHOOSE_ALLROWS = "//*[@id=\"offerTableTable\"]/tbody/tr";
 
+    public static String CATALOG_EDIT_FRAME = "//iframe[@eventid='addbyframework']" ;
+
     /*产品规格主查询页面所有行定位*/
     public static String PRODUCT_MANM_QUERY_ALLROWS = "//*[@id=\"ProdSpecTableTable\"]/tbody/tr";
 
@@ -80,5 +82,9 @@ public final class ElementXPath {
 
     /*查询OfferGroup主页面表格所有行定位*/
     public static String OFFERGROUP_MANM_QUERY_ALLROWS = "//*[@id=\"ProdOfferingGroupTableTable\"]/tbody/tr";
+
+    /*查询catalog主页面表格所有行定位*/
+    public static String CATALOG_MANM_QUERY_ALLROWS = "//*[@id=\"CatalogTableTable\"]/tbody/tr";
+
 
 }

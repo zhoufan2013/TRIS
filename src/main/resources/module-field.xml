@@ -64,8 +64,9 @@
     <module name="OfferGroupManm">
         <field id="offerGroupIdorName">groupName</field>
         <field id="queryOfferGroup">//*[@id="condition"]/div[2]/button</field>
-        <field id="createNewOfferGroupButton">/html/body/div[1]/div[1]/div[1]/div[3]/ul/li/a</field></module>
-    <module name="OfferGroupEditUi">
+        <field id="createNewOfferGroupButton">/html/body/div[1]/div[1]/div[1]/div[3]/ul/li/a</field>
+    </module>
+    <module name="OfferGroupEditUI">
         <field id="offerGroupName">groupName</field>
         <field id="mutuallyExclusiveYES">isInnerMutexradio0</field>
         <field id="mutuallyExclusiveNO">isInnerMutexradio1</field>
@@ -162,11 +163,19 @@
         <field id="pageN">//*[@id="NavBar"]/div/span</field>
     </module>
 
-    <module name="CATALOG_MANM">
+    <module name="CatalogManm">
         <field id="nameorId">catalogName</field>
         <field id="queryBtn">queryBtn</field>
         <field id="clearBtn">//*[@id="condition"]/div[2]/button[2]</field>
         <field id="addBtn">addBtn</field>
+    </module>
+
+    <module name="CatalogEdit">
+        <field id="name">catalogName</field>
+        <field id="type">catalogType</field>
+        <field id="des">description</field>
+        <field id="submit">btsave</field>
+        <field id="cancel">btcancel</field>
     </module>
 
 </modules>
