@@ -36,9 +36,55 @@ public class OfferVO {
     private List<CatalogVO> offerCatalog;
     private List<BusinessVO> offerBusiness;
     private List<RelObjectVO> offerRelObject;
+    private List<ChannelVO> offerChannel;
+    private List<SegmentVO> offerSegment;
+    private List<LocationVO> offerLocation;
+    //Offering Associations From CurrentOffer
+    private List<OfferFCVO> OfferFC;
+    //Offering Associations To CurrentOffer
+    private List<OfferTCVO> OfferTC;
+    
+    public List<ChannelVO> getOfferChannel() {
+		return offerChannel;
+	}
 
+	public void setOfferChannel(List<ChannelVO> offerChannel) {
+		this.offerChannel = offerChannel;
+	}
 
-    public String getOfferId() {
+	public List<SegmentVO> getOfferSegment() {
+		return offerSegment;
+	}
+
+	public void setOfferSegment(List<SegmentVO> offerSegment) {
+		this.offerSegment = offerSegment;
+	}
+
+	public List<LocationVO> getOfferLocation() {
+		return offerLocation;
+	}
+
+	public void setOfferLocation(List<LocationVO> offerLocation) {
+		this.offerLocation = offerLocation;
+	}
+
+	public List<OfferFCVO> getOfferFC() {
+		return OfferFC;
+	}
+
+	public void setOfferFC(List<OfferFCVO> offerFC) {
+		OfferFC = offerFC;
+	}
+
+	public List<OfferTCVO> getOfferTC() {
+		return OfferTC;
+	}
+
+	public void setOfferTC(List<OfferTCVO> offerTC) {
+		OfferTC = offerTC;
+	}
+
+	public String getOfferId() {
         return offerId;
     }
 

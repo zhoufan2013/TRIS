@@ -1,13 +1,18 @@
 package com.ai.core;
 
-import com.ai.config.LogConst;
+import static org.openqa.selenium.By.xpath;
+import static org.testng.Assert.assertTrue;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -17,16 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import org.testng.Assert;
 
-import static org.openqa.selenium.By.xpath;
-import static org.testng.Assert.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.MessageFormat;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import com.ai.config.LogConst;
 
 /**
  *
@@ -368,23 +364,23 @@ public class TRISBrowser {
     }
 
     private void firefoxDriver() {
-        internalWebDriver = new FirefoxDriver();
+//        internalWebDriver = new FirefoxDriver();
         if (_log.isDebugEnabled()) {
             _log.info(MessageFormat.format(LogConst.BROWSER_USE_LOG, "Firefox"));
         }
     }
 
     private void ieDriver() {
-        System.setProperty("webdriver.ie.driver", "123123123123");
-        DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-        //capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-        capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, Boolean.TRUE);
-        internalWebDriver = new InternetExplorerDriver(capabilities);
-        internalWebDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        internalWebDriver.manage().window().maximize();
-        if (_log.isDebugEnabled()) {
-            _log.info(MessageFormat.format(LogConst.BROWSER_USE_LOG, "Internet Explorer"));
-        }
+//        System.setProperty("webdriver.ie.driver", "123123123123");
+//        DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+//        //capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+//        capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, Boolean.TRUE);
+//        internalWebDriver = new InternetExplorerDriver(capabilities);
+//        internalWebDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+//        internalWebDriver.manage().window().maximize();
+//        if (_log.isDebugEnabled()) {
+//            _log.info(MessageFormat.format(LogConst.BROWSER_USE_LOG, "Internet Explorer"));
+//        }
     }
 
     private void incorrectBrowserType() {

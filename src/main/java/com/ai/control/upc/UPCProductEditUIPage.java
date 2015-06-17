@@ -53,7 +53,15 @@ public class UPCProductEditUIPage {
     private void switchToProductTypeTreeFrame() {
         browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_TYPE_TREE_FRAME));
     }
-
+    
+    /**
+     * 定位到产品增加服务页面
+     */
+    private void switchToAddServiceFrame() {
+        browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_ADD_SERVICE_FRAME));
+    }
+    
+    
     /**
      * 定位到产品关联关系frame框
      */
@@ -87,15 +95,21 @@ public class UPCProductEditUIPage {
      * 图形树添加服务规格
      */
     public UPCProductEditUIPage addServiceSpecification(final String serviceId) {
-        browser.upcHTreeHover(ElementXPath.PRODUCT_HTREE_HORIZONAL, ElementXPath.PRODUCT_HTREE_HORIZONAL_PLUS, ElementXPath.PRODUCT_HTREE_ADD_SERVICE);
-        browser.enterFrame(browser.getElement(ElementXPath.PRODUCT_ADD_SERVICE_FRAME));
-        new ProductBasicInfo(browser){{
-            browser.input(serviceId(), serviceId);
-            browser.click(queryServiceButton());
-            chooseSpecifiedService(serviceId);
-            browser.getElement(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceRightButton")).click();//TODO 优化
-            browser.click(addServiceOKButton());
-        }};
+    	new ProductBasicInfo(browser){{
+    		browser.pause(1l, TimeUnit.SECONDS);
+    		browser.upcHTreeHover(ElementXPath.PRODUCT_HTREE_HORIZONAL, ElementXPath.PRODUCT_HTREE_HORIZONAL_PLUS, ElementXPath.PRODUCT_HTREE_ADD_SERVICE);
+			browser.pause(1l, TimeUnit.SECONDS);
+			browser.getElement(ElementXPath.PRODUCT_HTREE_ADD_SERVICE).click();
+			browser.pause(1l, TimeUnit.SECONDS);
+	        switchToAddServiceFrame();
+	    	browser.pause(1l, TimeUnit.SECONDS);
+	    	System.out.println(serviceId);
+	        browser.input(serviceId(), serviceId);
+	        browser.click(queryServiceButton());
+        	chooseSpecifiedService(serviceId);
+        	browser.getElement(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceRightButton")).click();//TODO 优化
+        	browser.click(addServiceOKButton());
+    	 }};
         return this;
     }
 
@@ -189,7 +203,7 @@ public class UPCProductEditUIPage {
             switchToProductEditFrame();
             String handler = browser.getWindowHandler();
             browser.click(productNodeCell());
-
+            browser.pause(1l, TimeUnit.SECONDS);
             //browser.getElement("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a").click();;
 
             //browser.getInternalWebDriver().findElement(By.xpath("//*[@id=\"wade_ext_msg_div\"]/div[1]/div[2]/div[2]/div/div[2]/a")).click();//TODO
@@ -219,7 +233,6 @@ public class UPCProductEditUIPage {
                     chooseSpecifiedServiceChar(charSpec.getCharSpecId(), charSpec.getCharValue());
                 }
             }};
-
             browser.selectWindow(handler);
             switchToProductEditFrame();
             browser.click(saveProductButton());

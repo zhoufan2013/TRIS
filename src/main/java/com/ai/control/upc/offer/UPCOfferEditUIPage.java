@@ -1,23 +1,30 @@
 package com.ai.control.upc.offer;
 
-import com.ai.config.ModuleConst;
-import com.ai.config.ModuleField;
-import com.ai.core.TRISBrowser;
-import com.ai.upc.bean.CharSpecVO;
-import com.ai.upc.bean.OfferVO;
-import com.ai.upc.bean.SaleChannelVO;
-import com.ai.upc.common.ChooseCharSpec;
-import com.ai.upc.common.MessageBox;
-import com.ai.upc.offer.OfferBasicInfo;
-import com.ai.util.UPCUtil;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 //import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import static org.openqa.selenium.By.tagName;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+
+import com.ai.config.ElementXPath;
+import com.ai.config.ModuleConst;
+import com.ai.config.ModuleField;
+import com.ai.core.TRISBrowser;
+import com.ai.upc.bean.BusinessVO;
+import com.ai.upc.bean.CatalogVO;
+import com.ai.upc.bean.CharSpecVO;
+import com.ai.upc.bean.OfferVO;
+import com.ai.upc.common.CheckTree;
+import com.ai.upc.common.ChooseCharSpec;
+import com.ai.upc.common.MessageBox;
+import com.ai.upc.common.RadioTree;
+import com.ai.upc.offer.OfferBasicInfo;
+import com.ai.upc.offer.OfferBusiness;
+import com.ai.util.UPCUtil;
 
 /**
  * @author zhoufan
@@ -63,7 +70,13 @@ public class UPCOfferEditUIPage {
     private void switchToOfferCharFrame() {
         browser.enterFrame(browser.getInternalWebDriver().findElementById("detailFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-TabsetFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-FrameF-0"));
     }
-
+    /**
+     * 定位到产品增加服务页面
+     */
+    private void switchToAddProductFrame() {
+        browser.enterFrame(browser.getElement(ElementXPath.OFFER_ADD_PRODUCT_FRAME)).enterFrame(browser.getElement("//iframe[@id='selectProductFrame']"));
+    }
+    
     /**
      * 定位到Offer编辑界面的页签
      * @param tabTitle 页签名称
@@ -72,7 +85,6 @@ public class UPCOfferEditUIPage {
         browser.leaveFrame();
         switchToOfferEditFrame();
         browser.enterFrame("detailFrame");
-
         //点击事件
         WebElement tab = browser.getElement("//*[@id=\"mytab_tab\"]");
         List<WebElement> links = tab.findElements(By.tagName("a"));
@@ -135,6 +147,59 @@ public class UPCOfferEditUIPage {
         return this;
     }
 
+    
+    public UPCOfferEditUIPage insertOfferTree(){
+    	 List<WebElement> elements = driver.findElementsByTagName("iframe");
+         for (WebElement element : elements) {
+        	 if (element.getAttribute("src").indexOf("upc.product.OfferEditUI")>0) {
+        		 browser.enterFrame(element);
+        		 break;
+			}
+         }
+         browser.getElement("//*[@id=\"hierarchy\"]").click();
+         return this;
+    }
+    /**
+     * 图形树添加产品规格
+     */
+    public UPCOfferEditUIPage addProductSpecification(final String productId) {
+    	new OfferBasicInfo(browser){{
+    		browser.leaveFrame();
+    		List<WebElement> elements = driver.findElementsByTagName("iframe");
+	        for (WebElement element : elements) {
+	        	if (element.getAttribute("src").indexOf("upc.product.OfferEditUI")>0) {
+	        		 browser.enterFrame(element);
+	        		 break;
+				}
+	        }
+    		browser.pause(1l, TimeUnit.SECONDS);
+    		browser.upcHTreeHover(ElementXPath.OFFER_HTREE_HORIZONAL, ElementXPath.OFFER_HTREE_HORIZONAL_PLUS, ElementXPath.OFFER_HTREE_ADD_PRODUCT);
+    		browser.pause(1l, TimeUnit.SECONDS);
+	        switchToAddProductFrame();
+	    	browser.pause(1l, TimeUnit.SECONDS);
+	        browser.input(productId(), productId);
+	        browser.click(queryProductButton());
+        	chooseSpecifiedProduct(productId);
+        	browser.getElement(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceRightButton")).click();//TODO 优化
+        	browser.click(addProductOKButton());
+    	 }};
+        return this;
+    }
+    private void chooseSpecifiedProduct(String productId) {
+        browser.pause(1l, TimeUnit.SECONDS);
+        List<WebElement> allRows = browser.getElements(ElementXPath.OFFER_ADD_PRODUCT_SELECTABLE_TABLE_ALLROWS);
+        for(WebElement row : allRows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            for(WebElement cell : cells) {
+                WebElement c = cell.findElement(By.tagName("input"));
+                if(c.getAttribute("value").equals(productId) && !c.isSelected()) {
+                    c.click();
+                    break;
+                }
+            }
+        }
+    }
+    
     /**
      * 输入Offer基本信息
      */
@@ -214,26 +279,113 @@ public class UPCOfferEditUIPage {
     public UPCOfferEditUIPage verifyPricePlan() {
         return this;
     }
-
     /**
      * Offer关联销售渠道
      */
-    public UPCOfferEditUIPage insertSaleChannel(OfferVO offer) {
+    public UPCOfferEditUIPage insertSaleChannel(final OfferVO offer) {
         switchToSubFrameViaTitle(OfferUIConst.CHANNEL);
-        List<WebElement> trs = browser.getElements("//*[@id=\"relTable\"]/tbody/tr");
-        for(WebElement tr : trs) {
-            List<WebElement> tds = tr.findElements(tagName("td"));
-            List<WebElement> as = tds.get(5).findElements(tagName("a"));
-            if (as.get(1).getAttribute("onclick").equals("delImgClick($(this))")) {
-                as.get(1).click();
-                new MessageBox(browser){{
-                    okSuccessMsg();
-                }};
-            }
-        }
-
+        new OfferBasicInfo(browser){{
+        	browser.getElement("//*[@id=\"btnDiv\"]/a[2]").click();
+	        browser.pause(3l, TimeUnit.SECONDS);
+	        browser.leaveFrame();
+	        browser.leaveFrame();
+	        List<WebElement> elements = driver.findElementsByTagName("iframe");
+	        for (WebElement element : elements) {
+	        	if (element.getAttribute("src").indexOf("upc.product.OfferEditUI")>0) {
+	        		 browser.enterFrame(element);
+	        		 List<WebElement> elements1 = driver.findElementsByTagName("iframe");
+	        		 for (WebElement element1 : elements1) {
+	        			 if (element1.getAttribute("src").indexOf("upc.common.ChannelTree")>0) {
+	        				 browser.enterFrame(element1);
+	        				 break;
+						}
+					}
+				}
+	        }
+	        new RadioTree(browser) {{
+                selectOfferChannel(offer.getOfferChannel());
+            }};
+        }};
         return this;
     }
+    
+    /**
+     * Offer关联Location
+     */
+    public UPCOfferEditUIPage insertSaleLocation(final OfferVO offer) {
+        List<WebElement> elementsL = driver.findElementsByTagName("iframe");
+        for (WebElement elementL : elementsL) {
+        	if (elementL.getAttribute("src").indexOf("upc.product.OfferEditUI")>0) {
+        		 browser.enterFrame(elementL);
+        	}
+        }
+        browser.enterFrame(browser.getInternalWebDriver().findElementById("detailFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-TabsetFrameF-2"));
+        switchToSubFrameViaTitle(OfferUIConst.LOCATION);
+        new OfferBasicInfo(browser){{
+        	browser.getElement("//*[@id=\"btnDiv\"]/a[2]").click();
+	        browser.pause(3l, TimeUnit.SECONDS);
+	        browser.leaveFrame();
+	        browser.leaveFrame();
+	        List<WebElement> elements = driver.findElementsByTagName("iframe");
+	        for (WebElement element : elements) {
+	        	if (element.getAttribute("src").indexOf("upc.product.OfferEditUI")>0) {
+	        		 browser.enterFrame(element);
+	        		 List<WebElement> elements1 = driver.findElementsByTagName("iframe");
+	        		 for (WebElement element1 : elements1) {
+	        			 if (element1.getAttribute("src").indexOf("upc.common.CBPlaceTree")>0) {
+	        				 browser.enterFrame(element1);
+	        				 break;
+						}
+					}
+				}
+	        }
+	        new RadioTree(browser) {{
+                selectOfferLocation(offer.getOfferLocation());
+            }};
+        }};
+        return this;
+    }
+    
+    
+    /**
+     * Offer关联segment
+     */
+    public UPCOfferEditUIPage insertSaleSegment(final OfferVO offer) {
+        List<WebElement> elementsL = driver.findElementsByTagName("iframe");
+        for (WebElement elementL : elementsL) {
+        	if (elementL.getAttribute("src").indexOf("upc.product.OfferEditUI")>0) {
+        		 browser.enterFrame(elementL);
+        	}
+        }
+        browser.enterFrame(browser.getInternalWebDriver().findElementById("detailFrame")).enterFrame(browser.getInternalWebDriver().findElementById("F-TabsetFrameF-2"));
+        switchToSubFrameViaTitle(OfferUIConst.SEGMENTS);
+        new OfferBasicInfo(browser){{
+        	browser.getElement("//*[@id=\"btnDiv\"]/a[1]").click();
+	        browser.pause(3l, TimeUnit.SECONDS);
+	        browser.leaveFrame();
+	        browser.leaveFrame();
+	        List<WebElement> elements = driver.findElementsByTagName("iframe");
+	        for (WebElement element : elements) {
+	        	if (element.getAttribute("src").indexOf("upc.product.OfferEditUI")>0) {
+	        		 browser.enterFrame(element);
+	        		 List<WebElement> elements1 = driver.findElementsByTagName("iframe");
+	        		 for (WebElement element1 : elements1) {
+	        			 if (element1.getAttribute("src").indexOf("upc.common.SegmentTree")>0) {
+	        				 browser.enterFrame(element1);
+	        				 break;
+						}
+					}
+				}
+	        }
+	        new RadioTree(browser) {{
+                selectOfferSegment(offer.getOfferSegment());
+            }};
+        }};
+        return this;
+    }
+    
+    
+    
 
     /**
      * 校验Offer关联销售渠道
@@ -289,5 +441,116 @@ public class UPCOfferEditUIPage {
     public UPCOfferEditUIPage verifyBusiInterItems() {
         return this;
     }
+    
+    public String saveOffer(){
+    	//点击提交
+    	browser.leaveFrame();
+    	switchToOfferEditFrame();
+        browser.click(browser.getWebDriver().button(By.id("btsave")));
+        //记录消息内容
+        String message = browser.getText( browser.getElement("//*[@id=\"wade_msg_ct\"]/div[1]/div[1]") );
+        //点击确定消息框
+        new MessageBox(browser){{
+    		okSuccessMsg();
+    	}};
+    	return message;
+    }
+    /**
+     * 定位到弹出框   //*[@eventid="addAfter"]
+     */
+    private void switchToOfferPopupFrame(){
+    	browser.enterFrame(browser.getElement(ElementXPath.OFFER_CHOOSE_FRAME));
+    }
+
+	/**
+     * 进入offer catalog 页签
+     */
+    public UPCOfferEditUIPage intoCatalogNode(){
+        switchToFrameViaTabTitle(ModuleField.getFieldValue(ModuleConst.OFFER_TAB_TITLE, "nodes"));
+    	return this;
+    }
+    /**
+     * 进入offer Relate Business Interaction页签 
+     * */
+    public UPCOfferEditUIPage intoBusiInterItems() {
+        switchToFrameViaTabTitle(ModuleField.getFieldValue(ModuleConst.OFFER_TAB_TITLE, "busiitems"));
+        return this;
+    }
+
+    /**
+     * Offer关联操作
+     */
+    public UPCOfferEditUIPage insertBusiInterItems(final OfferVO offer) {
+    	//点击add按钮
+    	browser.click( browser.getWebDriver().link( By.xpath("//*[@id=\"baddrow\"]") ) );
+    	browser.pause(1, TimeUnit.SECONDS);
+    	//转到弹出Frame
+    	browser.leaveFrame();
+    	switchToOfferEditFrame();
+    	switchToOfferPopupFrame();
+    	//添加操作
+    	new OfferBusiness(browser){{
+    		List<BusinessVO> offerBusiness = offer.getOfferBusiness();
+    		for (BusinessVO business:offerBusiness){
+    			browser.input(inputBusinessName(), business.getBusinessName());
+    			browser.click(queryBusiness());
+    			checkInputBusiness( business.getBusinessId() ).click();
+    			browser.click(selectBusiness());
+    		}
+    		browser.click(confirmBusiness());
+    		//回到操作frame
+    		intoBusiInterItems();
+    	}};
+        return this;
+    }
+    public UPCOfferEditUIPage verifyBusiInterItems(String businessId) {
+    	boolean flag = false;
+    	WebElement table = browser.getElement("//*[@id=\"relTable\"]");
+    	List<WebElement> tds = table.findElements(By.xpath("//*[@id=\"relTable\"]/tbody//tr/td[2]"));
+    	for (WebElement td:tds){
+    		if (businessId!=null && businessId.equals(td.getText()) ){
+    			flag = true;
+    		}
+    	}
+		Assert.assertTrue("Offer Template Data Verify Fail(missing BusiInterItems[id:"+businessId+"])", flag);
+    	return this;
+    }
+
+    /**
+     *  offer关联目录
+     */
+    public UPCOfferEditUIPage insertCatalogNode(final OfferVO offer){
+    	//点击add按钮
+    	browser.click( browser.getWebDriver().link( By.xpath("//*[@id=\"baddrow\"]") ) );
+    	browser.pause(1, TimeUnit.SECONDS);
+    	//转到弹出Frame
+    	browser.leaveFrame();
+    	switchToOfferEditFrame();
+    	switchToOfferPopupFrame();
+    	//选择树节点
+    	new CheckTree(browser) {{
+    		 List<CatalogVO> offerCatalog = offer.getOfferCatalog();
+    		 for (CatalogVO catalog:offerCatalog){
+    			 selectSpecifiedNode(catalog.getCatalogId());
+    		 }
+    		 sumbitCheckTree();
+    		 //回到目录的frame
+    		 intoCatalogNode();
+         }};
+    	return this;
+    }
+    public UPCOfferEditUIPage verifyCatalogNode(String catalogNodeId){
+    	boolean flag = false;
+    	WebElement table = browser.getElement("//*[@id=\"relTable\"]");
+    	List<WebElement> tds = table.findElements(By.xpath("//*[@id=\"relTable\"]/tbody//tr/td[2]"));
+    	for (WebElement td:tds){
+    		if (catalogNodeId!=null && catalogNodeId.equals(td.getText()) ){
+    			flag = true;
+    		}
+    	}
+		Assert.assertTrue("Offer Template Data Verify Fail(missing catalogNode[id:"+catalogNodeId+"])", flag);
+    	return this;
+    }
+
 
 }

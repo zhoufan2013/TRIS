@@ -87,4 +87,26 @@ public final class ElementXPath {
     public static String CATALOG_MANM_QUERY_ALLROWS = "//*[@id=\"CatalogTableTable\"]/tbody/tr";
 
 
+ /*offer channel tree iframe 定位*/
+    public static String OFFER_CHANNEL_TREE_FRAME = "//iframe[@eventid='addAfter']";
+    
+    
+    /**/
+    public static String OFFER_HTREE_HORIZONAL = "//*[@id=\"offer\"]/span/table/tbody/tr/td[2]";
+
+    /**/
+    public static String OFFER_HTREE_HORIZONAL_PLUS = "//*[@id=\"offer\"]/span/table/tbody/tr/td[3]";
+    
+    /**/
+    public static String OFFER_HTREE_ADD_PRODUCT = "//*[@id=\"offer\"]/span/table/tbody/tr/td[3]/div/div[3]/div/div/div[2]/ul/li/a";
+    
+    /**/
+    public static String OFFER_ADD_PRODUCT_FRAME = "//iframe[@eventid='addProdAfter']";
+    
+    public static String OFFER_ADD_PRODUCT_SELECTABLE_TABLE_ALLROWS="//*[@id=\"SelectableProductTable\"]/tbody/tr";
+
+    /*多选树父节点id*/
+    public static String CHECK_TREE_ROOT_NODE = "checkTree○root";
+
+
 }

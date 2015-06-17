@@ -32,7 +32,7 @@ public class UPCMenuPage {
     public UPCOfferManmPage chooseOfferMenu() {
         browser.leaveFrame();
         new ChooseMenu(browser.getWebDriver()){{
-            browser.pause(2l, TimeUnit.SECONDS);
+            browser.pause(4l, TimeUnit.SECONDS);
             browser.click(productServiceCatalog());
             browser.click(offerModule());
         }};

@@ -177,6 +177,15 @@
         <field id="submit">btsave</field>
         <field id="cancel">btcancel</field>
     </module>
+    
+      <!-- OFFER添加产品 -->
+    <module name="OfferAddProduct">
+        <field id="prodId">prodSpecId</field>
+        <field id="serviceName">serviceSpecName</field>
+        <field id="queryPruductButton">QueryProductBtn</field>
+        <field id="addServiceRightButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[1]/a</field>
+        <field id="addServiceLeftButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[2]/a</field>
+    </module>
 
 </modules>
 
