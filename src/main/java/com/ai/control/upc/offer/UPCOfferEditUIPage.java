@@ -174,6 +174,7 @@ public class UPCOfferEditUIPage {
 	        		 break;
 				}
 	        }
+	        browser.getElement("//*[@id=\"hierarchy\"]").click();
     		browser.pause(1l, TimeUnit.SECONDS);
     		browser.upcHTreeHover(ElementXPath.OFFER_HTREE_HORIZONAL, ElementXPath.OFFER_HTREE_HORIZONAL_PLUS, ElementXPath.OFFER_HTREE_ADD_PRODUCT);
     		browser.pause(1l, TimeUnit.SECONDS);
