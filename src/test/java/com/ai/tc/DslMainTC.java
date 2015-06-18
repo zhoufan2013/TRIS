@@ -192,7 +192,7 @@ public class DslMainTC {
         /*选择模板*/
         UPCOfferEditUIPage offerEditUIPage = templatePage.chooseOfferTemplate("246");
         /*校验offer模板上的目录是否正确*/
-        offerEditUIPage.intoBasicInfo().intoCatalogNode().verifyCatalogNode(browser, "971110000001");
+        offerEditUIPage.intoBasicInfo().intoCatalogNode().verifyCatalogNode("971110000001");
     }
     
     /**
