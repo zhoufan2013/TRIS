@@ -170,6 +170,24 @@
         <field id="clearBtn">//*[@id="condition"]/div[2]/button[2]</field>
         <field id="addBtn">addBtn</field>
     </module>
+
+    <module name="CatalogEdit">
+        <field id="name">catalogName</field>
+        <field id="type">catalogType</field>
+        <field id="des">description</field>
+        <field id="submit">btsave</field>
+        <field id="cancel">btcancel</field>
+    </module>
+
+    <!-- OFFER添加产品 -->
+    <module name="OfferAddProduct">
+        <field id="prodId">prodSpecId</field>
+        <field id="serviceName">serviceSpecName</field>
+        <field id="queryPruductButton">QueryProductBtn</field>
+        <field id="addServiceRightButton">ml/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul[1]/a</field>
+        <field id="addServiceLeftButton">ml/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul[2]/a</field>
+    </module>
+
     <!-- Offer页签Product Offering Associations -->
     <module name="OfferAssociations">
         <field id="offerRelType">offerRelType</field>
@@ -181,6 +199,7 @@
         <field id="addOfferLeftButton">unselectOffer</field>
         <field id="submitOffer">btnOk</field>
     </module>
+
 
 </modules>
 
