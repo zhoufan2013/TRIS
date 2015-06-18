@@ -23,6 +23,7 @@ public class CatalogVO {
     private String catalogId;
     private String catalogName;
     private String catalogType;
+    private String description;
     private List<CatalogVO> catalogNodes;
 
     public String getCatalogId() {
@@ -47,6 +48,14 @@ public class CatalogVO {
 
     public void setCatalogType(String catalogType) {
         this.catalogType = catalogType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<CatalogVO> getCatalogNodes() {
