@@ -1,18 +1,13 @@
 package com.ai.core;
 
-import static org.openqa.selenium.By.xpath;
-import static org.testng.Assert.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
+import com.ai.config.LogConst;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,7 +17,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 import org.testng.Assert;
 
-import com.ai.config.LogConst;
+import static org.openqa.selenium.By.xpath;
+import static org.testng.Assert.assertTrue;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.MessageFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -183,6 +187,14 @@ public class TRISBrowser {
         return element.getText();
 
     }
+    
+    public String getValue(WebElement element){
+    	pause(1000l);
+        if (_log.isDebugEnabled()) {
+            _log.info("TRIS get text [" + element.getAttribute("value") + "]");
+        }
+        return element.getAttribute("value");
+    }
 
     /**
      *
@@ -285,14 +297,19 @@ public class TRISBrowser {
         Actions builder = new Actions(internalWebDriver);
         WebElement w1 = this.getElement(xpath1);
         builder.moveToElement(w1);
-
+        
         WebElement w2 = this.getElement(xpath2);
         builder.moveToElement(w2);
-
+        //System.out.println("W2 " + w2.getLocation().getX() + "|" + w2.getLocation().getY());
+        //W2 786|64
+        //builder.moveByOffset(w2.getLocation().getX(), w2.getLocation().getY() + 30);
         WebElement w3 = this.getElement(xpath3);
+        //System.out.println("W3 " + w3.getLocation().getX() + "|" + w3.getLocation().getY());
         builder.moveToElement(w3);
-        builder.click();
-        builder.perform();
+        
+//        builder.click();
+//        builder.perform();
+        pause(1l, TimeUnit.SECONDS);
     }
 
     /**
@@ -347,7 +364,7 @@ public class TRISBrowser {
     }
 
     private void chromeDriver() {
-        ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/zhoufan/chromedriver/chromedriver.exe")).usingAnyFreePort().build();
+        ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/wangchao/chromedriver/chromedriver.exe")).usingAnyFreePort().build();
         try {
             chromeService.start();
         } catch (IOException e) {
@@ -364,23 +381,23 @@ public class TRISBrowser {
     }
 
     private void firefoxDriver() {
-//        internalWebDriver = new FirefoxDriver();
+        internalWebDriver = new FirefoxDriver();
         if (_log.isDebugEnabled()) {
             _log.info(MessageFormat.format(LogConst.BROWSER_USE_LOG, "Firefox"));
         }
     }
 
     private void ieDriver() {
-//        System.setProperty("webdriver.ie.driver", "123123123123");
-//        DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-//        //capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-//        capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, Boolean.TRUE);
-//        internalWebDriver = new InternetExplorerDriver(capabilities);
-//        internalWebDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-//        internalWebDriver.manage().window().maximize();
-//        if (_log.isDebugEnabled()) {
-//            _log.info(MessageFormat.format(LogConst.BROWSER_USE_LOG, "Internet Explorer"));
-//        }
+        System.setProperty("webdriver.ie.driver", "123123123123");
+        DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+        //capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+        capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, Boolean.TRUE);
+        internalWebDriver = new InternetExplorerDriver(capabilities);
+        internalWebDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        internalWebDriver.manage().window().maximize();
+        if (_log.isDebugEnabled()) {
+            _log.info(MessageFormat.format(LogConst.BROWSER_USE_LOG, "Internet Explorer"));
+        }
     }
 
     private void incorrectBrowserType() {

@@ -38,8 +38,9 @@ public final class ElementXPath {
     /*offer choose iframe 定位*/
     public static String OFFER_CHOOSE_FRAME = "//iframe[@eventid='addAfter']";
     public static String OFFER_CHOOSE_ALLROWS = "//*[@id=\"offerTableTable\"]/tbody/tr";
-
-    public static String CATALOG_EDIT_FRAME = "//iframe[@eventid='addbyframework']" ;
+ 
+    /*定位offer下关联的产品*/
+    public static String OFFER_HTREE_PROD = "//*[@id=\"offer_prods\"]/div/ul";
 
     /*产品规格主查询页面所有行定位*/
     public static String PRODUCT_MANM_QUERY_ALLROWS = "//*[@id=\"ProdSpecTableTable\"]/tbody/tr";
@@ -55,6 +56,9 @@ public final class ElementXPath {
 
     /**/
     public static String PRODUCT_ADD_SERVICE_FRAME = "//iframe[@eventid='addServiceAfter']";
+    
+    /**/
+    public static String OFFER_ADD_OFFER_FRAME = "//iframe[@eventid='addAfter']";
 
     /*产品关联服务可选表格内所有行定位*/
     public static String PRODUCT_ADD_SERVICE_SELECTABLE_TABLE_ALLROWS = "//*[@id=\"SelectableServiceTable\"]/tbody/tr";
@@ -82,31 +86,5 @@ public final class ElementXPath {
 
     /*查询OfferGroup主页面表格所有行定位*/
     public static String OFFERGROUP_MANM_QUERY_ALLROWS = "//*[@id=\"ProdOfferingGroupTableTable\"]/tbody/tr";
-
-    /*查询catalog主页面表格所有行定位*/
-    public static String CATALOG_MANM_QUERY_ALLROWS = "//*[@id=\"CatalogTableTable\"]/tbody/tr";
-
-
- /*offer channel tree iframe 定位*/
-    public static String OFFER_CHANNEL_TREE_FRAME = "//iframe[@eventid='addAfter']";
-    
-    
-    /**/
-    public static String OFFER_HTREE_HORIZONAL = "//*[@id=\"offer\"]/span/table/tbody/tr/td[2]";
-
-    /**/
-    public static String OFFER_HTREE_HORIZONAL_PLUS = "//*[@id=\"offer\"]/span/table/tbody/tr/td[3]";
-    
-    /**/
-    public static String OFFER_HTREE_ADD_PRODUCT = "//*[@id=\"offer\"]/span/table/tbody/tr/td[3]/div/div[3]/div/div/div[2]/ul/li/a";
-    
-    /**/
-    public static String OFFER_ADD_PRODUCT_FRAME = "//iframe[@eventid='addProdAfter']";
-    
-    public static String OFFER_ADD_PRODUCT_SELECTABLE_TABLE_ALLROWS="//*[@id=\"SelectableProductTable\"]/tbody/tr";
-
-    /*多选树父节点id*/
-    public static String CHECK_TREE_ROOT_NODE = "checkTree○root";
-
 
 }

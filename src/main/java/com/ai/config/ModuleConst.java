@@ -18,6 +18,8 @@ public final class ModuleConst {
     public static String OFFERMANM = "OfferManm";
 
     public static String OFFER_EDIT_UI = "OfferEditUI";
+    
+    public static String OFFER_ASSOCIATIONS = "OfferAssociations";
 
     public static String SERVICEMANM = "ServiceManm";
 
@@ -41,14 +43,10 @@ public final class ModuleConst {
 
     public static String OFFER_TAB_TITLE = "OfferTabTitle";
 
-    public static String OFFER_CHOOSE_FRAME = "OfferChooseFrame";
+    public static String OFFER_CHOOSE_FRAME = "OfferChosseFrame";
 
     public static String CHANGE_PAGE = "ChangePage";
 
     public static String CATALOG_MANM = "CatalogManm";
-    
-    public static String OFFER_ADD_PRODUCT = "OfferAddProduct";
-
-    public static String CATALOG_EDIT = "CatalogEdit";
 
 }

@@ -64,9 +64,8 @@
     <module name="OfferGroupManm">
         <field id="offerGroupIdorName">groupName</field>
         <field id="queryOfferGroup">//*[@id="condition"]/div[2]/button</field>
-        <field id="createNewOfferGroupButton">/html/body/div[1]/div[1]/div[1]/div[3]/ul/li/a</field>
-    </module>
-    <module name="OfferGroupEditUI">
+        <field id="createNewOfferGroupButton">/html/body/div[1]/div[1]/div[1]/div[3]/ul/li/a</field></module>
+    <module name="OfferGroupEditUi">
         <field id="offerGroupName">groupName</field>
         <field id="mutuallyExclusiveYES">isInnerMutexradio0</field>
         <field id="mutuallyExclusiveNO">isInnerMutexradio1</field>
@@ -131,10 +130,12 @@
         <field id="offerId">offerId</field>
         <field id="offerName">offerName</field>
         <field id="offerType">//*[@id="baseinfo"]/div[1]/ul/li[3]/span[2]/button</field>
+        <field id="offerTypeName">offerType</field>
         <field id="brand">brand</field>
         <field id="offerCode">offerCode</field>
         <field id="desc">desc</field>
         <field id="interalDesc">interalDesc</field>
+        <field id="saveBtn">btsave</field>
     </module>
     <!-- Offer页签 -->
     <module name="OfferTabTitle">
@@ -163,28 +164,22 @@
         <field id="pageN">//*[@id="NavBar"]/div/span</field>
     </module>
 
-    <module name="CatalogManm">
+    <module name="CATALOG_MANM">
         <field id="nameorId">catalogName</field>
         <field id="queryBtn">queryBtn</field>
         <field id="clearBtn">//*[@id="condition"]/div[2]/button[2]</field>
         <field id="addBtn">addBtn</field>
     </module>
-
-    <module name="CatalogEdit">
-        <field id="name">catalogName</field>
-        <field id="type">catalogType</field>
-        <field id="des">description</field>
-        <field id="submit">btsave</field>
-        <field id="cancel">btcancel</field>
-    </module>
-    
-      <!-- OFFER添加产品 -->
-    <module name="OfferAddProduct">
-        <field id="prodId">prodSpecId</field>
-        <field id="serviceName">serviceSpecName</field>
-        <field id="queryPruductButton">QueryProductBtn</field>
-        <field id="addServiceRightButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[1]/a</field>
-        <field id="addServiceLeftButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[2]/a</field>
+    <!-- Offer页签Product Offering Associations -->
+    <module name="OfferAssociations">
+        <field id="offerRelType">offerRelType</field>
+        <field id="nameOrId">offerId</field>
+        <field id="offerType">offerType</field>
+        <field id="brand">brand</field>
+        <field id="queryOfferAssociation">queryBtn</field>
+        <field id="addOfferRightButton">selectOffer</field>
+        <field id="addOfferLeftButton">unselectOffer</field>
+        <field id="submitOffer">btnOk</field>
     </module>
 
 </modules>

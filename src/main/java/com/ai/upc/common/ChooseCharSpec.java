@@ -59,16 +59,8 @@ public class ChooseCharSpec {
                         case "1" :
                         case "2" : fillinCharValue(cells.get(3), specifiedCharValue);break;
                         case "3" :
-                        case "4" : ; break;
-                        case "5" : 
-                        	List<WebElement> cellElements = cells.get(3).findElements(tagName("input"));
-                        	for (int i = 0; i < cellElements.size(); i++) {
-                        		if(cellElements.get(i).getAttribute("value").equals(specifiedCharValue)){
-                        			cellElements.get(i).click();//先选中这个特征
-                        			break;
-                        		}
-							}
-                        	; break;
+                        case "4" : ; break;//TODO
+                        case "5" : ; break;
                         default: break;
                     }
                 }
@@ -76,6 +68,25 @@ public class ChooseCharSpec {
         }
     }
 
+    /**
+     * 校验offer模板带出的特征是否正确
+     * @param offerCharSpecs
+     * @return
+     */
+    public boolean isExistOfferCharSpec(List<String> offerCharSpecs){
+    	List<WebElement> allRows = selectCharSpecAllRows();
+    	for(String charSpec : offerCharSpecs){
+    		for(WebElement row : allRows) {
+                List<WebElement> cells = row.findElements(By.tagName("td"));
+                WebElement cellElement = cells.get(2).findElement(tagName("img"));
+                if (isMatched(cellElement, charSpec)) {
+                	return true;
+                }
+            }
+    	}
+    	return false;
+    }
+    
     public boolean isCharHaveEnumValue(String specifiedCharSpec) {
         List<WebElement> allRows = selectCharSpecAllRows();
         for(WebElement row : allRows) {

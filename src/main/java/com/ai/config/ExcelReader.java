@@ -2,7 +2,6 @@ package com.ai.config;
 
 import com.ai.upc.bean.*;
 import com.ai.util.ExcelUtil;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import javax.xml.ws.Service;
 
 import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,106 +47,8 @@ public class ExcelReader {
 
     public OfferVO readOffer() {
         OfferVO offer = new OfferVO();
-        Sheet offerSheet = ExcelUtil.getSheetViaSheetName(wookbook, ExcelConst.UPC_MODULE_OFFER);
-        List<String[]> rows = ExcelUtil.listFromSheet(offerSheet);
-
-        int offerCharRowNum = -1;
-        int offerChannelRowNum=-1;
-        int offerLocationRowNum=-1;
-        int offerSegmentRowNum=-1;
-        for(String[] row : rows) {
-            if (subTitleRow(row[0], ExcelConst.SUB_OFFER_CHAR)) {
-            	offerCharRowNum = rowNum(row[0]);
-            }else if (subTitleRow(row[0], ExcelConst.SUB_OFFER_CHANNEL)) {
-            	offerChannelRowNum = rowNum(row[0]);
-            }else if(subTitleRow(row[0], ExcelConst.SUB_OFFER_LOCATION)){
-            	offerLocationRowNum = rowNum(row[0]);
-			}else if(subTitleRow(row[0], ExcelConst.SUB_OFFER_SEGMENT)){
-				offerSegmentRowNum = rowNum(row[0]);
-			}
-        }
-        for(int i=0; i<rows.size(); i++) {
-            if (i > 0 && i < offerCharRowNum) {
-            	loadOfferBasicInfo(offer, rows.get(i));
-            }else if (i > offerCharRowNum+1 && i < offerChannelRowNum) {
-                loadOfferChar(offer, rows.get(i));
-            }else if (i > offerChannelRowNum+1&&i < offerLocationRowNum) {
-                loadOfferChannel(offer, rows.get(i));
-            }else if (i > offerLocationRowNum+1&&i<offerSegmentRowNum){
-            	loadOfferLocation(offer, rows.get(i));
-			}else if (i > offerSegmentRowNum+1){
-            	loadOfferSegment(offer, rows.get(i));
-			}
-        }
         return offer;
     }
-    private void loadOfferBasicInfo(OfferVO offer, String[] row) {
-        if (StringUtils.equals(splitCellValue(row[0]), "offerName")) {
-        	offer.setOfferName(splitCellValue(row[1]));
-        } else if (StringUtils.equals(splitCellValue(row[0]), "offerCode")) {
-        	offer.setOfferCode(splitCellValue(row[1]));
-        } else if (StringUtils.equals(splitCellValue(row[0]), "descriptionCustomer")) {
-        	offer.setDescriptionCustomer(splitCellValue(row[1]));
-        } else if (StringUtils.equals(splitCellValue(row[0]), "internalDescription")) {
-        	offer.setInternalDescription(splitCellValue(row[1]));
-        }
-    }
-    
-    private void loadOfferChannel(OfferVO OfferVO, String[] row) {
-    	  String channelId = splitCellValue(row[0]);
-          assertTrue(StringUtils.isNotEmpty(channelId));
-          if (null == OfferVO.getOfferChannel()) {
-        	  OfferVO.setOfferChannel(new ArrayList<ChannelVO>());
-          }
-          ChannelVO channel = new ChannelVO();
-          if (StringUtils.isNotEmpty(channelId)) {
-        	  channel.setChannelId(channelId);
-          }
-          OfferVO.getOfferChannel().add(channel);
-    }
-    
-    private void loadOfferSegment(OfferVO OfferVO, String[] row) {
-  	  String segmentId = splitCellValue(row[0]);
-      assertTrue(StringUtils.isNotEmpty(segmentId));
-      if (null == OfferVO.getOfferSegment()) {
-  	    OfferVO.setOfferSegment(new ArrayList<SegmentVO>());
-      }
-      SegmentVO segment = new SegmentVO();
-      if (StringUtils.isNotEmpty(segmentId)) {
-    	  segment.setSegmentId(segmentId);
-      }
-      OfferVO.getOfferSegment().add(segment);
-  }
-    
-    private void loadOfferLocation(OfferVO OfferVO, String[] row) {
-    	  String locationId = splitCellValue(row[0]);
-          assertTrue(StringUtils.isNotEmpty(locationId));
-          if (null == OfferVO.getOfferLocation()) {
-        	  OfferVO.setOfferLocation(new ArrayList<LocationVO>());
-          }
-          LocationVO location = new LocationVO();
-          if (StringUtils.isNotEmpty(locationId)) {
-        	  location.setLocationId(locationId);
-          }
-          OfferVO.getOfferLocation().add(location);
-    }
-    
-    
-    private void loadOfferChar(OfferVO OfferVO, String[] row) {
-  	  String charSpecId = splitCellValue(row[0]);
-        String charSpecValue = splitCellValue(row[2]);
-        assertTrue(StringUtils.isNotEmpty(charSpecId));
-        if (null == OfferVO.getOfferChar()) {
-      	  OfferVO.setOfferChar(new ArrayList<CharSpecVO>());
-        }
-        CharSpecVO charSpec = new CharSpecVO(charSpecId);
-        if (StringUtils.isNotEmpty(charSpecValue)) {
-            charSpec.setCharValue(charSpecValue);
-        }
-        OfferVO.getOfferChar().add(charSpec);
-  }
-    
-    
 
     public ProductVO readProduct() {
         ProductVO product = new ProductVO();

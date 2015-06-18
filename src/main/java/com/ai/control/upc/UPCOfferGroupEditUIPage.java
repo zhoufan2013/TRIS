@@ -88,18 +88,15 @@ public class UPCOfferGroupEditUIPage {
 
         }};
 
-        switchToOfferGroupEditFrame();
-
-        /*选择关联offer*/
-        UPCChooseOfferPage chooseOfferPage = addOffers();
-
-        //browser.selectWindow(handler);
-        switchToOfferGroupEditFrame();
-        chooseOfferPage.chooseOffers("95042552");
-
-
-
         new GroupBasicInfo(browser) {{
+            browser.selectWindow(handler);
+            switchToOfferGroupEditFrame();
+
+            /*选择关联offer*/
+            UPCChooseOfferPage chooseOfferPage = addOffers();
+            switchToOfferGroupEditFrame();
+            chooseOfferPage.chooseOffers("95042552");
+
             switchToOfferGroupEditFrame();
             saveOfferGroupButton();
         }};

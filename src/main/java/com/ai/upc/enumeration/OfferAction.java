@@ -29,9 +29,7 @@ public enum OfferAction implements Serializable{
 
     GROUPLAUNCH("groupLaunch","p_launch(this)"),
 
-    UPDATE4APPROVE("update", "doUpdate4Approve($(this))"),
-
-    EDITCATALOGNODE("editCatalogNode", "openCatalogNode($(this))");
+    UPDATE4APPROVE("update", "doUpdate4Approve($(this))");
 
 
     private OfferAction(String action, String function) {

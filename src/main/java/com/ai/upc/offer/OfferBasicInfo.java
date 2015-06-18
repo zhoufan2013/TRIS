@@ -10,10 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebElement;
 import org.seleniumhq.selenium.fluent.FluentWebElement;
 
-import static org.openqa.selenium.By.className;
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.name;
-import static org.openqa.selenium.By.xpath;
+import static org.openqa.selenium.By.*;
 
 /**
  * @author zhoufan
@@ -49,6 +46,13 @@ public class OfferBasicInfo {
     protected FluentWebElement offerName() {
         return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "offerName")));
     }
+    
+    /**
+     * 采集Offer类型输入框
+     */
+    protected FluentWebElement offerType() {
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "offerTypeName")));
+    }
 
     /**
      * 采集OfferCode输入框
@@ -72,21 +76,62 @@ public class OfferBasicInfo {
     }
     
     /**
-     * 产品关联服务查询条件的输入框
+     * 采集offerRelType描述输入框
      */
-    protected FluentWebElement productId() {
-        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFER_ADD_PRODUCT, "prodId")));
-    }
-    
-    protected FluentWebElement queryProductButton() {
-        return fwd.button(name(ModuleField.getFieldValue(ModuleConst.OFFER_ADD_PRODUCT, "queryPruductButton")));
+    protected FluentWebElement offerRelType() {
+        return fwd.select(id(ModuleField.getFieldValue(ModuleConst.OFFER_ASSOCIATIONS, "offerRelType")));
     }
     
     /**
-     * 确认已选择的服务关联到产品下
+     * 采集offerId描述输入框
      */
-    public FluentWebElement addProductOKButton() {
-        return fwd.div(className("c_submit")).button(name("submitBtn"));
+    protected FluentWebElement offerNameOrId() {
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFER_ASSOCIATIONS, "nameOrId")));
     }
     
+    /**
+     * 采集offerId描述输入框
+     */
+    protected FluentWebElement queryOfferAssociation() {
+        return fwd.button(name(ModuleField.getFieldValue(ModuleConst.OFFER_ASSOCIATIONS, "queryOfferAssociation")));
+    }
+    
+    /**
+     * 校验offer类型
+     */
+    public boolean isVerifyOfferType(TRISBrowser browser,String offerType) {
+    	String offerTypeName = browser.getValue(offerType().getWebElement());
+    	if(offerType.equals(offerTypeName)){
+    		return true;
+    	}
+        return false;
+    }
+    
+    /**
+     * 选择offer到右框
+     */
+    public FluentWebElement addOfferRightButton() {
+        return fwd.link(id(ModuleField.getFieldValue(ModuleConst.OFFER_ASSOCIATIONS, "addOfferRightButton")));
+    }
+
+    /**
+     *选择offer到左框
+     */
+    public FluentWebElement addOfferLeftButton() {
+        return fwd.link(id(ModuleField.getFieldValue(ModuleConst.OFFER_ASSOCIATIONS, "addOfferLeftButton")));
+    }
+    
+    /**
+    *提交添加关联offer按钮
+    */
+   public FluentWebElement addOfferSubButton() {
+       return fwd.button(id(ModuleField.getFieldValue(ModuleConst.OFFER_ASSOCIATIONS, "submitOffer")));
+   }
+   
+   /**
+    * 提交保存offer信息按钮
+    */
+   protected FluentWebElement saveOfferButton() {
+       return fwd.button(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "saveBtn")));
+   }
 }

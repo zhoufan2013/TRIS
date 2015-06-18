@@ -25,19 +25,4 @@ public final class ExcelConst {
 
     /*服务特征*/
     public static String SUB_TITLE_RELATED_CHAR_SPEC = "Related Characteristic Specification";
-    
-    /*offer */
-    public static String SUB_OFFER_BASE_INFO = "Basic Info";
-    
-    /*offer特征 */
-    public static String SUB_OFFER_CHAR = "offerChar";
-    
-    /*offer channel */
-    public static String SUB_OFFER_CHANNEL = "offerChannel";
-    
-    /*offer location */
-    public static String SUB_OFFER_LOCATION = "offerLocation";
-    
-    /*offer segment */
-    public static String SUB_OFFER_SEGMENT = "offerSegment";
 }

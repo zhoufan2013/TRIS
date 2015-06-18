@@ -66,5 +66,4 @@ public final class UPCUtil {
         browser.enterFrame(UPCUtil.findNavFrame(browser, Menu.getMenuName(menuName)));
         return browser.getText(browser.getElement("/html/body/div[1]/div[1]/div/div[1]/div[1]"));
     }
-
 }
