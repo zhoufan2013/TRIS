@@ -48,6 +48,7 @@ public final class ModuleConst {
     public static String CATALOG_MANM = "CatalogManm";
     
     public static String OFFER_ADD_PRODUCT = "OfferAddProduct";
+    
 
     public static String CATALOG_EDIT = "CatalogEdit";
 

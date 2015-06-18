@@ -48,7 +48,5 @@ public class UPCCatalogNodePage {
         driver = browser.getInternalWebDriver();
         Actions action = new Actions(driver);
         action.contextClick(browser.getInternalWebDriver().findElementById("j1_1_anchor"));
-
-
     }
 }

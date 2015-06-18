@@ -18,20 +18,27 @@ public class CatalogManm {
 
     private TRISWebDriver fwd;
 
+    public CatalogManm() {}
+
+    public CatalogManm(TRISBrowser browser) {
+        this.browser = browser;
+        this.fwd = browser.getWebDriver();
+    }
+
     public static class Contants {
         public static String TITLE = "Product Catalog Management";
     }
 
 
     protected void createCatalogButton() {
-        browser.getInternalWebDriver().findElementByXPath(ModuleField.getFieldValue(ModuleConst.CATALOG_MANM, "addBtn")).click();
+        browser.getInternalWebDriver().findElementById(ModuleField.getFieldValue(ModuleConst.CATALOG_MANM, "addBtn")).click();
         //return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.OFFERGROUP_MANM, "createNewOfferGroupButton")));
     }
 
 
     protected void queryCatalogButton() {
         //return fwd.button(xpath(ModuleField.getFieldValue(ModuleConst.OFFERGROUP_MANM, "queryOfferGroup")));
-        browser.getInternalWebDriver().findElementByXPath(ModuleField.getFieldValue(ModuleConst.CATALOG_MANM, "queryBtn")).click();
+        browser.getInternalWebDriver().findElementById(ModuleField.getFieldValue(ModuleConst.CATALOG_MANM, "queryBtn")).click();
     }
 
 

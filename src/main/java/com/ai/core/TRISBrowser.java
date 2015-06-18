@@ -364,7 +364,7 @@ public class TRISBrowser {
     }
 
     private void chromeDriver() {
-        ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/wangchao/chromedriver/chromedriver.exe")).usingAnyFreePort().build();
+        ChromeDriverService chromeService = new ChromeDriverService.Builder().usingDriverExecutable(new File("/Users/zhoufan/chromedriver/chromedriver.exe")).usingAnyFreePort().build();
         try {
             chromeService.start();
         } catch (IOException e) {

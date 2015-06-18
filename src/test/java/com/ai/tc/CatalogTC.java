@@ -84,7 +84,6 @@ public class CatalogTC {
         /*点击编辑子目录按钮*/
         UPCCatalogNodePage catalogNode = catalogManm.editCatalogNode("30086");
 
-
         catalogNode.newCatalogNode(catalog);
 
     }
