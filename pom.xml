@@ -85,10 +85,10 @@
             <version>2.45.0</version>
             <scope>compile</scope>
             <exclusions>
-                <exclusion>
+<!--                 <exclusion>
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>selenium-ie-driver</artifactId>
-                </exclusion>
+                </exclusion> -->
                 <exclusion>
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>selenium-htmlunit-driver</artifactId>
@@ -105,10 +105,10 @@
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>selenium-iphone-driver</artifactId>
                 </exclusion>
-                <exclusion>
+<!--                 <exclusion>
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>selenium-firefox-driver</artifactId>
-                </exclusion>
+                </exclusion> -->
                 <exclusion>
                     <groupId>org.webbitserver</groupId>
                     <artifactId>webbit</artifactId>
