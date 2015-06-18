@@ -481,6 +481,21 @@ public class UPCOfferEditUIPage {
      * Offer关联操作
      */
     public UPCOfferEditUIPage insertBusiInterItems(final OfferVO offer) {
+    	
+    	WebElement table = browser.getElement("//*[@id=\"relTable\"]");
+    	List<WebElement> tds = table.findElements(By.xpath("//*[@id=\"relTable\"]/tbody//tr/td[2]"));
+    	List<BusinessVO> offerBusiness = offer.getOfferBusiness();
+    	for (WebElement td:tds){
+        	for (int i=offerBusiness.size()-1;i>=0;i--){
+    			if (td.getText().equals(offerBusiness.get(i).getBusinessId())) {
+    				offerBusiness.remove(i);
+				}
+    		}
+    	}
+    	if (offerBusiness.size()==0) {
+			return this;
+		}
+    	
     	//点击add按钮
     	browser.click( browser.getWebDriver().link( By.xpath("//*[@id=\"baddrow\"]") ) );
     	browser.pause(1, TimeUnit.SECONDS);
