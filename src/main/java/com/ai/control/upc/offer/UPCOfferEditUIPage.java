@@ -445,6 +445,9 @@ public class UPCOfferEditUIPage {
         return this;
     }
     
+    /**
+     * 保存offer 
+     */
     public String saveOffer(){
     	//点击提交
     	browser.leaveFrame();
@@ -458,6 +461,24 @@ public class UPCOfferEditUIPage {
     	}};
     	return message;
     }
+    
+    /**
+     * 取消offer
+     */
+    public String cancleOffer(){
+    	//点击提交
+    	browser.leaveFrame();
+    	switchToOfferEditFrame();
+        browser.click(browser.getWebDriver().button(By.id("btcancel")));
+        //记录消息内容
+        String message = browser.getText( browser.getElement("//*[@id=\"wade_msg_ct\"]/div[4]/a[1]") );
+        //点击确定消息框
+        new MessageBox(browser){{
+    		okSuccessMsg();
+    	}};
+    	return message;
+    }
+    
     /**
      * 定位到弹出框   //*[@eventid="addAfter"]
      */
