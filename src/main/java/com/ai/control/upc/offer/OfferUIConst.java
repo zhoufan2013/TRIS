@@ -10,7 +10,7 @@ package com.ai.control.upc.offer;
  * Date         Author          Version            Description
  * ------------------------------------------------------------
  * 15/5/26      zhoufan         1.0.0              initial
- */
+ */ 
 public final class OfferUIConst {
 
     public static String CHANNEL = "Sale Channel";
