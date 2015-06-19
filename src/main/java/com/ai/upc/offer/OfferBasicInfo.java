@@ -1,18 +1,19 @@
 package com.ai.upc.offer;
 
-import static org.openqa.selenium.By.className;
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.name;
-import static org.openqa.selenium.By.xpath;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.seleniumhq.selenium.fluent.FluentWebElement;
-
 import com.ai.config.ModuleConst;
 import com.ai.config.ModuleField;
 import com.ai.core.TRISBrowser;
 import com.ai.core.TRISWebDriver;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.WebElement;
+import org.seleniumhq.selenium.fluent.FluentWebElement;
+
+import static org.openqa.selenium.By.className;
+import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.name;
+import static org.openqa.selenium.By.xpath;
 
 /**
  * @author zhoufan
@@ -47,13 +48,6 @@ public class OfferBasicInfo {
      */
     protected FluentWebElement offerName() {
         return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "offerName")));
-    }
-    
-    /**
-     * 采集Offer类型输入框
-     */
-    protected FluentWebElement offerType() {
-        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "offerTypeName")));
     }
 
     /**
@@ -96,6 +90,17 @@ public class OfferBasicInfo {
     }
     
     /**
+     * 校验offer类型
+     */
+    public boolean isVerifyOfferType(TRISBrowser browser,String offerType) {
+    	String offerTypeName = browser.getValue(offerType().getWebElement());
+    	if(offerType.equals(offerTypeName)){
+    		return true;
+    	}
+        return false;
+    }
+    
+    /**
      * 采集offerRelType描述输入框
      */
     protected FluentWebElement offerRelType() {
@@ -115,18 +120,14 @@ public class OfferBasicInfo {
     protected FluentWebElement queryOfferAssociation() {
         return fwd.button(name(ModuleField.getFieldValue(ModuleConst.OFFER_ASSOCIATIONS, "queryOfferAssociation")));
     }
+
     
     /**
-     * 校验offer类型
+     * 采集Offer类型输入框
      */
-    public boolean isVerifyOfferType(TRISBrowser browser,String offerType) {
-    	String offerTypeName = browser.getValue(offerType().getWebElement());
-    	if(offerType.equals(offerTypeName)){
-    		return true;
-    	}
-        return false;
+    protected FluentWebElement offerType() {
+        return fwd.input(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "offerTypeName")));
     }
-    
     /**
      * 选择offer到右框
      */
@@ -154,4 +155,5 @@ public class OfferBasicInfo {
    protected FluentWebElement saveOfferButton() {
        return fwd.button(id(ModuleField.getFieldValue(ModuleConst.OFFER_EDIT_UI, "saveBtn")));
    }
+    
 }

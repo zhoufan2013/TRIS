@@ -59,8 +59,16 @@ public class ChooseCharSpec {
                         case "1" :
                         case "2" : fillinCharValue(cells.get(3), specifiedCharValue);break;
                         case "3" :
-                        case "4" : ; break;//TODO
-                        case "5" : ; break;
+                        case "4" : ; break;
+                        case "5" : 
+                        	List<WebElement> cellElements = cells.get(3).findElements(tagName("input"));
+                        	for (int i = 0; i < cellElements.size(); i++) {
+                        		if(cellElements.get(i).getAttribute("value").equals(specifiedCharValue)){
+                        			cellElements.get(i).click();//先选中这个特征
+                        			break;
+                        		}
+							}
+                        	; break;
                         default: break;
                     }
                 }

@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.seleniumhq.selenium.fluent.FluentWebElement;
 
 import com.ai.config.ElementXPath;
 import com.ai.config.ModuleConst;

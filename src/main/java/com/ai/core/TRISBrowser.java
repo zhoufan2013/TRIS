@@ -269,6 +269,52 @@ public class TRISBrowser {
         }
     }
 
+
+    /**
+     * Double Click Ready
+     * @param element
+     */
+    public void doubleClick(FluentWebElement element){
+        WebDriverWait wait = new WebDriverWait(internalWebDriver, TimeUnit.MILLISECONDS.toSeconds(10000l));//TODO
+        WebElement webElement = wait.until(ExpectedConditions.elementToBeClickable(element.getWebElement()));
+        pause(1l, TimeUnit.SECONDS);
+        Actions action = new Actions(internalWebDriver);
+        action.doubleClick(webElement);
+        if (_log.isDebugEnabled()) {
+            _log.info("TRIS DBclick " + element.getText());
+        }
+    }
+
+    /**
+     * Right Click Ready
+     */
+    public void rightClick(FluentWebElement element){
+        WebDriverWait wait = new WebDriverWait(internalWebDriver, TimeUnit.MILLISECONDS.toSeconds(10000l));//TODO
+        WebElement webElement = wait.until(ExpectedConditions.elementToBeClickable(element.getWebElement()));
+        pause(1l, TimeUnit.SECONDS);
+        Actions action = new Actions(internalWebDriver);
+        action.contextClick(webElement);
+        if (_log.isDebugEnabled()) {
+            _log.info("TRIS RightClick " + element.getText());
+        }
+    }
+
+    /**
+     * 鼠标拖拽操作
+     */
+    public void dragAndDropEle(FluentWebElement source,FluentWebElement target){
+        WebDriverWait wait = new WebDriverWait(internalWebDriver, TimeUnit.MILLISECONDS.toSeconds(10000l));//TODO
+        WebElement sourceEle = wait.until(ExpectedConditions.elementToBeClickable(source.getWebElement()));
+        WebElement targetEle = wait.until(ExpectedConditions.elementToBeClickable(target.getWebElement()));
+        pause(1l, TimeUnit.SECONDS);
+        Actions action = new Actions(internalWebDriver);
+        action.dragAndDrop(sourceEle,targetEle);
+        if (_log.isDebugEnabled()) {
+            _log.info("TRIS dragAndDrop " + source.getText());
+        }
+    }
+
+
     /**
      * 数据验证
      * Fluent Selenium API #shouldBe 自动处理Assert
@@ -306,10 +352,8 @@ public class TRISBrowser {
         WebElement w3 = this.getElement(xpath3);
         //System.out.println("W3 " + w3.getLocation().getX() + "|" + w3.getLocation().getY());
         builder.moveToElement(w3);
-        
-//        builder.click();
-//        builder.perform();
-        pause(1l, TimeUnit.SECONDS);
+        builder.click();
+        builder.perform();
     }
 
     /**

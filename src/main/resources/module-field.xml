@@ -184,8 +184,8 @@
         <field id="prodId">prodSpecId</field>
         <field id="serviceName">serviceSpecName</field>
         <field id="queryPruductButton">QueryProductBtn</field>
-        <field id="addServiceRightButton">ml/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul[1]/a</field>
-        <field id="addServiceLeftButton">ml/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul[2]/a</field>
+        <field id="addServiceRightButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[1]/a</field>
+        <field id="addServiceLeftButton">/html/body/div[1]/div[1]/div/div[2]/div[3]/div/div/div[2]/ul/li[2]/a</field>
     </module>
 
     <!-- Offer页签Product Offering Associations -->

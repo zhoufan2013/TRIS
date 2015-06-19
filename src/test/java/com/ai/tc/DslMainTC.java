@@ -23,6 +23,7 @@ import com.ai.control.upc.offer.UPCOfferEditUIPage;
 import com.ai.control.upc.offer.UPCOfferManmPage;
 import com.ai.core.TRISBrowser;
 import com.ai.upc.bean.CharSpecVO;
+import com.ai.upc.bean.OfferVO;
 import com.ai.upc.bean.ProductVO;
 import com.ai.upc.bean.ServiceVO;
 
@@ -40,14 +41,14 @@ import com.ai.upc.bean.ServiceVO;
 public class DslMainTC {
 
     private TRISBrowser browser;
-    //private ProductVO product;
+    private OfferVO offer;
 
     @BeforeClass(alwaysRun = true)
     private void setup() {
         /*TRIS 浏览器模拟初始化*/
         browser = TRISBrowser.init();
         /*Excel 输入初始化*/
-        //product = ExcelReader.init(ExcelConst.XLSX_PATH).readProduct();
+        offer = ExcelReader.init(ExcelConst.XLSX_PATH).readOffer();
     }
 
     @AfterClass(alwaysRun = true)
@@ -154,6 +155,15 @@ public class DslMainTC {
         List<String> charSpecs = new ArrayList<String>();
         charSpecs.add("2700004");
         charSpecs.add("2701347");
+        charSpecs.add("50001");
+        charSpecs.add("27000029");
+        charSpecs.add("10000001");
+        charSpecs.add("10000002");
+        charSpecs.add("10000003");
+        charSpecs.add("10000004");
+        charSpecs.add("10000005");
+        charSpecs.add("10000006");
+        charSpecs.add("200063");
         assertTrue(offerEditUIPage.intoBasicInfo().checkOfferChar(charSpecs));
     }
     
@@ -210,6 +220,9 @@ public class DslMainTC {
         /*选择模板*/
         UPCOfferEditUIPage offerEditUIPage = templatePage.chooseOfferTemplate("246");
         /*校验offer模板上的操作是否正确*/
+        offerEditUIPage.intoBasicInfo().intoBusiInterItems().verifyBusiInterItems("191000001004").
+        verifyBusiInterItems("305378").verifyBusiInterItems("305379").verifyBusiInterItems("191000001006").verifyBusiInterItems("191000001018").
+        verifyBusiInterItems("305382").verifyBusiInterItems("191000002204");
     }
     
     /**
@@ -218,7 +231,27 @@ public class DslMainTC {
      */
     @Test
     public void UPC_CRM_DSLMAIN_0011(){
-    	
+    	/*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开策划菜单*/
+        UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
+        /*新增策划*/
+        UPCChooseTemplatePage templatePage = offerManmPage.addOffer();
+        /*选择模板*/
+        UPCOfferEditUIPage offerEditUIPage = templatePage.chooseOfferTemplate("246");
+        
+        /*进入编辑页面并输入基本信息*/
+        offerEditUIPage.intoBasicInfo().insertBasicInfo(offer).insertOfferChar(offer);
+        /*offer上添加目录*/
+        offerEditUIPage.intoCatalogNode().insertCatalogNode(offer);
+        /*offer上添加操作*/
+        offerEditUIPage.intoBusiInterItems().insertBusiInterItems(offer);
+        /*offer上添加渠道，Location和客户细分*/
+        offerEditUIPage.intoEligibilityCriteria().insertSaleChannel(offer).insertSaleLocation(offer).insertSaleSegment(offer);
+        /*offer上添加产品*/
+        offerEditUIPage.insertOfferTree().addProductSpecification("95042745");
+        /*保存offer信息*/
+        offerEditUIPage.saveOffer();
     }
 
     /**
@@ -238,6 +271,92 @@ public class DslMainTC {
         /*进入编辑页面*/
         offerEditUIPage.intoEditBaseicInfo("95042611");
         /*校验offer模板上的目录是否正确*/
-        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Subscribe Together", "95042652").saveOffer();
+        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Subscribe Together", "95042652").saveOfferInfo();
+    }
+    
+    /**
+     * dslmainoffer关联Splitter Accesstory配置
+     * @author wangchao
+     */
+    @Test
+    public void UPC_CRM_DSLMAIN_0013(){
+
+    	/*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开策划菜单*/
+        UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
+        /*查询*/
+        offerManmPage.queryOffer("95042611");
+        /*点击编辑按钮*/
+        UPCOfferEditUIPage offerEditUIPage = offerManmPage.editOffer("95042611");
+        /*进入编辑页面*/
+        offerEditUIPage.intoEditBaseicInfo("95042611");
+        /*校验offer模板上的目录是否正确*/
+        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Subscribe Together", "2000631").saveOfferInfo();
+    
+    }
+    
+    /**
+     * dslmainoffer关联offer的中相容关系的配置
+     * @author wangchao
+     */
+    
+    @Test
+    public void UPC_CRM_DSLMAIN_0014(){
+
+    	/*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开策划菜单*/
+        UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
+        /*查询*/
+        offerManmPage.queryOffer("95042611");
+        /*点击编辑按钮*/
+        UPCOfferEditUIPage offerEditUIPage = offerManmPage.editOffer("95042611");
+        /*进入编辑页面*/
+        offerEditUIPage.intoEditBaseicInfo("95042611");
+        /*校验offer模板上的目录是否正确*/
+        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Compatible", "2000617").saveOfferInfo();
+    
+        /*点击编辑按钮*/
+        offerEditUIPage = offerManmPage.editOffer("95042611");
+        /*进入编辑页面*/
+        offerEditUIPage.intoEditBaseicInfo("95042611");
+        /*校验offer模板上的目录是否正确*/
+        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Compatible", "2000619").saveOfferInfo();
+    
+        /*点击编辑按钮*/
+        offerEditUIPage = offerManmPage.editOffer("95042611");
+        /*进入编辑页面*/
+        offerEditUIPage.intoEditBaseicInfo("95042611");
+        /*校验offer模板上的目录是否正确*/
+        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Compatible", "2000644").saveOfferInfo();
+    
+        /*点击编辑按钮*/
+        offerEditUIPage = offerManmPage.editOffer("95042611");
+        /*进入编辑页面*/
+        offerEditUIPage.intoEditBaseicInfo("95042611");
+        /*校验offer模板上的目录是否正确*/
+        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Compatible", "95042221").saveOfferInfo();
+    
+    }
+    /**
+     * dslmainoffer关联offer的中和dslmainoffer的可转关系的配置
+     * @author wangchao
+     */
+    @Test
+    public void UPC_CRM_DSLMAIN_0015(){
+    	/*登录*/
+        UPCMenuPage menu = UPCHomePage.navigate(browser).login();
+        /*打开策划菜单*/
+        UPCOfferManmPage offerManmPage = menu.chooseOfferMenu();
+        /*查询*/
+        offerManmPage.queryOffer("95042611");
+        /*点击编辑按钮*/
+        UPCOfferEditUIPage offerEditUIPage = offerManmPage.editOffer("95042611");
+        /*进入编辑页面*/
+        offerEditUIPage.intoEditBaseicInfo("95042611");
+        /*校验offer模板上的目录是否正确*/
+        offerEditUIPage.intoOfferAssociation("95042611").insertOfferAssociation("95042611","Conversion Relation", "95042223").saveOfferInfo();
+    
     }
 }

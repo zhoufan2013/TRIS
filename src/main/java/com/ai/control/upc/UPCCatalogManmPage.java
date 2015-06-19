@@ -50,6 +50,7 @@ public class UPCCatalogManmPage {
         new CatalogManm(browser) {{
             browser.input(catalogIdorName(),nameorID);
             queryCatalogButton();
+            browser.rightClick(catalogIdorName());
         }};
     }
 

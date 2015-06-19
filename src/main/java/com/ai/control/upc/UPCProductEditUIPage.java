@@ -94,21 +94,21 @@ public class UPCProductEditUIPage {
      * 图形树添加服务规格
      */
     public UPCProductEditUIPage addServiceSpecification(final String serviceId) {
-        
-        new ProductBasicInfo(browser){{
-        	browser.upcHTreeHover(ElementXPath.PRODUCT_HTREE_HORIZONAL, ElementXPath.PRODUCT_HTREE_HORIZONAL_PLUS, ElementXPath.PRODUCT_HTREE_ADD_SERVICE);
-            //browser.pause(1l, TimeUnit.SECONDS);
-        	browser.getElement(ElementXPath.PRODUCT_HTREE_ADD_SERVICE).click();
-        	browser.pause(1l, TimeUnit.SECONDS);
-        	switchToAddServiceFrame();
-            browser.pause(1l, TimeUnit.SECONDS);
-            //System.out.println(serviceId);
-            browser.input(serviceId(), serviceId);
-            browser.click(queryServiceButton());
-            chooseSpecifiedService(serviceId);
-            browser.getElement(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceRightButton")).click();//TODO 优化
-            browser.click(addServiceOKButton());
-        }};
+    	new ProductBasicInfo(browser){{
+    		browser.pause(1l, TimeUnit.SECONDS);
+    		browser.upcHTreeHover(ElementXPath.PRODUCT_HTREE_HORIZONAL, ElementXPath.PRODUCT_HTREE_HORIZONAL_PLUS, ElementXPath.PRODUCT_HTREE_ADD_SERVICE);
+			browser.pause(1l, TimeUnit.SECONDS);
+			browser.getElement(ElementXPath.PRODUCT_HTREE_ADD_SERVICE).click();
+			browser.pause(1l, TimeUnit.SECONDS);
+	        switchToAddServiceFrame();
+	    	browser.pause(1l, TimeUnit.SECONDS);
+	    	System.out.println(serviceId);
+	        browser.input(serviceId(), serviceId);
+	        browser.click(queryServiceButton());
+        	chooseSpecifiedService(serviceId);
+        	browser.getElement(ModuleField.getFieldValue(ModuleConst.PRODUCT_ADD_SERVICE, "addServiceRightButton")).click();//TODO 优化
+        	browser.click(addServiceOKButton());
+    	 }};
         return this;
     }
 
