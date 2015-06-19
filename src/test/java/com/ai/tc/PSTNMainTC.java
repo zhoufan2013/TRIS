@@ -290,18 +290,18 @@ public class PSTNMainTC {
         browser.pause(1,TimeUnit.SECONDS);
         //进入编辑页面并输入基本信息
         offerEditUIPage.intoBasicInfo().insertBasicInfo(offer);
-//        //编辑特征信息
-//        offerEditUIPage.insertOfferChar(offer);
-//        //添加渠道
-//        offerEditUIPage.intoEligibilityCriteria().insertSaleChannel(offer);
-//        //添加销售区域
-//        offerEditUIPage.insertSaleLocation(offer);
-//        //添加客户细分
-//        offerEditUIPage.insertSaleSegment(offer);
-//        //添加操作
-//        offerEditUIPage.intoBusiInterItems().insertBusiInterItems(offer);
-//        // 添加目录        	
-//        offerEditUIPage.intoCatalogNode().insertCatalogNode(offer);
+        //编辑特征信息
+        offerEditUIPage.insertOfferChar(offer);
+        //添加渠道
+        offerEditUIPage.intoEligibilityCriteria().insertSaleChannel(offer);
+        //添加销售区域
+        offerEditUIPage.insertSaleLocation(offer);
+        //添加客户细分
+        offerEditUIPage.insertSaleSegment(offer);
+        //添加操作
+        offerEditUIPage.intoBusiInterItems().insertBusiInterItems(offer);
+        // 添加目录        	
+        offerEditUIPage.intoCatalogNode().insertCatalogNode(offer);
         //添加产品 
         offerEditUIPage.addProductSpecification("2100708");
         offerEditUIPage.addProductSpecification("2101304");
